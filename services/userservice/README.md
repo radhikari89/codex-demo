@@ -35,6 +35,7 @@ mvn clean test
 
 ## Local URLs
 
+- Root URL: `http://localhost:8080/` redirects to Swagger UI
 - Health endpoint: `http://localhost:8080/api/v1/health`
 - Actuator health: `http://localhost:8080/actuator/health`
 - Swagger UI: `http://localhost:8080/swagger-ui.html`
@@ -45,4 +46,3 @@ mvn clean test
 - REST, validation, JPA, PostgreSQL, actuator, and Swagger/OpenAPI dependencies are included.
 - The package structure is ready for future controller, service, repository, domain, and exception work.
 - A starter health endpoint is implemented for quick verification after startup.
-
