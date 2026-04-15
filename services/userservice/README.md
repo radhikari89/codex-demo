@@ -8,6 +8,8 @@ Spring Boot backend starter for the `codex-demo` repository. This service lives 
 - Maven 3.9 or newer
 - PostgreSQL running locally
 
+PostgreSQL Docker setup and commands live in [../../database/postgres/README.md](../../database/postgres/README.md).
+
 ## Local configuration
 
 The application runs with the `local` profile by default. Update the values in [`src/main/resources/application-local.properties`](src/main/resources/application-local.properties) if your local PostgreSQL settings differ.
@@ -18,6 +20,8 @@ Default values:
 - Database: `userservice_db`
 - Username: `postgres`
 - Password: `postgres`
+
+These backend defaults do not yet match the new Docker PostgreSQL defaults under `database/postgres`. Update `application-local.properties` when you are ready to wire the backend to the Dockerized database.
 
 ## Run locally
 
