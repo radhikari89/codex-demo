@@ -4,7 +4,7 @@ Spring Boot backend starter for the `codex-demo` repository. This service lives 
 
 ## Prerequisites
 
-- Java 17 or newer
+- Java 21 or newer
 - Maven 3.9 or newer
 - PostgreSQL running locally
 
