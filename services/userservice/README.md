@@ -1,6 +1,6 @@
 # userservice
 
-Spring Boot backend starter for the `codex-demo` repository. This service lives under `services/` so the repo can grow into a microservices-friendly structure over time.
+Spring Boot backend starter for the `my-app` repository. This service lives under `services/` so the repo can grow into a microservices-friendly structure over time.
 
 ## Prerequisites
 
@@ -54,3 +54,4 @@ mvn clean test
 - REST, validation, JPA, PostgreSQL, actuator, and Swagger/OpenAPI dependencies are included.
 - The package structure is ready for future controller, service, repository, domain, and exception work.
 - A starter health endpoint is implemented for quick verification after startup.
+
