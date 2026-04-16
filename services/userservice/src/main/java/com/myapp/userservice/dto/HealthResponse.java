@@ -1,4 +1,4 @@
-package com.codexdemo.userservice.dto;
+package com.myapp.userservice.dto;
 
 import java.time.OffsetDateTime;
 
@@ -8,4 +8,3 @@ public record HealthResponse(
         OffsetDateTime timestamp
 ) {
 }
-

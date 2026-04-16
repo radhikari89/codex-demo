@@ -17,15 +17,18 @@ The application runs with the `local` profile by default. Update the values in [
 Default values:
 
 - Port: `8080`
-- Database: `userservice_db`
-- Username: `postgres`
-- Password: `postgres`
+- Database: `myappdb`
+- Username: `myappuser`
+- Password: `myapppassword`
 
-These backend defaults do not yet match the new Docker PostgreSQL defaults under `database/postgres`. Update `application-local.properties` when you are ready to wire the backend to the Dockerized database.
+Flyway now owns application schema changes. Docker starts only PostgreSQL; tables are created by backend migrations on application startup.
 
 ## Run locally
 
 ```powershell
+cd database/postgres
+docker compose up -d
+
 cd services/userservice
 mvn spring-boot:run
 ```
@@ -41,6 +44,7 @@ mvn clean test
 
 - Root URL: `http://localhost:8080/` redirects to Swagger UI
 - Health endpoint: `http://localhost:8080/api/v1/health`
+- Users endpoint: `http://localhost:8080/api/v1/users`
 - Actuator health: `http://localhost:8080/actuator/health`
 - Swagger UI: `http://localhost:8080/swagger-ui.html`
 - OpenAPI docs: `http://localhost:8080/v3/api-docs`

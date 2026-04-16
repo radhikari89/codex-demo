@@ -1,8 +1,3 @@
-CREATE TABLE IF NOT EXISTS health_check (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    message TEXT NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-
-INSERT INTO health_check (message)
-VALUES ('postgres up');
+-- Intentionally left without application schema objects.
+-- Docker provisions only the PostgreSQL instance for local development.
+-- Flyway in the Spring Boot backend is the single source of truth for schema changes.

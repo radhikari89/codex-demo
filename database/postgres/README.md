@@ -8,13 +8,13 @@ This directory contains the local PostgreSQL 16 Docker setup for the project.
 - Exposes PostgreSQL on `localhost:5432`
 - Uses values from `.env` for the database name, user, password, and host port
 - Persists data in a named Docker volume
-- Runs SQL files from `init/` only when the database is initialized against a fresh volume
+- Does not create application tables or schema objects during container startup
 
 ## Files
 
 - `docker-compose.yml`: local PostgreSQL container definition
 - `.env`: local development database settings
-- `init/001_init.sql`: first-run initialization script
+- `init/001_init.sql`: intentionally neutralized so Docker only provisions PostgreSQL
 
 ## Commands
 
@@ -52,10 +52,11 @@ docker exec -it myapp-postgres psql -U myappuser -d myappdb
 
 ### Verify the initialization script ran
 
-Run this after opening `psql`:
+Run this after opening `psql` and after the backend has started once:
 
 ```sql
-SELECT * FROM health_check;
+SELECT * FROM flyway_schema_history;
+SELECT * FROM users;
 ```
 
 ### Reset the database completely
@@ -83,6 +84,8 @@ That means:
 
 - If the named volume already exists, changing files in `init/` will not re-run them automatically
 - Use `docker compose down -v` to reset the volume and trigger initialization again
+
+Application tables are no longer created here. Start PostgreSQL first, then start the Spring Boot backend so Flyway can apply migrations.
 
 ## Note about the `.env` file
 

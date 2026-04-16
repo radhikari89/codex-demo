@@ -1,4 +1,4 @@
-package com.codexdemo.userservice.config;
+package com.myapp.userservice.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -21,4 +21,3 @@ public class OpenApiConfig {
                         .license(new License().name("Proprietary")));
     }
 }
-

@@ -1,4 +1,4 @@
-package com.codexdemo.userservice;
+package com.myapp.userservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,6 @@
-package com.codexdemo.userservice.controller;
+package com.myapp.userservice.controller;
 
-import com.codexdemo.userservice.dto.HealthResponse;
+import com.myapp.userservice.dto.HealthResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.time.OffsetDateTime;
@@ -25,4 +25,3 @@ public class HealthController {
         return ResponseEntity.ok(response);
     }
 }
-

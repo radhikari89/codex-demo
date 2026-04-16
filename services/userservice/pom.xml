@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.codexdemo</groupId>
+    <groupId>com.myapp</groupId>
     <artifactId>userservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>userservice</name>
@@ -43,6 +43,10 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>

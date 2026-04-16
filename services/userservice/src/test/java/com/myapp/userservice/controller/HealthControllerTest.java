@@ -1,4 +1,4 @@
-package com.codexdemo.userservice.controller;
+package com.myapp.userservice.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

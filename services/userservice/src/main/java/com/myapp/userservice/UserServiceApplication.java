@@ -1,4 +1,4 @@
-package com.codexdemo.userservice;
+package com.myapp.userservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,4 +10,3 @@ public class UserServiceApplication {
         SpringApplication.run(UserServiceApplication.class, args);
     }
 }
-
