@@ -23,6 +23,8 @@ Default values:
 
 Flyway now owns application schema changes. Docker starts only PostgreSQL; tables are created by backend migrations on application startup.
 
+The local setup also seeds a few dummy users through Flyway for quick API testing.
+
 ## Run locally
 
 ```powershell
@@ -47,6 +49,16 @@ mvn clean test
 - Actuator health: `http://localhost:8080/actuator/health`
 - Swagger UI: `http://localhost:8080/swagger-ui.html`
 - OpenAPI docs: `http://localhost:8080/v3/api-docs`
+
+## Seed Data
+
+After Flyway runs, the `users` table includes a few dummy records for local testing:
+
+- `alice` / `alice@myapp.local`
+- `bob` / `bob@myapp.local`
+- `charlie` / `charlie@myapp.local`
+
+These are development-only placeholder records with demo password hash values.
 
 ## Notes
 
