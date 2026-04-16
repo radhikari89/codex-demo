@@ -67,6 +67,8 @@ This removes the container and the named volume. Use it when you want a clean da
 docker compose down -v
 ```
 
+If you switch an existing local database to Flyway-managed schema changes and see an error about a non-empty schema with no schema history table, reset the volume and start again so Flyway can initialize the schema from scratch.
+
 ## Connection details
 
 - Host: `localhost`
