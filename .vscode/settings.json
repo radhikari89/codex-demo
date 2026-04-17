@@ -13,10 +13,18 @@
             "password": "myapppassword"
         },
         {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": false
+                }
+            },
             "ssh": "Disabled",
             "previewLimit": 50,
-            "server": "localhost",
+            "server": "myapp-postgres.c96utbpmp6i9.us-east-1.rds.amazonaws.com",
             "port": 5432,
+            "sshOptions": {
+                "port": 22
+            },
             "driver": "PostgreSQL",
             "name": "aws-postgres",
             "database": "myappdb",

@@ -10,6 +10,9 @@ ORDER BY datname;
 -- Show the current database.
 SELECT current_database();
 
+-- Create new database
+CREATE DATABASE myappdb;
+
 -- Show installed tables in the public schema.
 SELECT tablename
 FROM pg_catalog.pg_tables
