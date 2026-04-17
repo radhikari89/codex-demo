@@ -11,6 +11,17 @@
             "database": "myappdb",
             "username": "myappuser",
             "password": "myapppassword"
+        },
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "aws-postgres",
+            "database": "myappdb",
+            "username": "myappuser",
+            "password": "myapppassword"
         }
     ]
 }

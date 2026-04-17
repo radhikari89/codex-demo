@@ -15,6 +15,7 @@ This directory contains the local PostgreSQL 16 Docker setup for the project.
 - `docker-compose.yml`: local PostgreSQL container definition
 - `.env`: local development database settings
 - `init/001_init.sql`: intentionally neutralized so Docker only provisions PostgreSQL
+- `util-postgres.sql`: commonly used local PostgreSQL helper queries
 
 ## Commands
 
