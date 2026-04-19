@@ -20,8 +20,8 @@
             },
             "ssh": "Disabled",
             "previewLimit": 50,
-            "server": "myapp-postgres.c96utbpmp6i9.us-east-1.rds.amazonaws.com",
-            "port": 5432,
+            "server": "localhost",
+            "port": 15432,
             "sshOptions": {
                 "port": 22
             },

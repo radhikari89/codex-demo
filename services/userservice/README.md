@@ -35,6 +35,12 @@ cd services/userservice
 mvn spring-boot:run
 ```
 
+If you are already at the repository root, you can also run the service with a single Maven command:
+
+```powershell
+mvn -f services/userservice/pom.xml spring-boot:run
+```
+
 ## Build and test
 
 ```powershell
