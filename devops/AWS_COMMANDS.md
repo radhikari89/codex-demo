@@ -27,7 +27,7 @@ Open a new terminal after setting it, then use this AWS Systems Manager command 
 aws ssm start-session `
   --target $env:SSM_EC2_INSTANCE_ID `
   --document-name AWS-StartPortForwardingSessionToRemoteHost `
-  --parameters host="$env:MYAPP_RDS_ENDPOINT",portNumber="5432",localPortNumber="15432"
+  --parameters host="$env:MYAPP_RDS_ENDPOINT",portNumber="5432",localPortNumber="5432"
 ```
 
 Verify the variable is available:

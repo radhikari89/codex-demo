@@ -21,7 +21,7 @@
             "ssh": "Disabled",
             "previewLimit": 50,
             "server": "localhost",
-            "port": 15432,
+            "port": 5432,
             "sshOptions": {
                 "port": 22
             },
