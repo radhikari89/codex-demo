@@ -37,3 +37,6 @@ $env:MYAPP_RDS_ENDPOINT
 ```
 
 Note: In PowerShell, environment variables are accessed with `$env:...`. `$MYAPP_RDS_ENDPOINT` would be a regular session variable, not the persistent Windows environment variable.
+
+## Connect To EC2
+aws ssm start-session --target $env:SSM_EC2_INSTANCE_ID
