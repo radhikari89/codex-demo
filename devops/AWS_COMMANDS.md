@@ -40,3 +40,29 @@ Note: In PowerShell, environment variables are accessed with `$env:...`. `$MYAPP
 
 ## Connect To EC2
 aws ssm start-session --target $env:SSM_EC2_INSTANCE_ID
+
+## Upload Spring Boot JAR To S3
+
+From the `services/userservice` directory, upload the built Spring Boot jar to the `rosh1-app-deploy` S3 bucket with:
+
+```powershell
+aws s3 cp target/userservice-0.0.1-SNAPSHOT.jar s3://rosh1-app-deploy/userservice-0.0.1-SNAPSHOT.jar
+```
+
+From the repository root, use:
+
+```powershell
+aws s3 cp services/userservice/target/userservice-0.0.1-SNAPSHOT.jar s3://rosh1-app-deploy/userservice-0.0.1-SNAPSHOT.jar
+```
+
+To download the jar from S3 into the current directory, use:
+
+```powershell
+aws s3 cp s3://rosh1-app-deploy/userservice-0.0.1-SNAPSHOT.jar .
+```
+
+## Get Caller Identity
+
+```powershell
+aws sts get-caller-identity
+```
