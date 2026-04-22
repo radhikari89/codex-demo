@@ -49,12 +49,7 @@ From the `services/userservice` directory, upload the built Spring Boot jar to t
 aws s3 cp target/userservice-0.0.1-SNAPSHOT.jar s3://rosh1-app-deploy/userservice-0.0.1-SNAPSHOT.jar
 ```
 
-From the repository root, use:
-
-```powershell
-aws s3 cp services/userservice/target/userservice-0.0.1-SNAPSHOT.jar s3://rosh1-app-deploy/userservice-0.0.1-SNAPSHOT.jar
-```
-
+## Download jar from s3 to ec2 or any current directory
 To download the jar from S3 into the current directory, use:
 
 ```powershell
