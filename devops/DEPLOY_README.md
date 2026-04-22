@@ -32,9 +32,16 @@ After the session starts, the following commands run on the EC2 instance.
 
 ## 4. Prepare The App Directory On EC2
 
+For the first deployment on a new EC2 instance, install Java 21 if it is not already available:
+
+```bash
+sudo dnf install -y java-21-amazon-corretto
+java -version
+```
+
 ```bash
 sudo mkdir -p /opt/my-app
-sudo chown ssm-user:ssm-user /opt/my-app
+sudo chown -R ssm-user:ssm-user /opt/my-app
 cd /opt/my-app
 ```
 
