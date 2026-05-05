@@ -23,6 +23,8 @@ public class DebugController {
         result.put("x-forwarded-proto", request.getHeader("x-forwarded-proto"));
         result.put("x-forwarded-host", request.getHeader("x-forwarded-host"));
         result.put("x-forwarded-port", request.getHeader("x-forwarded-port"));
+        result.put("cloudfront-forwarded-proto", request.getHeader("CloudFront-Forwarded-Proto"));
+        result.put("host", request.getHeader("Host"));
         return result;
     }
 
