@@ -4,6 +4,10 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.servers.Server;
+
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,9 +19,13 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("User Service API")
-                        .description("Spring Boot backend for codex-demo user-related APIs.")
+                        .description("Spring Boot backend for my-app user-related APIs.")
                         .version("v1")
-                        .contact(new Contact().name("codex-demo").email("dev@example.com"))
-                        .license(new License().name("Proprietary")));
+                        .contact(new Contact().name("my-app").email("dev@myapp.com"))
+                        .license(new License().name("Proprietary"))).servers(List.of(
+                        new Server()
+                                .url("/") // Use relative URL so API calls resolve to current origin (e.g., https://domain in prod, http://localhost in dev)
+                                .description("Production server")
+                ));
     }
 }

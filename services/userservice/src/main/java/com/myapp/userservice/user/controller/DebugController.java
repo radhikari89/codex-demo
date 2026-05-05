@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Tag(name = "Users", description = "User management endpoints")
 public class DebugController {
 
+    // Just for debugging
     @GetMapping("/headers")
     public Map<String, String> headers(HttpServletRequest request) {
         Map<String, String> result = new HashMap<>();
