@@ -1,0 +1,68 @@
+<main class="dashboard-shell">
+  <aside class="sidebar">
+    <a class="brand" routerLink="/">
+      <span class="brand-mark">C</span>
+      <span>Codex Demo</span>
+    </a>
+    <nav aria-label="Dashboard navigation">
+      <a class="active" href="#">Overview</a>
+      <a href="#">Projects</a>
+      <a href="#">Activity</a>
+      <a href="#">Settings</a>
+    </nav>
+  </aside>
+
+  <section class="dashboard-main">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">User dashboard</p>
+        <h1>Welcome, {{ authService.user()?.name }}</h1>
+      </div>
+      <button type="button" (click)="logout()">Log out</button>
+    </header>
+
+    <section class="summary-grid" aria-label="Dashboard summary">
+      <article class="summary-card">
+        <span>Workspace score</span>
+        <strong>96%</strong>
+        <p>Core systems are steady and ready for review.</p>
+      </article>
+      <article class="summary-card amber">
+        <span>Open reviews</span>
+        <strong>12</strong>
+        <p>Four items moved forward since the last check-in.</p>
+      </article>
+      <article class="summary-card blue">
+        <span>Active sessions</span>
+        <strong>28</strong>
+        <p>Users are currently working across five project areas.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel">
+        <div class="panel-header">
+          <h2>Recent activity</h2>
+          <span>Updated now</span>
+        </div>
+        <div class="timeline">
+          <p><span></span>Account session created for {{ authService.user()?.email }}</p>
+          <p><span></span>Dashboard route guard confirmed active access</p>
+          <p><span></span>Mock authentication state persisted locally</p>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-header">
+          <h2>Next steps</h2>
+          <span>Starter flow</span>
+        </div>
+        <ul>
+          <li>Connect login and signup to the backend auth service.</li>
+          <li>Replace demo metrics with real dashboard data.</li>
+          <li>Add role-specific navigation and profile controls.</li>
+        </ul>
+      </article>
+    </section>
+  </section>
+</main>
