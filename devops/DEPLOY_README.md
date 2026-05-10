@@ -9,6 +9,7 @@ Open this document when you want to decide which deployment runbook to follow.
 ## Common Tasks
 
 - Deploy or redeploy the Spring Boot app to EC2: [EC2_README.md](EC2_README.md)
+- Deploy or redeploy the Angular UI to S3 and CloudFront: [UI_DEPLOY_README.md](UI_DEPLOY_README.md)
 - Inspect files packaged inside the deployed Spring Boot JAR on EC2: [EC2_README.md](EC2_README.md)
 - Configure Nginx on EC2 to expose the app on port `80`: [EC2_README.md](EC2_README.md)
 - Keep the static S3 site on the same domain and route selected paths to the backend: [CUSTOM_DOMAIN_PATH_ROUTING.md](CUSTOM_DOMAIN_PATH_ROUTING.md)
@@ -27,6 +28,16 @@ Use [EC2_README.md](EC2_README.md) for:
 - health checks and log inspection
 - optional Nginx reverse proxy setup on port `80`
 
+### UI_DEPLOY_README.md
+
+Use [UI_DEPLOY_README.md](UI_DEPLOY_README.md) for:
+
+- building the Angular UI
+- uploading static UI files to S3
+- configuring CloudFront for Angular routes
+- keeping `/api/*` routed to the backend while the UI owns the main domain
+- invalidating CloudFront after UI deployments
+
 ### CUSTOM_DOMAIN_PATH_ROUTING.md
 
 Use [CUSTOM_DOMAIN_PATH_ROUTING.md](CUSTOM_DOMAIN_PATH_ROUTING.md) for:
@@ -40,7 +51,8 @@ Use [CUSTOM_DOMAIN_PATH_ROUTING.md](CUSTOM_DOMAIN_PATH_ROUTING.md) for:
 
 1. Deploy and verify the app on EC2 with [EC2_README.md](EC2_README.md)
 2. Optionally add Nginx on EC2 if you want standard HTTP on port `80`
-3. Configure custom-domain path routing with [CUSTOM_DOMAIN_PATH_ROUTING.md](CUSTOM_DOMAIN_PATH_ROUTING.md)
+3. Deploy the Angular UI with [UI_DEPLOY_README.md](UI_DEPLOY_README.md)
+4. Configure custom-domain path routing with [CUSTOM_DOMAIN_PATH_ROUTING.md](CUSTOM_DOMAIN_PATH_ROUTING.md)
 
 ## Important Note
 
