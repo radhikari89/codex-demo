@@ -2,6 +2,15 @@
 
 Use this runbook to build and deploy the Angular UI as a static site in AWS.
 
+## Quick Links
+
+- [Bucket-Specific Quick Reference](#bucket-specific-quick-reference)
+- [Build The UI](#build-the-ui)
+- [Upload The UI Build To S3](#upload-the-ui-build-to-s3)
+- [CloudFront Setup](#cloudfront-setup)
+- [SPA Route Fallback](#spa-route-fallback)
+- [Verify Deployment](#verify-deployment)
+
 ## When To Use This File
 
 Open this document when you need to:
@@ -103,6 +112,8 @@ aws s3 sync ui/dist/my-app/browser s3://<ui-bucket-name> --delete
 
 More controlled option:
 
+These are intentionally split into two commands because `index.html` and hashed static assets need different cache behavior. Keep `index.html` easy to refresh so users receive the latest bundle references after a deploy. Cache hashed JavaScript, CSS, and asset files aggressively because their filenames change when their content changes.
+
 ```powershell
 aws s3 cp ui/dist/my-app/browser/index.html s3://<ui-bucket-name>/index.html --cache-control "no-cache"
 aws s3 sync ui/dist/my-app/browser s3://<ui-bucket-name> --exclude "index.html" --delete --cache-control "public,max-age=31536000,immutable"
@@ -201,3 +212,52 @@ That proxy is only used by `ng serve`. It is not bundled into production builds 
 - Backend EC2 deployment: [EC2_README.md](EC2_README.md)
 - Custom-domain path routing: [CUSTOM_DOMAIN_PATH_ROUTING.md](CUSTOM_DOMAIN_PATH_ROUTING.md)
 - AWS helper commands: [AWS_COMMANDS.md](AWS_COMMANDS.md)
+
+## Bucket-Specific Quick Reference
+
+Current UI bucket:
+
+```text
+codex-demo-ui
+```
+
+Build the UI:
+
+```powershell
+cd ui
+npm install
+npm run build
+```
+
+Verify the build output:
+
+```powershell
+Get-ChildItem dist\my-app\browser
+```
+
+Create the bucket if it does not already exist:
+
+```powershell
+aws s3 mb s3://codex-demo-ui
+```
+
+Configure temporary S3 static website hosting if needed:
+
+```powershell
+aws s3 website s3://codex-demo-ui --index-document index.html --error-document index.html
+```
+
+Upload the UI build:
+
+```powershell
+aws s3 sync ui/dist/my-app/browser s3://codex-demo-ui --delete
+```
+
+Upload with cache headers:
+
+These two commands are split on purpose. `index.html` uses `no-cache` so the app shell can be refreshed after deploys, while hashed bundles and assets use long-lived immutable caching for better performance.
+
+```powershell
+aws s3 cp ui/dist/my-app/browser/index.html s3://codex-demo-ui/index.html --cache-control "no-cache"
+aws s3 sync ui/dist/my-app/browser s3://codex-demo-ui --exclude "index.html" --delete --cache-control "public,max-age=31536000,immutable"
+```
