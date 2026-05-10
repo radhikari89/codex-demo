@@ -9,7 +9,7 @@ export interface AuthUser {
 }
 
 const STORAGE_KEY = 'codex-demo-user';
-const USERS_API_URL = 'http://localhost:8080/api/v1/users';
+const USERS_API_URL = '/api/v1/users';
 
 interface UserResponse {
   id: number;
