@@ -48,6 +48,18 @@ Replace these placeholders in commands:
 <domain>
 ```
 
+Current CloudFront distribution domain:
+
+```text
+d349cikug2iot6.cloudfront.net
+```
+
+CloudFront invalidation commands require the distribution ID, not the distribution domain name. If you only know the domain name, find the ID with:
+
+```powershell
+aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='d349cikug2iot6.cloudfront.net'].Id" --output text
+```
+
 ## Build The UI
 
 From the repository root:
@@ -56,6 +68,7 @@ From the repository root:
 cd ui
 npm install
 npm run build
+cd ..
 ```
 
 The production build output should be under:
@@ -221,18 +234,25 @@ Current UI bucket:
 codex-demo-ui
 ```
 
+Current CloudFront distribution domain:
+
+```text
+d349cikug2iot6.cloudfront.net
+```
+
 Build the UI:
 
 ```powershell
 cd ui
 npm install
 npm run build
+cd ..
 ```
 
 Verify the build output:
 
 ```powershell
-Get-ChildItem dist\my-app\browser
+Get-ChildItem ui\dist\my-app\browser
 ```
 
 Create the bucket if it does not already exist:
@@ -260,4 +280,16 @@ These two commands are split on purpose. `index.html` uses `no-cache` so the app
 ```powershell
 aws s3 cp ui/dist/my-app/browser/index.html s3://codex-demo-ui/index.html --cache-control "no-cache"
 aws s3 sync ui/dist/my-app/browser s3://codex-demo-ui --exclude "index.html" --delete --cache-control "public,max-age=31536000,immutable"
+```
+
+Find the CloudFront distribution ID from the distribution domain:
+
+```powershell
+aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='d349cikug2iot6.cloudfront.net'].Id" --output text
+```
+
+Invalidate CloudFront after upload:
+
+```powershell
+aws cloudfront create-invalidation --distribution-id <cloudfront-distribution-id> --paths "/*"
 ```

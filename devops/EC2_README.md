@@ -2,6 +2,23 @@
 
 Use this runbook for all EC2 host setup and app deployment work for `userservice`.
 
+## Table Of Contents
+
+- [When To Use This File](#when-to-use-this-file)
+- [Prerequisites](#prerequisites)
+- [Quick Paths](#quick-paths)
+- [Build And Upload The JAR](#build-and-upload-the-jar)
+- [Connect To EC2](#connect-to-ec2)
+- [First-Time EC2 Preparation](#first-time-ec2-preparation)
+- [Download The JAR To EC2](#download-the-jar-to-ec2)
+- [Inspect The JAR On EC2](#inspect-the-jar-on-ec2)
+- [Start The App](#start-the-app)
+- [Stop Or Restart The App](#stop-or-restart-the-app)
+- [Verify The App](#verify-the-app)
+- [Optional Nginx Reverse Proxy](#optional-nginx-reverse-proxy)
+- [Troubleshooting](#troubleshooting)
+- [Related Runbooks](#related-runbooks)
+
 ## When To Use This File
 
 Open this document when you need to:
