@@ -44,7 +44,8 @@ Use for Angular routes, pages, services, components, styling, and UI tests.
 Responsibilities:
 
 - Work under `ui/`.
-- Keep backend calls relative, for example `/api/v1/...`.
+- Keep backend calls in source code relative, for example `/api/v1/...`.
+- For local integration testing, run the backend on `localhost:8080` and use the Angular dev proxy so relative `/api` calls reach the local service.
 - Preserve the current standalone Angular style.
 - Keep auth state behavior deliberate and documented.
 - Update `ui/documentation/` when user-facing behavior or architecture changes.
@@ -98,6 +99,6 @@ Output:
 - Agents do not push directly to `main`.
 - One agent owns one task at a time.
 - Agents should avoid broad refactors unless the task explicitly calls for them.
-- Backend and UI agents should agree on API request and response shapes before implementation.
+- Backend and UI agents should agree on API request and response shapes before implementation. Mediate this through a story comment, issue checklist, or short contract document that names endpoints, methods, request fields, response fields, status codes, and error shapes before either side builds against it.
 - QA should verify the integrated behavior after backend and UI changes land.
 - Documentation changes are part of done, not an optional cleanup step.
