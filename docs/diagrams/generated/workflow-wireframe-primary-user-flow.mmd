@@ -1,0 +1,19 @@
+flowchart TD
+  home[Public Home Page]
+  login[Login Page]
+  signup[Signup Page]
+  dashboard[Authenticated Dashboard]
+  ai[AI Playground]
+  blockchain[Blockchain Playground]
+  misc[Misc Apps]
+  profile[Profile / Settings]
+
+  home --> login
+  home --> signup
+  login --> dashboard
+  signup --> dashboard
+  dashboard --> ai
+  dashboard --> blockchain
+  dashboard --> misc
+  dashboard --> profile
+  profile --> dashboard

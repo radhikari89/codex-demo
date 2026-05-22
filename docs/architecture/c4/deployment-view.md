@@ -7,16 +7,18 @@ This document captures local and deployed topology.
 ```mermaid
 flowchart LR
   developer[Developer Browser]
-  angular[Angular Dev Server\nlocalhost:4200]
-  proxy[Angular Proxy\n/api]
+  angular[Angular Dev Server\nlocalhost:4200\nproxies /api to localhost:8080]
   service[Spring Boot User Service\nlocalhost:8080]
   db[(Local PostgreSQL\nlocalhost:5432)]
 
   developer -->|http://localhost:4200| angular
-  angular -->|relative /api/v1/* calls| proxy
-  proxy -->|forwards to localhost:8080| service
+  angular -->|relative /api/v1/* calls forwarded| service
   service -->|JPA/Flyway| db
 ```
+
+Rendered image:
+
+![Local development deployment view](../../diagrams/generated/deployment-view-local-development.svg)
 
 ## AWS Deployment
 
@@ -33,6 +35,10 @@ flowchart LR
   cloudfront -->|/api/* and backend docs paths| backend
   backend --> db
 ```
+
+Rendered image:
+
+![AWS deployment view](../../diagrams/generated/deployment-view-aws-deployment.svg)
 
 ## Notes
 

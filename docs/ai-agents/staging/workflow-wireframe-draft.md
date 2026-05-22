@@ -45,6 +45,10 @@ flowchart TD
   profile --> dashboard
 ```
 
+Rendered image:
+
+![Primary user flow](../../diagrams/generated/workflow-wireframe-primary-user-flow.svg)
+
 ## Route Model
 
 | Route | Access | Purpose |

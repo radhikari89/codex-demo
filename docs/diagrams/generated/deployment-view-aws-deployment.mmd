@@ -1,0 +1,11 @@
+flowchart LR
+  browser[Browser]
+  cloudfront[CloudFront]
+  s3[S3 UI Bucket]
+  backend[Backend Origin\nSpring Boot]
+  db[(AWS PostgreSQL)]
+
+  browser -->|HTTPS| cloudfront
+  cloudfront -->|default behavior| s3
+  cloudfront -->|/api/* and backend docs paths| backend
+  backend --> db

@@ -25,6 +25,10 @@ flowchart TD
   main --> status
 ```
 
+Rendered image:
+
+![AI agent story flow](../../diagrams/generated/ai-agent-story-flow.svg)
+
 ## Rules
 
 - Raw vision should be staged before implementation stories are created.

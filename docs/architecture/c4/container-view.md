@@ -13,18 +13,20 @@ flowchart LR
     postgres[(PostgreSQL)]
   end
 
-  browser -->|HTTPS /| cloudfront
-  browser -->|HTTPS /login /signup /dashboard| cloudfront
-  browser -->|HTTPS /api/*| cloudfront
+  browser -->|HTTPS requests| cloudfront
 
   cloudfront -->|UI routes and static assets| s3
   cloudfront -->|API behavior /api/*| userservice
   userservice -->|JPA/Flyway| postgres
 ```
 
+Rendered image:
+
+![Container view](../../diagrams/generated/container-view.svg)
+
 ## Responsibilities
 
-| Container | Responsibility | Current Location |
+| Container | Responsibility | Current Location In Repo |
 | --- | --- | --- |
 | Angular UI | Home, signup, login, dashboard, route guard, local auth state | `ui/` |
 | Spring Boot User Service | User REST API, validation, persistence, Swagger/OpenAPI | `services/userservice/` |

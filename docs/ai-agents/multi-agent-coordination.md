@@ -157,6 +157,10 @@ stateDiagram-v2
     Blocked --> Intake
 ```
 
+Rendered image:
+
+![Multi-agent status flow](../diagrams/generated/multi-agent-status-flow.svg)
+
 ## Label Usage
 
 Use labels to communicate routing and state:
