@@ -1,0 +1,170 @@
+version: 1
+orchestration:
+  source_of_truth: github
+  ticket_system: github_issues
+  default_branch: main
+  human_approval_required_for:
+    - production_deployments
+    - destructive_infrastructure_changes
+    - credential_or_secret_changes
+    - security_policy_changes
+    - product_vision_interpretation
+
+agents:
+  orchestrator:
+    purpose: Route work, sequence agents, maintain issue status, and prepare final PR context.
+    owns:
+      - task_breakdown
+      - dependency_ordering
+      - write_scope_conflict_control
+      - handoff_validation
+      - pull_request_summary
+    labels:
+      - agent:orchestrator
+
+  product_analyst:
+    purpose: Convert raw vision and issues into clear stories, acceptance criteria, and open questions.
+    owns:
+      - requirements
+      - acceptance_criteria
+      - feature_scope
+      - open_questions
+    labels:
+      - agent:product
+
+  solution_architect:
+    purpose: Define app boundaries, technical approach, API contracts, data ownership, and cross-cutting risks.
+    owns:
+      - architecture
+      - app_boundary
+      - api_contract
+      - data_contract
+      - risk_notes
+      - architecture_diagrams
+    labels:
+      - agent:architecture
+
+  backend_agent:
+    purpose: Implement Spring Boot services, APIs, persistence, validation, and backend tests.
+    owns:
+      - backend_code
+      - backend_tests
+      - database_migrations
+    labels:
+      - area:backend
+    stack:
+      - java
+      - spring_boot
+      - postgresql
+
+  ui_agent:
+    purpose: Implement Angular routes, components, services, client validation, and UI tests.
+    owns:
+      - ui_code
+      - ui_tests
+      - user_experience_states
+    labels:
+      - area:ui
+    stack:
+      - typescript
+      - angular
+
+  devops_agent:
+    purpose: Implement AWS infrastructure, CI/CD, observability, and deployment runbooks.
+    owns:
+      - hosting
+      - ci_cd
+      - deployment_runbooks
+      - operational_notes
+    labels:
+      - area:infra
+    stack:
+      - aws
+      - github_actions
+
+  qa_agent:
+    purpose: Turn acceptance criteria into verification plans and regression checks.
+    owns:
+      - test_plan
+      - regression_findings
+      - acceptance_verification
+    labels:
+      - area:qa
+
+  security_reviewer:
+    purpose: Review data exposure, authentication, authorization, secrets, dependencies, and IAM.
+    owns:
+      - security_findings
+      - security_approval
+    labels:
+      - risk:security
+
+  release_manager:
+    purpose: Prepare release notes, deployment checklist, and rollback notes.
+    owns:
+      - release_notes
+      - deployment_checklist
+      - rollback_notes
+
+task_model:
+  source: github_issue
+  execution_unit: agent_task
+  task_statuses:
+    - queued
+    - ready
+    - running
+    - blocked
+    - review
+    - done
+  required_fields:
+    - parent_issue
+    - assigned_agent
+    - objective
+    - inputs
+    - outputs
+    - dependencies
+    - write_scope
+    - status
+  activation_rule: Start every ready task whose dependencies are done and whose write scope does not conflict with another running task.
+  conflict_rule: If write scopes overlap, serialize the tasks or assign a single integration owner.
+
+default_write_scopes:
+  product_analyst:
+    - docs/ai-agents/staging/**
+    - docs/ai-agents/**
+  solution_architect:
+    - docs/architecture/**
+    - docs/ai-agents/staging/app-boundary-model-draft.md
+  backend_agent:
+    - services/userservice/**
+    - database/postgres/**
+  ui_agent:
+    - ui/**
+  devops_agent:
+    - devops/**
+    - .github/workflows/**
+  qa_agent:
+    - docs/test-plans/**
+    - docs/test-results/**
+  security_reviewer:
+    - docs/security/**
+  release_manager:
+    - docs/releases/**
+
+labels:
+  routing:
+    - agent:orchestrator
+    - agent:product
+    - agent:architecture
+    - area:backend
+    - area:ui
+    - area:infra
+    - area:qa
+    - risk:security
+  status:
+    - status:blocked
+    - status:needs-product
+    - status:ready-for-architecture
+    - status:ready-for-build
+    - status:ready-for-review
+    - status:ready-for-release
