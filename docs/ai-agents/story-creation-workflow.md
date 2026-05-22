@@ -18,6 +18,7 @@ The output should be suitable for:
 Read these documents before creating stories:
 
 - `docs/ai-agents/vision-intake.md`
+- `docs/ai-agents/staging/README.md`
 - `docs/ai-agents/golden-rules.md`
 - `docs/ai-agents/agent-briefs.md`
 - `docs/ai-agents/remaining-work-plan.md`
@@ -36,9 +37,11 @@ Create a concise product brief:
 
 Keep this faithful to the original vision. If the source is ambiguous, mark the statement as an assumption.
 
-## Step 2: Extract Epics
+Write the first version to `docs/ai-agents/staging/product-brief-draft.md`.
 
-Group the vision into broad epics.
+## Step 2: Create Draft Feature Map
+
+Group the vision into features and broad epics.
 
 Common epic types:
 
@@ -47,13 +50,32 @@ Common epic types:
 - data management
 - admin or operator workflows
 - reporting
+- app shell and navigation
+- independently testable app modules
+- reusable app template or app factory
 - deployment and operations
 - security
 - quality and testing
 
 Only create epics supported by the vision or current codebase.
 
-## Step 3: Create User Stories
+Write the first version to `docs/ai-agents/staging/feature-map-draft.md`.
+
+## Step 3: Define App Boundaries
+
+For each app or major feature area, classify its boundary:
+
+- UI-only
+- UI plus shared backend
+- UI plus dedicated service
+- external linked app
+- undecided
+
+Also capture how that app can be run, tested, and smoke-tested independently.
+
+Write the first version to `docs/ai-agents/staging/app-boundary-model-draft.md`.
+
+## Step 4: Create Story Candidates
 
 Each story should use this shape:
 
@@ -73,7 +95,9 @@ Each story should include:
 - implementation notes
 - test notes
 
-## Step 4: Separate Discovery From Implementation
+Write the first version to `docs/ai-agents/staging/story-candidates-draft.md`.
+
+## Step 5: Separate Discovery From Implementation
 
 Create discovery stories when the answer is not known yet.
 
@@ -86,7 +110,18 @@ Use discovery for:
 
 Use implementation stories only when the expected behavior is clear enough to build and test.
 
-## Step 5: Sequence The Work
+## Step 6: Human Approval Gate
+
+Before creating GitHub issues, the owner should review the staged drafts and decide whether each item is:
+
+- approved
+- needs revision
+- rejected
+- deferred
+
+Agents should not convert staged story candidates into GitHub issues until the owner explicitly approves them.
+
+## Step 7: Sequence The Work
 
 Organize stories into a practical order:
 
@@ -98,7 +133,7 @@ Organize stories into a practical order:
 
 Prefer a working end-to-end path over many disconnected partial layers.
 
-## Step 6: Prepare GitHub Issue Drafts
+## Step 8: Prepare GitHub Issue Drafts
 
 For each story, create a GitHub-ready issue draft:
 
@@ -126,8 +161,10 @@ Each issue should represent a clear unit of work. Implementation should not star
 
 Recommended output files:
 
-- `docs/ai-agents/product-brief.md`
-- `docs/ai-agents/story-map.md`
+- `docs/ai-agents/staging/product-brief-draft.md`
+- `docs/ai-agents/staging/feature-map-draft.md`
+- `docs/ai-agents/staging/app-boundary-model-draft.md`
+- `docs/ai-agents/staging/story-candidates-draft.md`
 - `docs/ai-agents/github-issue-drafts.md`
 
 ## Quality Bar
