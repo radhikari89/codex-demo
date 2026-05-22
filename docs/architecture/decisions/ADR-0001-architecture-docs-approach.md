@@ -6,7 +6,7 @@ Related story: [#34](https://github.com/radhikari89/codex-demo/issues/34)
 
 ## Context
 
-The application is evolving from a simple deployed Angular/Spring Boot/PostgreSQL app into `webdevisfun.com`, a playground and app hub for modern web technologies.
+The application is evolving from a simple deployed Angular/Spring Boot/PostgreSQL app into `webdevisfun.com`, a prototypes hub for modern web technologies.
 
 The architecture needs to be understandable by humans and AI agents. It also needs to stay lightweight enough to update during normal pull requests.
 

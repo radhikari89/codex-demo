@@ -1,4 +1,4 @@
-# Feature: AI Playground
+# Feature: Blockchain Prototypes
 
 Status: Draft
 
@@ -18,23 +18,23 @@ Related PRs:
 
 ## Purpose
 
-Host AI applications and eventually use AI agents to recommend what kind of app should be created next.
+Host blockchain-based experiments and applications.
 
 ## Current State
 
-- Product vision names AI as a future app category.
-- No AI app has been selected yet.
+- Product vision names Blockchain as a future prototype category.
+- No blockchain app has been selected yet.
 
 ## Desired State
 
-- AI category landing page exists.
-- First AI app concept is defined.
-- App boundary and verification path are documented before implementation.
+- Blockchain category landing page exists.
+- First blockchain app concept is defined.
+- Security and wallet/tooling assumptions are reviewed before implementation.
 
 ## App Boundary
 
 - Type: Undecided
-- Route/access point: `/apps/ai`
+- Route/access point: `/apps/blockchain`
 - Data boundary: Pending first app concept
 - Backend/service dependency: Undecided
 - Independent verification path: Pending first app concept
@@ -45,9 +45,9 @@ Host AI applications and eventually use AI agents to recommend what kind of app 
 
 ## Remaining Work
 
-- Define first AI app idea.
-- Decide shared backend versus dedicated service.
-- Define AI API/provider and cost/security considerations.
+- Define first blockchain app idea.
+- Identify wallet, network, and security requirements.
+- Decide whether this category needs a dedicated service.
 
 ## Decisions
 
@@ -55,8 +55,8 @@ Host AI applications and eventually use AI agents to recommend what kind of app 
 
 ## Open Questions
 
-- What is the first useful AI app?
-- Will AI features use OpenAI, AWS, local models, or another provider?
+- What blockchain use case is safe and useful as a first demo?
+- Should this be testnet-only?
 
 ## Architecture / Diagrams
 
@@ -68,7 +68,7 @@ Host AI applications and eventually use AI agents to recommend what kind of app 
 - Automated tests: Pending
 - Local smoke test: Pending
 - Deployed smoke test: Pending
-- Required env vars: Pending provider choice
+- Required env vars: Pending tooling choice
 
 ## Change Log
 

@@ -4,8 +4,11 @@ This file is the raw owner-authored vision inbox. Add new ideas as dated entries
 
 Agents should not create implementation stories directly from this file. They should first stage their interpretation under `docs/ai-agents/staging/` for owner approval.
 
+## 05-22-2026
+- Another prototype application category would be security. Here we will be trying with different types of authorization providers as mentioned in auth-strategy-discovery.md file.
+
 ## 05-21-2026
-This is web is fun app which is like a playground for different types of web technologies. So far, we have been able to launch dynamic site called webdevisfun.com in aws infrastructure. It has simple home page, login page and landing page after login. Here are few things we want in priority order:
+This is web is fun app which is like a prototypes hub for different types of web technologies. So far, we have been able to launch dynamic site called webdevisfun.com in aws infrastructure. It has simple home page, login page and landing page after login. Here are few things we want in priority order:
 1. Design and implement authentication feature. It should use industry standard authentication and authorization feature. User should be able to sign up and signin with gmail and other common auth providers.
 2. Design workflow for app. Open to brainstorm with AI agent on what we want to include. We want to professional home page, login page, user dashboard, navigation to different pages. My initial thoughts on pages to go from user dashboard:
     1. AI

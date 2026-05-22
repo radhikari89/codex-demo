@@ -29,8 +29,8 @@ flowchart TD
   login[Login Page]
   signup[Signup Page]
   dashboard[Authenticated Dashboard]
-  ai[AI Playground]
-  blockchain[Blockchain Playground]
+  ai[AI Prototypes]
+  blockchain[Blockchain Prototypes]
   misc[Misc Apps]
   profile[Profile / Settings]
 
@@ -53,7 +53,7 @@ Rendered image:
 
 | Route | Access | Purpose |
 | --- | --- | --- |
-| `/` | Public | Explain the playground hub and route visitors to login/signup. |
+| `/` | Public | Explain the prototypes hub and route visitors to login/signup. |
 | `/login` | Public | Existing users authenticate. |
 | `/signup` | Public | New users create an account. |
 | `/dashboard` | Signed-in | First post-login hub and activity overview. |
@@ -64,12 +64,12 @@ Rendered image:
 
 ## Public Home Page Draft
 
-Goal: make `webdevisfun.com` feel like a modern learning playground and app hub, not just a generic dashboard demo.
+Goal: make `webdevisfun.com` feel like a modern learning prototypes hub, not just a generic dashboard demo.
 
 First screen should include:
 
 - Brand/name: `webdevisfun.com`
-- Short value statement: modern web app playground and experiment hub
+- Short value statement: modern web app prototypes and experiment hub
 - Primary action: log in
 - Secondary action: create account
 - App category preview: AI, Blockchain, Misc
@@ -143,7 +143,7 @@ Do not create separate micro-frontends for category pages yet. Keep categories a
 ## Follow-Up UI Story Candidates
 
 1. Rename visible brand copy from `my-app` to `webdevisfun.com`.
-2. Replace generic home hero/dashboard copy with playground hub positioning.
+2. Replace generic home hero/dashboard copy with prototypes hub positioning.
 3. Add authenticated app shell navigation.
 4. Add category landing routes for AI, Blockchain, and Misc.
 5. Replace dashboard demo metrics with app-hub sections and empty states.
