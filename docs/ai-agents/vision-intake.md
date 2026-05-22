@@ -1,6 +1,24 @@
 # Vision Intake
 
-Use this document to capture the product vision in your own words. It does not need to be polished. The goal is to give AI agents enough context to rephrase, reorganize, and turn the vision into implementation stories.
+This file is the raw owner-authored vision inbox. Add new ideas as dated entries instead of rewriting the full product direction every time.
+
+Agents should not create implementation stories directly from this file. They should first stage their interpretation under `docs/ai-agents/staging/` for owner approval.
+
+## 05-21-2026
+This is web is fun app which is like a playground for different types of web technologies. So far, we have been able to launch dynamic site called webdevisfun.com in aws infrastructure. It has simple home page, login page and landing page after login. Here are few things we want in priority order:
+1. Design and implement authentication feature. It should use industry standard authentication and authorization feature. User should be able to sign up and signin with gmail and other common auth providers.
+2. Design workflow for app. Open to brainstorm with AI agent on what we want to include. We want to professional home page, login page, user dashboard, navigation to different pages. My initial thoughts on pages to go from user dashboard:
+    1. AI
+        - AI applications will be hosted here
+        - AI agent will give recommendations on kind of app to be created.
+    2. Blockchain
+        - Blockchain based applications will be here
+    3. Misc
+        - User gets to go to different apps from here. One of them would be simple work orders app that I have been working on separately.
+Open Questions: How are we going to wireframe this? I have account in figma (free one). We can use this if it makes sense.
+3. This app is to get hands dirty on creating different high demand industry standard web app features using industry tools. Looking to start simple but add more complexities as needed.
+4. Extract template out of this app so later we can automate creation of different apps tied to this main one.
+5. Each app can be tested independantly. This is probably where microservices shine.
 
 ## How To Use This
 

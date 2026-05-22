@@ -49,6 +49,8 @@ Agents may rephrase and reorganize the human vision, but they must not invent ma
 
 When uncertain, agents should create a discovery story or open question instead of silently deciding.
 
+Vision interpretation must be staged for human approval before agents create GitHub implementation stories from it.
+
 ## 5. Verify Before Handoff
 
 Every implementation agent must report what it verified.

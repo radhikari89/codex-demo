@@ -12,6 +12,7 @@ The project is currently a starter full-stack app with:
 ## Documents
 
 - [Vision Intake](vision-intake.md): raw product vision capture for the human owner to fill in.
+- [Staging](staging/README.md): draft product interpretation and story candidates waiting for owner approval.
 - [Story Creation Workflow](story-creation-workflow.md): instructions for turning vision into organized stories.
 - [Golden Rules](golden-rules.md): non-negotiable working rules for all agents.
 - [Remaining Work Plan](remaining-work-plan.md): phased plan for the next application increments.
@@ -31,6 +32,8 @@ Use one short-lived agent per focused task. Each agent should leave behind:
 Prefer small vertical slices over large rewrites. A useful slice should include the backend contract, UI behavior, tests, and documentation updates needed to verify it.
 
 All agent work must follow the [Golden Rules](golden-rules.md).
+
+Product interpretation work should move through [Staging](staging/README.md) before GitHub implementation stories are created.
 
 ## GitHub Setup Stories
 
