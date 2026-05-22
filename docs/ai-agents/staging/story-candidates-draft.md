@@ -10,6 +10,10 @@ These are candidates only. Do not create GitHub issues from this list until the 
 
 Suggested agent: Product Analyst Agent / Backend Agent
 
+Active story: [#38](https://github.com/radhikari89/codex-demo/issues/38)
+
+Draft output: [Authentication Strategy Discovery](../../architecture/drafts/auth-strategy-discovery.md)
+
 User story:
 
 As the application owner, I want to choose an industry-standard authentication strategy, so that sign up, sign in, social login, and authorization are built on the right foundation.
@@ -24,6 +28,10 @@ Acceptance criteria:
 ## Discovery: Wireframe Home, Dashboard, And Navigation
 
 Suggested agent: Product Analyst Agent / UI Agent
+
+Active story: [#40](https://github.com/radhikari89/codex-demo/issues/40)
+
+Draft output: [Workflow Wireframe Draft](workflow-wireframe-draft.md)
 
 User story:
 

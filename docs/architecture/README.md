@@ -11,6 +11,7 @@ Use Mermaid inside Markdown files by default. Mermaid keeps diagrams easy for hu
 - [Container View](c4/container-view.md)
 - [Deployment View](c4/deployment-view.md)
 - [AI Agent Story Flow](workflows/ai-agent-story-flow.md)
+- [Authentication Strategy Discovery](drafts/auth-strategy-discovery.md)
 
 ## Folder Structure
 
