@@ -8,4 +8,5 @@ This repository contains a small full-stack application used to grow an Angular 
 - [User service README](services/userservice/README.md)
 - [PostgreSQL local setup](database/postgres/README.md)
 - [Deployment runbooks](devops/DEPLOY_README.md)
+- [Architecture docs](docs/architecture/README.md)
 - [AI agent work plan](docs/ai-agents/README.md)
