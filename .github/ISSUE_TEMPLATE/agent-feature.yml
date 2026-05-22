@@ -1,0 +1,69 @@
+name: Agent-driven feature
+description: Request a feature that will be planned, built, reviewed, and released through the agent workflow.
+title: "[Feature]: "
+labels:
+  - agent:product
+  - type:feature
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should change?
+      placeholder: Users can sign in with an industry-standard authentication flow.
+    validations:
+      required: true
+  - type: textarea
+    id: user_value
+    attributes:
+      label: User Value
+      description: Who benefits, and why does it matter?
+      placeholder: Signed-in users can access the dashboard securely.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What must be true for this work to be accepted?
+      placeholder: |
+        - Users can sign up.
+        - Users can sign in.
+        - Invalid credentials show a safe error.
+    validations:
+      required: true
+  - type: dropdown
+    id: affected_areas
+    attributes:
+      label: Affected Areas
+      description: Which parts of the system are likely involved?
+      multiple: true
+      options:
+        - Backend
+        - UI
+        - Database
+        - Infrastructure
+        - QA
+        - Security
+        - Documentation
+        - Unsure
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Known design, technical, cost, or compatibility constraints.
+      placeholder: Keep UI API calls relative. Prefer low-cost AWS demo infrastructure.
+  - type: textarea
+    id: security_data_notes
+    attributes:
+      label: Security/Data Notes
+      description: Sensitive data, auth, authorization, audit, or compliance concerns.
+      placeholder: Social login and account data may require security review.
+  - type: textarea
+    id: deployment_notes
+    attributes:
+      label: Deployment Notes
+      description: Any environment, migration, or release expectations.
+      placeholder: Verify locally before AWS deployment.

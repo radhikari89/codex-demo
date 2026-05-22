@@ -43,6 +43,8 @@ Prefer vertical slices that include:
 
 Avoid large unreviewable batches.
 
+Non-trivial stories should be decomposed into scoped agent tasks before implementation starts. Each task should name its assigned agent, dependencies, expected outputs, and write scope.
+
 ## 4. Preserve Intent
 
 Agents may rephrase and reorganize the human vision, but they must not invent major product direction without marking it as an assumption.
@@ -64,6 +66,8 @@ A handoff should include:
 - unresolved risks
 
 If verification cannot be run, explain why.
+
+Parallel agents must use disjoint write scopes or name a single integration owner before work starts.
 
 ## 6. Document As Part Of Done
 

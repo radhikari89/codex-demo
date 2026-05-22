@@ -1,0 +1,81 @@
+name: Agent task
+description: A scoped task for one agent, linked to a parent story or feature issue.
+title: "[Task]: "
+labels:
+  - type:task
+body:
+  - type: input
+    id: parent_issue
+    attributes:
+      label: Parent Issue
+      description: Link the parent GitHub issue.
+      placeholder: "#123"
+    validations:
+      required: true
+  - type: dropdown
+    id: assigned_agent
+    attributes:
+      label: Assigned Agent
+      options:
+        - orchestrator
+        - product_analyst
+        - solution_architect
+        - backend_agent
+        - ui_agent
+        - devops_agent
+        - qa_agent
+        - security_reviewer
+        - release_manager
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What should this agent accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Inputs
+      description: Required artifacts, links, contracts, or prior tasks.
+      placeholder: |
+        - Parent issue acceptance criteria
+        - Architecture contract
+    validations:
+      required: true
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Outputs
+      description: Artifacts this task must produce.
+      placeholder: |
+        - Code changes
+        - Tests
+        - Implementation summary
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Task IDs or issues that must finish before this can start.
+      placeholder: |
+        - #123
+  - type: textarea
+    id: write_scope
+    attributes:
+      label: Write Scope
+      description: Files, folders, docs, or systems this task is allowed to change.
+      placeholder: |
+        - services/userservice/**
+        - docs/api/**
+    validations:
+      required: true
+  - type: textarea
+    id: blocking_questions
+    attributes:
+      label: Blocking Questions
+      description: Decisions needed before or during the work.
+      placeholder: None.
