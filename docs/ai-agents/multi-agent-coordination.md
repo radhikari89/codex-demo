@@ -120,6 +120,21 @@ implementation_summary:
       follow_up:
 ```
 
+## Feature Doc Updates
+
+Feature docs live under `docs/features/` and should be treated as the current-state record for product features.
+
+Agent tasks should include the relevant feature doc in `Inputs` when the work affects a feature. Pull requests should update that feature doc when they change:
+
+- status
+- completed work
+- remaining work
+- decisions
+- open questions
+- app boundary
+- architecture or diagrams
+- verification steps
+
 ## Status Flow
 
 ```mermaid
