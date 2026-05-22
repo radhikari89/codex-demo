@@ -39,6 +39,8 @@ All agent work must follow the [Golden Rules](golden-rules.md).
 
 Product interpretation work should move through [Staging](staging/README.md) before GitHub implementation stories are created.
 
+Approved feature status lives in [Feature Tracking](../features/README.md). Staging remains the draft interpretation space; feature docs should become the living record of what is true now.
+
 ## GitHub Setup Stories
 
 Initial AI agent setup is tracked in:

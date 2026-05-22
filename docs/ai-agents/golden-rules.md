@@ -82,6 +82,8 @@ Update the relevant docs when changing:
 - test or verification commands
 - agent workflow rules
 
+When work changes a feature's status, completed work, remaining work, decisions, app boundary, or verification path, update the related feature doc under `docs/features/` in the same pull request.
+
 ## 7. Respect Existing Architecture
 
 Agents should follow the current project shape unless a story explicitly approves a structural change.
