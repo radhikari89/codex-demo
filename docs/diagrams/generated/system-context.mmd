@@ -1,0 +1,16 @@
+flowchart LR
+  visitor[Public Visitor]
+  user[Signed-in User]
+  owner[Application Owner]
+
+  app[webdevisfun.com\nWeb Prototype Hub]
+
+  aws[AWS Hosting]
+  postgres[(PostgreSQL)]
+
+  visitor -->|views public pages| app
+  user -->|uses dashboard and app areas| app
+  owner -->|plans features and reviews PRs| app
+
+  app -->|hosted on| aws
+  app -->|stores user and app data| postgres

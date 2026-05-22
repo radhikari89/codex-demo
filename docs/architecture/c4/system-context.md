@@ -8,7 +8,7 @@ flowchart LR
   user[Signed-in User]
   owner[Application Owner]
 
-  app[webdevisfun.com\nWeb Dev Playground Hub]
+  app[webdevisfun.com\nWeb Prototype Hub]
 
   aws[AWS Hosting]
   postgres[(PostgreSQL)]
@@ -20,6 +20,10 @@ flowchart LR
   app -->|hosted on| aws
   app -->|stores user and app data| postgres
 ```
+
+Rendered image:
+
+![System context](../../diagrams/generated/system-context.svg)
 
 ## Notes
 
