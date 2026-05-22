@@ -1,0 +1,66 @@
+- name: agent:product
+  color: "1f77b4"
+  description: Needs requirements shaping by the Product Analyst agent.
+- name: agent:architecture
+  color: "9467bd"
+  description: Needs technical design, app boundary, API contract, or architecture review.
+- name: agent:orchestrator
+  color: "5319e7"
+  description: Needs task breakdown, sequencing, dependency tracking, or integration coordination.
+- name: area:backend
+  color: "2ca02c"
+  description: Spring Boot backend work.
+- name: area:ui
+  color: "17becf"
+  description: Angular UI work.
+- name: area:database
+  color: "02a3e8"
+  description: PostgreSQL schema, migration, or data work.
+- name: area:infra
+  color: "ff7f0e"
+  description: AWS infrastructure, deployment, hosting, or CI/CD work.
+- name: area:docs
+  color: "0075ca"
+  description: Documentation-only work.
+- name: area:qa
+  color: "bcbd22"
+  description: Test planning, test automation, or verification work.
+- name: risk:security
+  color: "d62728"
+  description: Security-sensitive change requiring review.
+- name: risk:cost
+  color: "fbca04"
+  description: Change may affect hosting, AWS, or operational cost.
+- name: status:blocked
+  color: "7f7f7f"
+  description: Blocked on a human decision or external dependency.
+- name: status:needs-product
+  color: "bfdadc"
+  description: Needs product clarification before architecture or build.
+- name: status:ready-for-architecture
+  color: "c5b0d5"
+  description: Requirements are ready for technical design.
+- name: status:ready-for-build
+  color: "98df8a"
+  description: Technical plan is ready for implementation.
+- name: status:ready-for-review
+  color: "ff9896"
+  description: Implementation is ready for verification and review.
+- name: status:ready-for-release
+  color: "aec7e8"
+  description: Reviewed and ready for release preparation.
+- name: type:epic
+  color: "3750f5"
+  description: Large initiative broken into features and tasks.
+- name: type:feature
+  color: "44c17b"
+  description: User-facing functionality delivering product value.
+- name: type:task
+  color: "55cae5"
+  description: Scoped unit of work.
+- name: type:discovery
+  color: "d876e3"
+  description: Research or decision task before implementation.
+- name: type:tech-debt
+  color: "becb42"
+  description: Code or system improvement that reduces future maintenance cost.

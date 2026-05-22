@@ -2,6 +2,26 @@
 
 Use these briefs when assigning work to AI agents. Keep assignments narrow and require each agent to report changed files, commands run, and verification results.
 
+## Orchestrator Agent
+
+Use when a GitHub story needs more than one specialist agent or has unclear sequencing.
+
+Responsibilities:
+
+- Break a parent story into scoped agent tasks.
+- Assign each task an owner, write scope, dependencies, and expected outputs.
+- Decide which tasks can run in parallel.
+- Track blockers and status labels.
+- Prepare the final pull request summary and handoff context.
+
+Output:
+
+- task breakdown
+- dependency order
+- write-scope map
+- blocker list
+- final integration notes
+
 ## Product Analyst Agent
 
 Use when the next slice is unclear or needs acceptance criteria.
@@ -18,6 +38,35 @@ Output:
 - updated backlog item
 - acceptance criteria
 - open questions
+
+## Solution Architect Agent
+
+Use when work affects system shape, app boundaries, service boundaries, API contracts, data ownership, deployment topology, or reusable templates.
+
+Responsibilities:
+
+- Define application architecture and app boundaries.
+- Decide when a feature should be UI-only, shared-backend, dedicated service, external linked app, or undecided.
+- Maintain architecture and workflow diagrams.
+- Define API, service, data, and integration contracts before implementation.
+- Define when microservices are justified.
+- Identify risks, tradeoffs, sequencing constraints, and cross-team dependencies.
+- Coordinate with DevOps on deployment topology and with Product Analyst on feature scope.
+
+Output:
+
+- architecture decision notes
+- updated diagrams or diagram tasks
+- app boundary model updates
+- API/service/data contract guidance
+- risks and tradeoffs
+- recommended implementation sequence
+
+Verification:
+
+- Architecture docs link to relevant stories and features.
+- Diagrams match current repo and deployment reality.
+- Decisions include reasoning and known tradeoffs.
 
 ## Backend Agent
 
@@ -92,12 +141,50 @@ Output:
 - commands used or recommended
 - smoke-test results
 
+## Security Reviewer
+
+Use when work touches authentication, authorization, secrets, IAM, personal data, dependency risk, or public exposure.
+
+Responsibilities:
+
+- Review data exposure and access rules.
+- Review authentication and authorization changes.
+- Check for secret handling and environment variable risks.
+- Identify dependency, IAM, CORS, and deployment security concerns.
+- Recommend blocking fixes or follow-up hardening work.
+
+Output:
+
+- security findings
+- approval or requested changes
+- risk notes
+- follow-up security tasks
+
+## Release Manager
+
+Use when a completed story needs release notes, deployment sequencing, or rollback context.
+
+Responsibilities:
+
+- Summarize user-visible changes.
+- Collect verification results from implementation and QA agents.
+- Prepare deployment checklist and rollback notes when deployment is involved.
+- Confirm linked stories and follow-up issues are documented.
+
+Output:
+
+- release notes
+- deployment checklist
+- rollback notes
+- final handoff summary
+
 ## Coordination Rules
 
 - All work starts from a GitHub story unless the user explicitly asks for exploratory local drafting first.
 - Code and documentation changes are merged to `main` through pull requests.
 - Agents do not push directly to `main`.
 - One agent owns one task at a time.
+- Multi-agent work is coordinated by an Orchestrator Agent before specialist implementation starts.
 - Agents should avoid broad refactors unless the task explicitly calls for them.
 - Backend and UI agents should agree on API request and response shapes before implementation. Mediate this through a story comment, issue checklist, or short contract document that names endpoints, methods, request fields, response fields, status codes, and error shapes before either side builds against it.
 - QA should verify the integrated behavior after backend and UI changes land.
