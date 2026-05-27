@@ -6,6 +6,8 @@ Related story: [#38](https://github.com/radhikari89/codex-demo/issues/38)
 
 Decision record: [ADR-0002 Authentication Strategy](../decisions/ADR-0002-authentication-strategy.md)
 
+Knowledge notes: [Auth Provider Notes](../knowledge/security-and-auth/auth-provider-notes.md)
+
 ## Purpose
 
 Choose the first industry-standard authentication and authorization path for `webdevisfun.com` before replacing the temporary UI-to-userservice auth bridge.

@@ -13,6 +13,8 @@ Use Mermaid inside Markdown files by default. Mermaid keeps diagrams easy for hu
 - [Deployment View](c4/deployment-view.md)
 - [AI Agent Story Flow](workflows/ai-agent-story-flow.md)
 - [Authentication Strategy Discovery](drafts/auth-strategy-discovery.md)
+- [Architecture Knowledge](knowledge/README.md)
+- [Auth Provider Notes](knowledge/security-and-auth/auth-provider-notes.md)
 
 ## Folder Structure
 
@@ -21,6 +23,7 @@ Use Mermaid inside Markdown files by default. Mermaid keeps diagrams easy for hu
 - `contracts/`: API, data, integration, and service contract notes.
 - `decisions/`: architecture decision records.
 - `drafts/`: unapproved architecture explorations.
+- `knowledge/`: reusable architecture concepts, provider notes, tradeoff summaries, and learning references.
 
 ## Maintenance Rules
 
