@@ -7,6 +7,7 @@ Use Mermaid inside Markdown files by default. Mermaid keeps diagrams easy for hu
 ## Documents
 
 - [Architecture Docs Approach](decisions/ADR-0001-architecture-docs-approach.md)
+- [Authentication Strategy](decisions/ADR-0002-authentication-strategy.md)
 - [System Context](c4/system-context.md)
 - [Container View](c4/container-view.md)
 - [Deployment View](c4/deployment-view.md)
