@@ -40,7 +40,29 @@ spike/37-google-auth-options
 - Name the artifact or outcome, not the agent or person doing the work.
 - Use `spike/` for discovery work that may not ship product changes.
 - Use `docs/` when the pull request only changes documentation.
+- Create or switch to the correctly named branch before editing files.
+- Comment on the GitHub issue with the active branch name when work starts.
 - Delete merged branches after the pull request is merged.
+
+## Start-Work Checklist
+
+Before editing files:
+
+1. Identify the GitHub issue.
+2. Confirm the issue is in GitHub Project 1.
+3. Set the Project Status to `In Progress`.
+4. Create or switch to the branch using this naming convention.
+5. Comment on the issue with the branch, Project Status, and scope.
+
+Example issue comment:
+
+```text
+Agent active on this story.
+
+Project Status: In Progress
+Branch: docs/56-project-board-branch-sync
+Scope: update workflow docs for project-board sync and branch naming enforcement.
+```
 
 ## Agent Task Branches
 

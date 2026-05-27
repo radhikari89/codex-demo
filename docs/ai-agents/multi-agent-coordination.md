@@ -8,6 +8,16 @@ The goal is not to create one large autonomous agent. The goal is to keep each a
 
 Start from a GitHub story. If the story is non-trivial, the Orchestrator Agent creates scoped agent tasks before implementation starts.
 
+Before any agent edits files, the agent must complete the project and branch start checklist:
+
+1. Identify the GitHub story that owns the work.
+2. Confirm the story is in GitHub Project 1: `https://github.com/users/radhikari89/projects/1`.
+3. Set the Project Status to `In Progress`.
+4. Create or switch to a branch that follows [Branch Naming](branch-naming.md).
+5. Add an issue comment naming the active agent, Project Status, branch, and scope.
+
+If a story is missing from Project 1, add it before starting work. If a branch already exists but does not follow the naming convention, either rename it before pushing or document why it is being kept, such as an existing open PR with reviewer context.
+
 Each task must define:
 
 - parent issue
@@ -28,6 +38,32 @@ Each task must define:
 4. Backend, UI, DevOps, QA, and Security tasks run in parallel only when their dependencies and write scopes allow it.
 5. QA verifies the integrated behavior.
 6. Orchestrator prepares PR context and release handoff notes.
+
+## Project Board Sync
+
+GitHub issue labels and GitHub Project Status are separate. A `status:*` label helps with routing, but it does not move the card on the project board.
+
+Use this Project Status mapping:
+
+| Work State | Project Status | Label Guidance |
+| --- | --- | --- |
+| New idea or unprioritized work | `Backlog` | Use the relevant `type:*`, `agent:*`, and `area:*` labels. |
+| Ready for an agent but not started | `Ready` | Use `status:needs-product`, `status:ready-for-architecture`, or `status:ready-for-build` as appropriate. |
+| Agent is actively working | `In Progress` | Comment with active agent, branch, and scope. |
+| Pull request or owner review is needed | `Review` | Link the PR and summarize verification. |
+| Verification is active | `Testing` | Use when QA or deployed smoke testing is the current blocker. |
+| Work is completed or merged | `Done` | Close the issue or comment why it remains open. |
+| Work cannot proceed | `Blocked` when available; otherwise leave current status and add a blocking comment | Add `status:blocked` and state the decision needed. |
+
+Minimum sync points:
+
+- Start work: add to Project 1 and set `In Progress`.
+- Open PR or request review: set `Review`.
+- Start QA-only validation: set `Testing`.
+- Complete merged work: set `Done`.
+- Hit a blocker: add `status:blocked` and comment with the blocker.
+
+If the GitHub CLI or permissions cannot update Project Status, the agent must say so in the issue comment and final handoff.
 
 ## Parallel Work
 
@@ -118,6 +154,11 @@ implementation_summary:
   known_gaps:
     - gap:
       follow_up:
+  tracking:
+    issue:
+    branch:
+    pull_request:
+    project_status:
 ```
 
 ## Feature Doc Updates
@@ -186,3 +227,19 @@ Recommended pattern:
 - Use `status:*` labels to show workflow state.
 
 Do not delete or rename existing labels without an explicit story because older issues may depend on them.
+
+## Branch Enforcement
+
+Branches must follow [Branch Naming](branch-naming.md). The branch name should be recorded in the issue activation comment.
+
+For example:
+
+```text
+Agent active on this story.
+
+Project Status: In Progress
+Branch: docs/56-project-board-branch-sync
+Scope: update agent workflow docs for project-board sync and branch naming enforcement.
+```
+
+If a task is split across multiple agents, each agent should use a branch scoped to the parent story and task focus, such as `task/56-docs-workflow-rules` or `task/56-project-sync-script`.
