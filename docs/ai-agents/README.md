@@ -14,6 +14,7 @@ The project is currently a starter full-stack app with:
 ## Documents
 
 - [Vision Intake](vision-intake.md): raw product vision capture for the human owner to fill in.
+- [Owner Vision And Context](owner-vision-and-context.md): higher-level owner context, learning goals, philosophy, and long-term direction.
 - [Staging](staging/README.md): draft product interpretation and story candidates waiting for owner approval.
 - [Story Creation Workflow](story-creation-workflow.md): instructions for turning vision into organized stories.
 - [Golden Rules](golden-rules.md): non-negotiable working rules for all agents.
