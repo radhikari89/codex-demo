@@ -1,6 +1,6 @@
 # Feature: Authentication And Authorization
 
-Status: Draft
+Status: In Progress
 
 Priority: 1
 
@@ -11,6 +11,13 @@ Related Staged Source: [Feature Map Draft](../ai-agents/staging/feature-map-draf
 Related GitHub Issues:
 
 - [#38 Discover and recommend authentication strategy](https://github.com/radhikari89/codex-demo/issues/38)
+- [#59 Configure Auth0 tenant and OIDC application](https://github.com/radhikari89/codex-demo/issues/59)
+- [#62 Integrate Angular SPA with Auth0 login](https://github.com/radhikari89/codex-demo/issues/62)
+- [#61 Configure Spring Boot JWT resource server](https://github.com/radhikari89/codex-demo/issues/61)
+- [#60 Implement current-user profile from Auth0 claims](https://github.com/radhikari89/codex-demo/issues/60)
+- [#63 Remove temporary passwordHash auth bridge](https://github.com/radhikari89/codex-demo/issues/63)
+- [#65 Document Auth0 deployment and CORS configuration](https://github.com/radhikari89/codex-demo/issues/65)
+- [#64 Add Auth0 authentication smoke tests](https://github.com/radhikari89/codex-demo/issues/64)
 
 Related PRs:
 
@@ -22,6 +29,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 
 ## Current State
 
+- Auth0 is the accepted provider for the main hub login path.
 - UI has a temporary local auth bridge.
 - Login looks up a user by email.
 - Signup sends a password-like value as `passwordHash`.
@@ -30,15 +38,17 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 ## Desired State
 
 - Users can sign up and sign in securely.
-- Backend owns credential handling or delegates identity to an approved provider.
-- Google/Gmail sign-in is evaluated.
+- Auth0 owns hosted login.
+- Angular uses Auth0 OIDC login.
+- Spring Boot validates JWT access tokens as a Resource Server.
+- Current-user/profile behavior is derived from trusted Auth0 claims.
 - Public, signed-in, and future admin access rules are documented.
 
 ## App Boundary
 
 - Type: UI plus shared backend
-- Route/access point: `/login`, `/signup`, `/dashboard`, future `/api/v1/auth/*`
-- Data boundary: user identity, profile, credentials or external identity mapping
+- Route/access point: `/login`, `/signup`, `/callback`, `/dashboard`, future `/api/v1/auth/me` or `/api/v1/users/me`
+- Data boundary: Auth0 identity claims, local user profile metadata, future roles/permissions
 - Backend/service dependency: `services/userservice`
 - Independent verification path: backend auth tests, UI auth flow tests, local and deployed smoke tests
 
@@ -46,29 +56,36 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 
 - Temporary auth bridge exists for first app navigation.
 - Auth strategy discovery story has been created.
+- ADR-0002 accepts Auth0 as the main hub login solution.
+- Auth0/OIDC implementation stories have been created under #44.
 
 ## Remaining Work
 
-- Approve auth strategy.
-- Replace temporary auth bridge.
-- Add backend auth contract.
-- Add UI auth integration.
-- Add security review and verification.
+- Configure Auth0 tenant, SPA application, API audience, URLs, and origins.
+- Integrate Angular Auth0 login/logout and route protection.
+- Configure Spring Boot JWT Resource Server.
+- Implement current-user/profile behavior from Auth0 claims.
+- Remove temporary passwordHash auth bridge.
+- Add deployment/CORS docs and auth smoke tests.
 
 ## Decisions
 
-- Pending auth strategy approval.
+- Auth0 is the accepted login provider for the main hub.
+- Spring Boot will act as a JWT Resource Server for secured REST APIs.
+- First-party password handling is deferred; do not build local password auth for the main hub now.
 
 ## Open Questions
 
-- Spring Security-owned auth, managed provider, or hybrid?
-- Cookie session or token-based model?
-- When should Google sign-in be added?
+- Which Auth0 claims should map into application roles/permissions first?
+- Should Auth0 social connections be enabled immediately or after the base OIDC flow works?
+- What local profile fields should be stored outside Auth0?
 
 ## Architecture / Diagrams
 
 - [Container View](../architecture/c4/container-view.md)
 - [Deployment View](../architecture/c4/deployment-view.md)
+- [ADR-0002 Authentication Strategy](../architecture/decisions/ADR-0002-authentication-strategy.md)
+- [Auth0 OIDC Configuration](../architecture/knowledge/security-and-auth/auth0-oidc-configuration.md)
 
 ## Verification
 
@@ -76,8 +93,10 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Automated tests: Pending
 - Local smoke test: Pending
 - Deployed smoke test: Pending
-- Required env vars: Pending
+- Required env vars: Auth0 domain, SPA client ID, API audience, issuer URI, redirect URI, logout return URL
 
 ## Change Log
 
 - Created initial feature tracking doc from staged vision.
+- Accepted Auth0 implementation path and created concrete implementation stories.
+- Added initial Auth0 OIDC configuration guide.

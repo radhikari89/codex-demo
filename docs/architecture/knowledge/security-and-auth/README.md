@@ -7,3 +7,4 @@ This folder stores reusable security, authentication, authorization, identity pr
 ## Notes
 
 - [Auth Provider Notes](auth-provider-notes.md)
+- [Auth0 OIDC Configuration](auth0-oidc-configuration.md)
