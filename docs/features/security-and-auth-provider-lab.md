@@ -26,7 +26,7 @@ Provide a dedicated prototype category for security-focused applications and aut
 
 ## Current State
 
-- Authentication strategy discovery identifies Spring Security-owned auth, Google OIDC, Keycloak, Cognito, Auth0/Okta, and Firebase/Supabase as options.
+- Authentication strategy discovery identifies Spring Security-owned auth, Google OIDC, Keycloak, Cognito, Auth0, Okta, and Firebase/Supabase as options.
 - Provider prototypes are not yet represented as their own app category or backlog epic.
 - The main app still has a temporary auth bridge.
 

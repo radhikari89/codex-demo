@@ -1,6 +1,6 @@
 # ADR-0002: Authentication Strategy
 
-Status: Proposed
+Status: Accepted
 
 Related story: [#38](https://github.com/radhikari89/codex-demo/issues/38)
 
@@ -17,48 +17,58 @@ Related discovery: [Authentication Strategy Discovery](../drafts/auth-strategy-d
 
 The application is expected to grow into a hub of independently testable prototype areas. Future prototype areas may use shared identity, dedicated services, or external providers. The auth strategy therefore needs to support both the first main application auth flow and later provider experiments.
 
-## Decision State
+## Decision
 
-No final accepted provider decision has been made yet.
+Use **Auth0** as the first real login solution for the main web prototype hub.
 
-The current proposed direction is:
+The accepted implementation direction is:
 
-- Keep the application auth API stable, for example `/api/v1/auth/me`, `/api/v1/auth/logout`, and user-profile endpoints.
+- Angular SPA starts the Auth0 OIDC login flow.
+- Auth0 authenticates the user and issues tokens.
+- Angular calls secured backend APIs with a JWT access token.
+- Spring Boot is configured as a Spring Security Resource Server.
+- Spring Boot validates the JWT, maps trusted claims/roles, and protects REST APIs.
+- Keep app-level profile/current-user APIs stable, for example `/api/v1/auth/me` or `/api/v1/users/me`.
 - Do not use API versions such as `/api/v2` to represent different auth providers.
-- Use Spring Security as the application enforcement layer for route/API protection, sessions/tokens, and role/claim mapping.
-- Start with a small, testable main-app auth implementation that removes the temporary `passwordHash` bridge.
-- Evaluate external OIDC providers through the Security/Auth Provider Lab before promoting one provider path into the main application.
-- Treat Keycloak as the first external IdP prototype candidate because it can run locally and exposes real OIDC concepts, roles, clients, realms, and Google identity brokering.
+- Remove the temporary `passwordHash` bridge and do not build first-party password handling for the main hub login now.
+- Keep Spring Security-owned auth, Keycloak, Cognito, Okta, Firebase, and Supabase in the Security/Auth Provider Lab as learning prototypes and comparisons.
+
+Portfolio/resume wording may mention **Okta/Auth0 OIDC integration** because Auth0 is part of Okta, but the concrete provider selected for this app is Auth0.
 
 ## Options Considered
 
 | Option | Current Position |
 | --- | --- |
-| Spring Security-owned email/password | Strong first implementation candidate for learning and removing the temporary bridge. |
-| Spring Security OAuth2/OIDC with Google | Strong follow-up path once the app auth boundary is stable. |
-| Keycloak | Strong first external IdP prototype and possible future shared identity provider. |
-| AWS Cognito | AWS-native managed IdP candidate to compare before production hardening. |
-| Auth0 / Okta | Commercial managed IdP candidate to compare if hosted identity speed and polish outrank operating an IdP. |
-| Firebase Auth / Supabase Auth | Fast app-builder auth candidate, but less aligned with a Spring Boot-centered backend. |
+| Auth0 | Accepted main hub provider for hosted OIDC login and fast professional app-login experience. |
+| Spring Security Resource Server | Accepted backend enforcement layer for JWT validation, route/API protection, and claim/role mapping. |
+| Spring Security-owned email/password | Defer to Security/Auth Provider Lab; useful for learning mechanics but not the main hub default. |
+| Spring Security OAuth2/OIDC with Google | Defer as a direct-provider learning path; Auth0 can broker social login first. |
+| Keycloak | Keep as a strong local external IdP prototype and possible future shared identity provider. |
+| AWS Cognito | Keep as AWS-native managed IdP comparison before production hardening. |
+| Okta | Keep as enterprise identity comparison for workforce SSO, organization login, OIDC/SAML app integrations, and IAM policy learning. |
+| Firebase Auth / Supabase Auth | Keep as app-builder auth comparison; less aligned with a Spring Boot-centered backend. |
 
 ## Consequences
 
-- The main app should depend on a stable app-level auth contract, not provider-specific UI/API paths.
-- Provider-specific behavior should live behind Spring Security configuration, adapters, claim mapping, and environment profiles.
+- The main app should move directly to industry-standard hosted OIDC login instead of first building local password auth.
+- The backend should act as a Resource Server, not as the credential owner for the first real hub login.
+- Provider-specific behavior should live in Auth0 configuration, Spring Security configuration, claim mapping, and environment profiles.
 - Future provider prototypes should live under the Security/Auth Provider Lab and use a shared evaluation matrix.
-- The final provider choice should be promoted through a later accepted ADR or by updating this ADR from `Proposed` to `Accepted`.
+- The app should still keep stable internal user/profile concepts so Auth0 can be replaced later if needed.
 
 ## Open Questions
 
-- Should the first production-ready main-app implementation use Spring Security-owned email/password or Keycloak-backed OIDC?
-- Should browser auth use HTTP-only cookie sessions, OIDC authorization-code flow, JWT bearer tokens, or a hybrid?
-- Should Keycloak be self-hosted for deployed environments or remain local/prototype-only?
-- Which provider should be compared after Keycloak: Cognito, Auth0/Okta, Firebase, or Supabase?
-- What claims and roles should become the internal application authorization model?
+- What exact Auth0 tenant, application, audience, callback URL, logout URL, and allowed-origin configuration should be used for local and deployed environments?
+- Should the Angular Auth0 integration keep tokens in memory only, use refresh token rotation, or use another Auth0-supported browser session strategy?
+- Which Auth0 claims and roles should become the internal application authorization model?
+- Should Keycloak be self-hosted later or remain local/prototype-only?
+- Which provider should be compared after Auth0: Cognito, Keycloak, Okta, Firebase, or Supabase?
 
 ## Follow-Up Work
 
-- Define the auth-lab evaluation matrix.
-- Decide whether the next implementation story uses local Spring Security auth or Keycloak-backed OIDC for the main app.
+- Define Auth0 local and deployed configuration.
+- Implement Angular Auth0 login/logout and route protection.
+- Configure Spring Boot as a JWT Resource Server.
+- Add `/me` or profile-sync behavior based on trusted Auth0 claims.
 - Document claim/role mapping into a stable application principal.
-- Create implementation stories only after the provider path is accepted.
+- Define the auth-lab evaluation matrix for non-main-hub provider prototypes.

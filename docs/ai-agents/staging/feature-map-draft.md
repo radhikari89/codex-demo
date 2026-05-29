@@ -85,7 +85,7 @@ Desired state:
 
 - Security appears as a first-class prototype category.
 - Auth provider prototypes are isolated from the main application auth flow.
-- Spring Security-owned auth, Google OIDC, Keycloak, Cognito, Auth0/Okta, and Firebase/Supabase can be compared with the same checklist.
+- Spring Security-owned auth, Google OIDC, Keycloak, Cognito, Auth0, Okta, and Firebase/Supabase can be compared with the same checklist.
 - Provider prototypes document local development, deployment shape, secrets, roles/claims, logout, backend identity verification, and operational ownership.
 
 Candidate work:
@@ -93,7 +93,7 @@ Candidate work:
 - Define auth-lab evaluation matrix.
 - Add Security category to app navigation and dashboard model.
 - Prototype Keycloak as the first external identity provider.
-- Prototype or document managed IdP comparisons against Cognito, Auth0/Okta, and Firebase/Supabase.
+- Prototype or document managed IdP comparisons against Cognito, Auth0, Okta, and Firebase/Supabase.
 - Decide which provider pattern should graduate into the main app after review.
 
 ## Feature: AI Prototypes

@@ -69,7 +69,7 @@ Active story: [#52](https://github.com/radhikari89/codex-demo/issues/52)
 
 User story:
 
-As the application owner, I want a shared auth-lab evaluation matrix, so that Spring Security-owned auth, Google OIDC, Keycloak, Cognito, Auth0/Okta, and Firebase/Supabase can be compared consistently.
+As the application owner, I want a shared auth-lab evaluation matrix, so that Spring Security-owned auth, Google OIDC, Keycloak, Cognito, Auth0, Okta, and Firebase/Supabase can be compared consistently.
 
 Acceptance criteria:
 
@@ -104,7 +104,7 @@ Active story: [#54](https://github.com/radhikari89/codex-demo/issues/54)
 
 User story:
 
-As the application owner, I want to compare Cognito, Auth0/Okta, and Firebase/Supabase against the same auth-lab checklist, so that managed-provider tradeoffs are understood before choosing a shared identity provider.
+As the application owner, I want to compare Cognito, Auth0, Okta, and Firebase/Supabase against the same auth-lab checklist, so that managed-provider tradeoffs are understood before choosing a shared identity provider.
 
 Acceptance criteria:
 
