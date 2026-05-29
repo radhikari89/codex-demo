@@ -162,20 +162,21 @@ Acceptance criteria:
 - Define required per-app verification documentation.
 - Identify the first app area to prove the model.
 
-## Discovery: Reusable App Template Foundation
+## Discovery: AI-Assisted App Creation Playbook
 
 Suggested agent: Solution Architect Agent
 
 User story:
 
-As the application owner, I want to identify reusable app foundation pieces, so that future apps can eventually be generated or created from a template.
+As the application owner, I want to train and guide AI agents with a repeatable app creation playbook, so that future prototype apps can be planned and built much faster with minimal human intervention.
 
 Acceptance criteria:
 
-- Identify reusable shell, auth, route, deployment, and test patterns.
-- Identify what should not be abstracted yet.
-- Recommend a build-once or build-twice extraction rule.
-- Propose a first template extraction milestone.
+- Define the owner idea intake flow for a new app.
+- Define what context agents must gather before drafting stories.
+- Define story, architecture, implementation, and verification templates for new apps.
+- Define human approval gates before agents create GitHub issues or start implementation.
+- Identify whether any code templates/scripts are needed now or should wait.
 
 ## Implementation: Create Feature Tracking Templates
 
@@ -190,4 +191,4 @@ Acceptance criteria:
 - Add a feature docs folder.
 - Add a reusable feature template.
 - Include status, completed work, remaining work, decisions, open questions, related diagrams, related issues, and app boundary.
-- Create starter docs for authentication, application shell, AI, Blockchain, Misc, and reusable app template.
+- Create starter docs for authentication, application shell, AI, Blockchain, Misc, and AI-assisted app creation.
