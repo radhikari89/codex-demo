@@ -164,6 +164,8 @@ Acceptance criteria:
 
 ## Discovery: AI-Assisted App Creation Playbook
 
+Status: On hold until the end of the current application development path.
+
 Suggested agent: Solution Architect Agent
 
 User story:
@@ -177,6 +179,7 @@ Acceptance criteria:
 - Define story, architecture, implementation, and verification templates for new apps.
 - Define human approval gates before agents create GitHub issues or start implementation.
 - Identify whether any code templates/scripts are needed now or should wait.
+- Prove the playbook with one sample app idea before making it part of the default workflow.
 
 ## Implementation: Create Feature Tracking Templates
 
