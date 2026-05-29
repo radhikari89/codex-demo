@@ -22,14 +22,21 @@ Angular SPA -> Auth0 Universal Login -> JWT access token -> Spring Boot Resource
 
 Create or use one Auth0 tenant for the prototype hub.
 
-Record these non-secret values in local environment files or deployment configuration:
+Record these non-secret values in local environment files or deployment configuration.
 
-| Value | Example | Used By |
-| --- | --- | --- |
-| Auth0 domain | `dev-example.us.auth0.com` | Angular, Spring Boot |
-| Issuer URI | `https://dev-example.us.auth0.com/` | Spring Boot |
-| SPA client ID | Auth0-generated public client id | Angular |
-| API audience | `https://webdevisfun.com/api` | Angular, Spring Boot |
+Use environment-specific Auth0 values. Local, dev, test, and prod may share a tenant at first, but they should still have distinct application configuration values where needed. Production should be easy to separate later if stronger isolation is required.
+
+| Environment | Auth0 Domain | Issuer URI | SPA Client ID | API Audience |
+| --- | --- | --- | --- | --- |
+| Local | `<local-auth0-domain>` | `https://<local-auth0-domain>/` | `<local-spa-client-id>` | `<local-api-audience>` |
+| Dev | `<dev-auth0-domain>` | `https://<dev-auth0-domain>/` | `<dev-spa-client-id>` | `<dev-api-audience>` |
+| Test | `<test-auth0-domain>` | `https://<test-auth0-domain>/` | `<test-spa-client-id>` | `<test-api-audience>` |
+| Prod | `<prod-auth0-domain>` | `https://<prod-auth0-domain>/` | `<prod-spa-client-id>` | `https://webdevisfun.com/api` |
+
+Used by:
+
+- Angular: Auth0 domain, SPA client ID, API audience.
+- Spring Boot: issuer URI and API audience.
 
 The Auth0 client secret is not used by the Angular SPA. Do not put client secrets in browser code.
 
@@ -44,25 +51,32 @@ Create an Auth0 application:
 | Grant type | Authorization Code with PKCE |
 | Login experience | Universal Login |
 
-Recommended local URLs:
+Recommended URL settings:
 
-| Auth0 Setting | Local Value |
+| Auth0 Setting | Meaning | Example Pattern |
+| --- | --- | --- |
+| Allowed Callback URLs | Full URL Auth0 can redirect to after login | `<application-base-url><login-callback-route>` |
+| Allowed Logout URLs | Full URL Auth0 can redirect to after logout | `<application-base-url>/` |
+| Allowed Web Origins | Browser app origin allowed to start Auth0 web flows | `<application-base-url>` |
+| Allowed Origins (CORS) | Browser app origin allowed to call Auth0 endpoints | `<application-base-url>` |
+
+Environment origins:
+
+| Environment | Application Base URL |
 | --- | --- |
-| Allowed Callback URLs | `http://localhost:4200/callback` |
-| Allowed Logout URLs | `http://localhost:4200/` |
-| Allowed Web Origins | `http://localhost:4200` |
-| Allowed Origins (CORS) | `http://localhost:4200` |
+| Local | `<local-ui-origin>` |
+| Dev | `<dev-ui-origin>` |
+| Test | `<test-ui-origin>` |
+| Prod | `https://webdevisfun.com` |
 
-Recommended deployed URLs:
+Examples:
 
-| Auth0 Setting | Deployed Value |
-| --- | --- |
-| Allowed Callback URLs | `https://webdevisfun.com/callback` |
-| Allowed Logout URLs | `https://webdevisfun.com/` |
-| Allowed Web Origins | `https://webdevisfun.com` |
-| Allowed Origins (CORS) | `https://webdevisfun.com` |
+- Local application base URL might be `http://localhost:4200`.
+- Dev and test origins should use the actual deployed environment domains when they exist.
+- Prod application base URL is `https://webdevisfun.com`.
+- If `<application-base-url>` is `http://localhost:4200` and `<login-callback-route>` is `/callback`, the full callback URL is `http://localhost:4200/callback`.
 
-If the Angular callback route changes, update Auth0 and the Angular route together.
+If the Angular callback route changes from `/callback`, update Auth0 and the Angular route together for every environment.
 
 ## Auth0 API
 
@@ -89,8 +103,8 @@ Suggested Angular variables:
 AUTH0_DOMAIN=<tenant-domain>
 AUTH0_CLIENT_ID=<spa-client-id>
 AUTH0_AUDIENCE=https://webdevisfun.com/api
-AUTH0_REDIRECT_URI=http://localhost:4200/callback
-AUTH0_LOGOUT_RETURN_TO=http://localhost:4200/
+AUTH0_REDIRECT_URI=<full-login-callback-url>
+AUTH0_LOGOUT_RETURN_TO=<full-logout-return-url>
 ```
 
 Suggested Spring Boot variables:
@@ -100,7 +114,7 @@ AUTH0_ISSUER_URI=https://<tenant-domain>/
 AUTH0_AUDIENCE=https://webdevisfun.com/api
 ```
 
-Deployment values should use the deployed URLs for redirect/logout settings.
+Each environment should provide its own full redirect and logout URLs.
 
 ## Local Verification
 
