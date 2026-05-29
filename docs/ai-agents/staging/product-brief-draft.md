@@ -16,7 +16,7 @@ The site currently has a deployed AWS-backed dynamic foundation with a home page
 - Use real tools and patterns rather than toy-only examples.
 - Start with simple vertical slices and add complexity when the app needs it.
 - Host multiple app categories under one main hub.
-- Eventually extract reusable templates so new related apps can be created faster.
+- Eventually create an AI-assisted app creation playbook so new related apps can be planned and built faster with less human intervention.
 
 ## Target Experience
 
@@ -33,7 +33,7 @@ The application should feel like a professional prototypes hub:
 1. Authentication and authorization
 2. App workflow, dashboard, and navigation
 3. Feature/app category structure
-4. Reusable app template discovery
+4. AI-assisted app creation playbook discovery
 5. Independent app verification model
 
 ## Assumptions

@@ -14,7 +14,7 @@ Related story: [#29](https://github.com/radhikari89/codex-demo/issues/29)
 | AI Prototypes | Draft | Host AI applications and use AI agents to recommend future apps. |
 | Blockchain Prototypes | Draft | Host blockchain-based experiments and applications. |
 | Misc Apps | Draft | Host smaller apps and experiments, including the future Work Orders app. |
-| Reusable App Template | Draft | Extract repeatable app foundation patterns for future app creation. |
+| AI-Assisted App Creation Playbook | Draft | Train/guide AI agents so future prototype apps can be created faster with less human intervention. |
 | Independent App Verification | Draft | Ensure each app area can be tested and verified independently where practical. |
 | Design And Wireframing | Draft | Decide how visual design and workflow drafts should be created and approved. |
 
@@ -26,7 +26,7 @@ Related story: [#29](https://github.com/radhikari89/codex-demo/issues/29)
 | [#45 Application Shell And Navigation](https://github.com/radhikari89/codex-demo/issues/45) | 2 | Turn the app into a professional hub with home, auth entry, dashboard, and app category navigation. | #40, app shell implementation, dashboard MVP, category routes |
 | [#46 Security And Auth Provider Lab](https://github.com/radhikari89/codex-demo/issues/46) | 3 | Create an isolated prototype category for auth provider and authorization prototypes. | #52, #53, #54, #55 |
 | [#47 App Boundary And Independent Verification](https://github.com/radhikari89/codex-demo/issues/47) | 4 | Define how app areas can be tested, documented, and split when justified. | #39, per-app verification template, first boundary proof |
-| [#48 Reusable App Template](https://github.com/radhikari89/codex-demo/issues/48) | 5 | Extract repeatable app foundation pieces after enough real patterns exist. | #37, template milestone, generated app checklist |
+| [#48 AI-Assisted App Creation Playbook](https://github.com/radhikari89/codex-demo/issues/48) | 5 | Create repeatable AI-agent guidance for turning new app ideas into scoped plans, stories, implementation paths, and verification. | #37, app creation playbook, agent checklist |
 | [#49 AI Prototypes](https://github.com/radhikari89/codex-demo/issues/49) | Later | Host AI-focused applications and AI-assisted app recommendations. | First AI app discovery, recommendation workflow |
 | [#50 Blockchain Prototypes](https://github.com/radhikari89/codex-demo/issues/50) | Later | Host blockchain-focused applications after tooling and security assumptions are clear. | First blockchain app discovery |
 | [#51 Misc Apps And Work Orders](https://github.com/radhikari89/codex-demo/issues/51) | Later | Host smaller apps and integrate or link the Work Orders app. | Work Orders integration discovery |
@@ -139,20 +139,22 @@ Candidate work:
 - Define Work Orders integration shape
 - Decide whether Misc apps are embedded, routed, or externally linked
 
-## Feature: Reusable App Template
+## Feature: AI-Assisted App Creation Playbook
 
 Priority: Discovery
 
 Desired state:
 
-- Reusable patterns can be extracted from this app.
-- Future apps can be created faster and tied back to the main hub.
+- AI agents can use a repeatable playbook to create future app plans faster.
+- New app creation requires less human intervention while preserving owner approval gates.
+- Agents know what context to gather, what questions to ask, what stories to create, and what architecture/verification checks to include.
 
 Candidate work:
 
-- Identify reusable shell/auth/deploy/test patterns
-- Define app template contents
-- Prototype generating or copying a second app from the template
+- Define app idea intake prompts and required context.
+- Define app planning/story templates for agents.
+- Define architecture and verification checklists for new apps.
+- Decide whether scripts or code templates are needed later after repeated app builds.
 
 ## Feature: Independent App Verification
 

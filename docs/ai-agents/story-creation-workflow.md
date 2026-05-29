@@ -52,7 +52,7 @@ Common epic types:
 - reporting
 - app shell and navigation
 - independently testable app modules
-- reusable app template or app factory
+- AI-assisted app creation playbook or app factory
 - deployment and operations
 - security
 - quality and testing

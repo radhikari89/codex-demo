@@ -13,7 +13,7 @@ Use it after raw vision has been staged and accepted. Staging docs preserve draf
 - [AI Prototypes](ai-prototypes.md)
 - [Blockchain Prototypes](blockchain-prototypes.md)
 - [Misc Apps](misc-apps.md)
-- [Reusable App Template](reusable-app-template.md)
+- [AI-Assisted App Creation Playbook](reusable-app-template.md)
 - [Independent App Verification](independent-app-verification.md)
 - [Design And Wireframing](design-and-wireframing.md)
 
