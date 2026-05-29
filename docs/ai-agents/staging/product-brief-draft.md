@@ -6,7 +6,7 @@ Related story: [#29](https://github.com/radhikari89/codex-demo/issues/29)
 
 ## Draft Product Direction
 
-`webdevisfun.com` is a learning playground and app hub for modern web technologies. The application should start simple, then grow into a professional site where different experiments and app areas can be explored from one authenticated user experience.
+`webdevisfun.com` is a learning prototypes hub for modern web technologies. The application should start simple, then grow into a professional site where different experiments and app areas can be explored from one authenticated user experience.
 
 The site currently has a deployed AWS-backed dynamic foundation with a home page, login page, and post-login landing page. The next direction is to improve that foundation into a reusable shell for authentication, navigation, dashboards, app categories, and independently testable app modules.
 
@@ -20,7 +20,7 @@ The site currently has a deployed AWS-backed dynamic foundation with a home page
 
 ## Target Experience
 
-The application should feel like a professional playground:
+The application should feel like a professional prototypes hub:
 
 - public home page that explains the app
 - sign up and sign in with industry-standard authentication

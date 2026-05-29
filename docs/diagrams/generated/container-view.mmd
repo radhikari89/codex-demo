@@ -1,0 +1,15 @@
+flowchart LR
+  browser[Browser]
+
+  subgraph aws[AWS Deployed Environment]
+    cloudfront[CloudFront Distribution]
+    s3[S3 Angular Static Site]
+    userservice[Spring Boot User Service]
+    postgres[(PostgreSQL)]
+  end
+
+  browser -->|HTTPS requests| cloudfront
+
+  cloudfront -->|UI routes and static assets| s3
+  cloudfront -->|API behavior /api/*| userservice
+  userservice -->|JPA/Flyway| postgres

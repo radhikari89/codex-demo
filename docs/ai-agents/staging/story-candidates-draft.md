@@ -10,6 +10,10 @@ These are candidates only. Do not create GitHub issues from this list until the 
 
 Suggested agent: Product Analyst Agent / Backend Agent
 
+Active story: [#38](https://github.com/radhikari89/codex-demo/issues/38)
+
+Draft output: [Authentication Strategy Discovery](../../architecture/drafts/auth-strategy-discovery.md)
+
 User story:
 
 As the application owner, I want to choose an industry-standard authentication strategy, so that sign up, sign in, social login, and authorization are built on the right foundation.
@@ -25,6 +29,10 @@ Acceptance criteria:
 
 Suggested agent: Product Analyst Agent / UI Agent
 
+Active story: [#40](https://github.com/radhikari89/codex-demo/issues/40)
+
+Draft output: [Workflow Wireframe Draft](workflow-wireframe-draft.md)
+
 User story:
 
 As the application owner, I want wireframes for the public home page, auth pages, dashboard, and app navigation, so that implementation follows an approved workflow.
@@ -35,6 +43,94 @@ Acceptance criteria:
 - Draft the first navigation model.
 - Include AI, Blockchain, and Misc app categories.
 - Identify what the dashboard should show first.
+
+## Epic: Security And Auth Provider Lab
+
+Suggested agent: Product Analyst Agent / Solution Architect Agent / Security Reviewer
+
+Active epic: [#46](https://github.com/radhikari89/codex-demo/issues/46)
+
+User story:
+
+As the application owner, I want a dedicated security prototype category, so that authentication and authorization provider options can be prototyped and compared without destabilizing the main app.
+
+Acceptance criteria:
+
+- Define Security as an app category alongside AI, Blockchain, and Misc.
+- Define how auth provider prototypes remain isolated from production auth.
+- Link the epic to the authentication strategy discovery and app boundary model.
+- Identify the first provider prototype and comparison checklist.
+
+## Discovery: Define Auth-Lab Evaluation Matrix
+
+Suggested agent: Solution Architect Agent / Security Reviewer
+
+Active story: [#52](https://github.com/radhikari89/codex-demo/issues/52)
+
+User story:
+
+As the application owner, I want a shared auth-lab evaluation matrix, so that Spring Security-owned auth, Google OIDC, Keycloak, Cognito, Auth0, Okta, and Firebase/Supabase can be compared consistently.
+
+Acceptance criteria:
+
+- Define a common prototype checklist for signup, signin, current-user lookup, logout, roles/claims, backend identity verification, local development, deployment impact, secret handling, and operational ownership.
+- Define where auth-lab prototype docs and code should live.
+- Define what a prototype must prove before it can influence the main app auth decision.
+- Identify which prototypes are docs-only versus runnable.
+
+## Prototype: Keycloak Auth Provider Lab
+
+Suggested agent: Solution Architect Agent / Backend Agent / Security Reviewer
+
+Active story: [#53](https://github.com/radhikari89/codex-demo/issues/53)
+
+User story:
+
+As the application owner, I want to prototype Keycloak as a local open-source identity provider, so that I can learn OIDC concepts and compare self-hosted auth against managed providers.
+
+Acceptance criteria:
+
+- Document local Keycloak setup approach, likely Docker-based.
+- Define realm, client, callback URL, roles/claims, and Google identity brokering assumptions.
+- Show how Spring Boot would validate identity from Keycloak.
+- Identify production responsibilities: upgrades, backups, availability, admin hardening, secrets, and monitoring.
+- Record whether Keycloak should remain a lab prototype or become a candidate production IdP.
+
+## Prototype: Managed Auth Provider Comparison
+
+Suggested agent: Solution Architect Agent / DevOps Agent / Security Reviewer
+
+Active story: [#54](https://github.com/radhikari89/codex-demo/issues/54)
+
+User story:
+
+As the application owner, I want to compare Cognito, Auth0, Okta, and Firebase/Supabase against the same auth-lab checklist, so that managed-provider tradeoffs are understood before choosing a shared identity provider.
+
+Acceptance criteria:
+
+- Compare setup effort, local development, AWS deployment fit, social login support, roles/claims, backend verification, cost, lock-in, and operational burden.
+- Include Cognito as the AWS-native managed IdP candidate.
+- Include Auth0 or Okta as the commercial managed IdP candidate.
+- Include Firebase or Supabase Auth as the app-builder candidate.
+- Recommend which managed provider, if any, deserves a runnable prototype.
+
+## Discovery: Add Security Category To App Navigation Model
+
+Suggested agent: Product Analyst Agent / UI Agent
+
+Active story: [#55](https://github.com/radhikari89/codex-demo/issues/55)
+
+User story:
+
+As a signed-in user, I want to navigate to a Security prototype category, so that auth provider prototypes and security experiments have a clear place in the hub.
+
+Acceptance criteria:
+
+- Update the navigation model to include Security.
+- Define first Security category landing behavior.
+- Keep runnable auth prototypes isolated from production auth.
+- Identify whether this updates the workflow wireframe story or becomes a follow-up UI implementation story.
+- Link to the Security/Auth Provider Lab feature doc.
 
 ## Implementation: Replace Temporary Auth Bridge
 

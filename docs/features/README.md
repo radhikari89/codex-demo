@@ -8,9 +8,10 @@ Use it after raw vision has been staged and accepted. Staging docs preserve draf
 
 - [Feature Template](_template.md)
 - [Authentication And Authorization](authentication-and-authorization.md)
+- [Security And Auth Provider Lab](security-and-auth-provider-lab.md)
 - [Application Shell And Navigation](application-shell-and-navigation.md)
-- [AI Playground](ai-playground.md)
-- [Blockchain Playground](blockchain-playground.md)
+- [AI Prototypes](ai-prototypes.md)
+- [Blockchain Prototypes](blockchain-prototypes.md)
 - [Misc Apps](misc-apps.md)
 - [Reusable App Template](reusable-app-template.md)
 - [Independent App Verification](independent-app-verification.md)

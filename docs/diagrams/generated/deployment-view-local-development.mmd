@@ -1,0 +1,9 @@
+flowchart LR
+  developer[Developer Browser]
+  angular[Angular Dev Server\nlocalhost:4200\nproxies /api to localhost:8080]
+  service[Spring Boot User Service\nlocalhost:8080]
+  db[(Local PostgreSQL\nlocalhost:5432)]
+
+  developer -->|http://localhost:4200| angular
+  angular -->|relative /api/v1/* calls forwarded| service
+  service -->|JPA/Flyway| db

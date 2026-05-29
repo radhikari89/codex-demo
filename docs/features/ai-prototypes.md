@@ -1,4 +1,4 @@
-# Feature: Blockchain Playground
+# Feature: AI Prototypes
 
 Status: Draft
 
@@ -18,23 +18,23 @@ Related PRs:
 
 ## Purpose
 
-Host blockchain-based experiments and applications.
+Host AI applications and eventually use AI agents to recommend what kind of app should be created next.
 
 ## Current State
 
-- Product vision names Blockchain as a future app category.
-- No blockchain app has been selected yet.
+- Product vision names AI as a future prototype category.
+- No AI app has been selected yet.
 
 ## Desired State
 
-- Blockchain category landing page exists.
-- First blockchain app concept is defined.
-- Security and wallet/tooling assumptions are reviewed before implementation.
+- AI category landing page exists.
+- First AI app concept is defined.
+- App boundary and verification path are documented before implementation.
 
 ## App Boundary
 
 - Type: Undecided
-- Route/access point: `/apps/blockchain`
+- Route/access point: `/apps/ai`
 - Data boundary: Pending first app concept
 - Backend/service dependency: Undecided
 - Independent verification path: Pending first app concept
@@ -45,9 +45,9 @@ Host blockchain-based experiments and applications.
 
 ## Remaining Work
 
-- Define first blockchain app idea.
-- Identify wallet, network, and security requirements.
-- Decide whether this category needs a dedicated service.
+- Define first AI app idea.
+- Decide shared backend versus dedicated service.
+- Define AI API/provider and cost/security considerations.
 
 ## Decisions
 
@@ -55,8 +55,8 @@ Host blockchain-based experiments and applications.
 
 ## Open Questions
 
-- What blockchain use case is safe and useful as a first demo?
-- Should this be testnet-only?
+- What is the first useful AI app?
+- Will AI features use OpenAI, AWS, local models, or another provider?
 
 ## Architecture / Diagrams
 
@@ -68,7 +68,7 @@ Host blockchain-based experiments and applications.
 - Automated tests: Pending
 - Local smoke test: Pending
 - Deployed smoke test: Pending
-- Required env vars: Pending tooling choice
+- Required env vars: Pending provider choice
 
 ## Change Log
 

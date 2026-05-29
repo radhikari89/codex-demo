@@ -14,9 +14,11 @@ The project is currently a starter full-stack app with:
 ## Documents
 
 - [Vision Intake](vision-intake.md): raw product vision capture for the human owner to fill in.
+- [Owner Vision And Context](owner-vision-and-context.md): higher-level owner context, learning goals, philosophy, and long-term direction.
 - [Staging](staging/README.md): draft product interpretation and story candidates waiting for owner approval.
 - [Story Creation Workflow](story-creation-workflow.md): instructions for turning vision into organized stories.
 - [Golden Rules](golden-rules.md): non-negotiable working rules for all agents.
+- [Branch Naming](branch-naming.md): branch naming convention for GitHub stories, tasks, and docs work.
 - [Multi-Agent Coordination](multi-agent-coordination.md): how multiple agents are activated, sequenced, and handed off.
 - [Remaining Work Plan](remaining-work-plan.md): phased plan for the next application increments.
 - [Agent Briefs](agent-briefs.md): reusable agent roles, responsibilities, and handoff rules.

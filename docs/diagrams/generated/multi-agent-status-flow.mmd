@@ -1,0 +1,17 @@
+stateDiagram-v2
+    [*] --> Intake
+    Intake --> Requirements
+    Requirements --> Architecture
+    Architecture --> ReadyForBuild
+    ReadyForBuild --> Implementation
+    Implementation --> Verification
+    Verification --> Review
+    Review --> ReleaseReady
+    ReleaseReady --> [*]
+
+    Requirements --> Blocked
+    Architecture --> Blocked
+    ReadyForBuild --> Blocked
+    Implementation --> Blocked
+    Verification --> Blocked
+    Blocked --> Intake
