@@ -50,6 +50,8 @@ sequenceDiagram
     end
 ```
 
+![Authentication and authorization main flow](../../../diagrams/generated/authentication-authorization-main-flow.svg)
+
 ## Responsibility Diagram
 
 ```mermaid
@@ -77,6 +79,8 @@ flowchart LR
         db
     end
 ```
+
+![Authentication and authorization responsibilities](../../../diagrams/generated/authentication-authorization-responsibility.svg)
 
 ## Token Roles
 

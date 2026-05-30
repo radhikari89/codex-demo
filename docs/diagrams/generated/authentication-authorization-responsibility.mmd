@@ -1,0 +1,23 @@
+flowchart LR
+    user[User]
+    browser[Angular SPA]
+    auth0[Auth0 OIDC Provider]
+    api[Spring Boot Resource Server]
+    db[(PostgreSQL)]
+
+    user -->|uses| browser
+    browser -->|login/signup redirect| auth0
+    auth0 -->|ID token: user identity| browser
+    auth0 -->|access token: API access grant| browser
+    browser -->|Authorization: Bearer access token| api
+    api -->|validate token issuer/audience/signature/claims| auth0
+    api -->|authorized data access| db
+
+    subgraph Authentication
+        auth0
+    end
+
+    subgraph Authorization
+        api
+        db
+    end
