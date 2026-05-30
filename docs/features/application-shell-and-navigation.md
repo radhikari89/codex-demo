@@ -11,6 +11,7 @@ Related Staged Source: [Workflow Wireframe Draft](../ai-agents/staging/workflow-
 Related GitHub Issues:
 
 - [#40 Wireframe home, dashboard, and app navigation workflow](https://github.com/radhikari89/codex-demo/issues/40)
+- [#55 Add Security category to app navigation model](https://github.com/radhikari89/codex-demo/issues/55)
 
 Related PRs:
 
@@ -29,7 +30,7 @@ Create the public home page, authenticated dashboard, and navigation structure f
 
 - Professional public home page.
 - Authenticated app shell after login.
-- Navigation to Dashboard, AI, Blockchain, Misc, and Settings.
+- Navigation to Dashboard, AI, Blockchain, Security, Misc, and Settings.
 - Mobile-friendly navigation.
 
 ## App Boundary
@@ -43,22 +44,25 @@ Create the public home page, authenticated dashboard, and navigation structure f
 ## Completed Work
 
 - Workflow wireframe story exists.
+- Security category is accepted as a first-class prototype area in planning docs.
 
 ## Remaining Work
 
-- Approve workflow wireframe.
+- Review Security navigation update.
 - Implement app shell navigation.
 - Add app category landing pages.
 - Replace dashboard demo content with app-hub content.
 
 ## Decisions
 
-- Pending workflow approval.
+- Security should appear as a normal app category alongside AI, Blockchain, and Misc.
+- Security category pages should host learning prototypes and provider labs, not replace the main application login flow.
 
 ## Open Questions
 
 - Should first dashboard include recent activity, recommendations, or only app entry points?
 - When should Figma be introduced?
+- Should Security be visible immediately with an empty/coming-soon state, or only after the first lab content exists?
 
 ## Architecture / Diagrams
 
