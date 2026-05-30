@@ -1,0 +1,31 @@
+sequenceDiagram
+    autonumber
+    actor User
+    participant Browser as Browser / Angular SPA
+    participant Auth0 as Auth0 OIDC Provider
+    participant API as Spring Boot API
+    participant DB as PostgreSQL
+
+    User->>Browser: Open protected dashboard
+    Browser->>Auth0: Start OIDC login with PKCE
+    Auth0->>User: Prompt for login / signup
+    User->>Auth0: Complete login
+    Auth0-->>Browser: Redirect to callback with authorization code
+    Browser->>Auth0: Exchange code for tokens
+    Auth0-->>Browser: Return ID token and access token
+
+    Note over Browser,Auth0: Authentication: Auth0 proves who signed in.
+
+    Browser->>API: Call /api/* with access token
+    API->>Auth0: Load public signing keys / OIDC metadata
+    API->>API: Validate signature, issuer, audience, expiration, claims
+
+    Note over API: Authorization: backend decides whether the verified caller can access this API/resource.
+
+    alt Allowed
+        API->>DB: Read/write authorized data
+        DB-->>API: Data
+        API-->>Browser: 200 response
+    else Not allowed
+        API-->>Browser: 401 unauthenticated or 403 forbidden
+    end

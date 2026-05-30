@@ -32,6 +32,24 @@ Token format notes:
 - If the access token is a JWT, the backend can usually validate it directly.
 - If the access token is opaque, the backend usually asks the provider to introspect it.
 
+## Auth0 / OIDC Terminology
+
+These terms appear in the Auth0 configuration guide.
+
+| Term | Meaning |
+| --- | --- |
+| Auth0 domain | The tenant domain where Auth0 hosts login and publishes OIDC metadata, for example `<prod-auth0-domain>`. |
+| Issuer URI | The trusted identity-provider URL that appears in token `iss` claims and is used by Spring Boot to validate tokens. |
+| SPA client ID | The public identifier for the Angular single-page application registered in Auth0. This is not a secret. |
+| API audience | The identifier for the backend API that the access token is meant for; Spring Boot should validate this. |
+| Callback URL | The Angular route Auth0 redirects back to after login, for example `<app-origin>/callback`. |
+| Logout URL | The URL Auth0 is allowed to redirect to after logout. |
+| Web origin | The base origin of the browser app, such as scheme plus host plus optional port. |
+| Allowed Origins (CORS) | Browser origins allowed to make cross-origin requests to Auth0 endpoints. |
+| Authorization Code with PKCE | The recommended OIDC login flow for browser apps; it avoids putting a client secret in the SPA. |
+| JWKS | The provider's public signing keys used by the backend to verify JWT signatures. |
+| Claim | A trusted field inside a token, such as subject, issuer, audience, email, or roles. |
+
 ## Current Provider Cost Notes
 
 Pricing changes, so verify official provider pricing before making a production decision.
