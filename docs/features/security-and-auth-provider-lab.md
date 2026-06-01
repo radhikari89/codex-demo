@@ -28,7 +28,7 @@ Provide a dedicated prototype category for security-focused applications and aut
 
 - Authentication strategy discovery identifies Spring Security-owned auth, Google OIDC, Keycloak, Cognito, Auth0, Okta, and Firebase/Supabase as options.
 - Provider prototypes are not yet represented as their own app category or backlog epic.
-- The main app still has a temporary auth bridge.
+- The main app login path is moving to Auth0 OIDC, while provider experiments remain separate.
 
 ## Desired State
 
@@ -39,8 +39,8 @@ Provide a dedicated prototype category for security-focused applications and aut
 
 ## App Boundary
 
-- Type: Undecided; likely UI plus shared backend for documentation-first prototypes, with dedicated services only when a runnable lab requires them.
-- Route/access point: Proposed `/apps/security` and future `/apps/security/auth-lab`.
+- Type: UI category plus shared backend for documentation-first prototypes, with dedicated services only when a runnable lab requires them.
+- Route/access point: `/apps/security` and future `/apps/security/auth-lab`.
 - Data boundary: provider configuration notes, prototype users, claims/roles examples, secret-handling notes.
 - Backend/service dependency: `services/userservice` for Spring Security/OIDC validation experiments; external IdPs for provider labs.
 - Independent verification path: auth-lab setup docs, smoke checklist, provider-specific run notes, and security review notes.
@@ -48,11 +48,12 @@ Provide a dedicated prototype category for security-focused applications and aut
 ## Completed Work
 
 - Added Keycloak and auth-lab prototype approach to auth strategy discovery.
+- Security category is represented in the app shell/navigation model.
 
 ## Remaining Work
 
 - Define auth-lab evaluation matrix.
-- Add Security category to the app shell/navigation model.
+- Implement the Security category landing page in the UI.
 - Prototype Keycloak as the first external IdP.
 - Compare managed providers against the same checklist.
 
@@ -60,10 +61,11 @@ Provide a dedicated prototype category for security-focused applications and aut
 
 - The main application should use one approved production auth path.
 - Provider prototypes should remain isolated until one path is intentionally promoted.
+- Security should be visible as a first-class app category once the app shell supports category navigation.
+- Empty Security category state is acceptable before the first runnable lab exists.
 
 ## Open Questions
 
-- Should Security be visible in the first dashboard navigation or hidden until the first lab exists?
 - Should runnable auth-lab prototypes live inside this repo or in separate repos?
 - Which managed IdP should receive the first runnable prototype after Keycloak?
 
