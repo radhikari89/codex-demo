@@ -1,7 +1,7 @@
 # Refactor Candidates
 
 - Replace temporary user lookup login with real backend authentication.
-- Stop sending raw password values as `passwordHash` once the backend owns password hashing.
+- Remove backend-side `passwordHash` assumptions after Spring Boot validates Auth0 access tokens and the current-user/profile endpoint exists.
 - Extract shared buttons, form fields, and layout primitives.
 - Add route-level lazy loading as feature areas grow.
 - Add stronger dashboard models once backend data contracts are available.

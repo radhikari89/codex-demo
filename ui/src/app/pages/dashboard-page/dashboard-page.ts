@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 import { AuthService } from '../../auth/auth.service';
 
@@ -11,10 +11,8 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class DashboardPage {
   protected readonly authService = inject(AuthService);
-  private readonly router = inject(Router);
 
   protected logout(): void {
     this.authService.logout();
-    void this.router.navigateByUrl('/');
   }
 }

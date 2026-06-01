@@ -1,15 +1,15 @@
 # Auth And API Integration
 
-Authentication is integrated with the backend user service as a temporary bridge.
+Authentication is integrated through Auth0 for the Angular app. The backend user service remains the API/data service, and backend token enforcement is handled by the Spring Boot Resource Server story.
 
 ## Current Flow
 
-- Login looks up an existing backend user by email through the relative endpoint `GET /api/v1/users?email=...`.
-- Signup creates a backend user through the relative endpoint `POST /api/v1/users`.
-- Successful login or signup stores the user session in `localStorage`.
-- The auth service exposes the current user through Angular signals.
-- The dashboard guard checks whether a user is logged in before allowing access.
-- Logout clears local auth state and returns the user to the home page.
+- Login and signup redirect to Auth0 Universal Login using Authorization Code with PKCE.
+- Auth0 redirects back to `/callback`, then the app opens the dashboard.
+- The Auth0 Angular SDK owns token handling and uses in-memory cache by default.
+- The app auth service exposes the current Auth0 user profile through Angular signals.
+- The dashboard guard waits for Auth0 loading to complete, then checks authenticated state.
+- Logout redirects through Auth0 and returns the user to the app origin.
 
 ## API URL Strategy
 
@@ -21,6 +21,6 @@ In remote environments, path-based infrastructure routing should send `/api/**` 
 
 ## Current Backend Limitation
 
-The current backend stores a `passwordHash` field but does not expose a real login/password verification endpoint yet.
+The backend does not yet validate Auth0 JWT access tokens. Until the Spring Boot Resource Server story is complete, UI route protection is only a browser-side convenience.
 
-This should later be replaced with a dedicated backend authentication endpoint that verifies credentials and returns a real session or token.
+Protected backend APIs should require valid Auth0 access tokens before auth is considered end-to-end secure.
