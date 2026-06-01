@@ -1,7 +1,7 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, Injector, Signal, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { AuthService as Auth0Service, User } from '@auth0/auth0-angular';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
@@ -13,12 +13,17 @@ export interface AuthUser {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly auth0 = inject(Auth0Service);
-  private readonly auth0User = toSignal(this.auth0.user$, { initialValue: null });
+  private readonly injector = inject(Injector);
 
-  readonly isLoading$ = this.auth0.isLoading$;
-  readonly isAuthenticated$ = this.auth0.isAuthenticated$;
   readonly isConfigured = Boolean(environment.auth0.domain && environment.auth0.clientId);
+
+  private readonly auth0 = this.isConfigured ? this.injector.get(Auth0Service) : null;
+  private readonly auth0User: Signal<User | null | undefined> = this.auth0
+    ? toSignal(this.auth0.user$, { initialValue: null })
+    : signal(null);
+
+  readonly isLoading$ = this.auth0?.isLoading$ ?? of(false);
+  readonly isAuthenticated$ = this.auth0?.isAuthenticated$ ?? of(false);
   readonly configError = signal(
     this.isConfigured ? '' : 'Auth0 is not configured for this environment yet.',
   );
@@ -33,9 +38,9 @@ export class AuthService {
     }
 
     this.configError.set('');
-    return this.auth0.loginWithRedirect({
+    return this.auth0?.loginWithRedirect({
       appState: { target },
-    });
+    }) ?? null;
   }
 
   signup(target = '/dashboard'): Observable<void> | null {
@@ -45,17 +50,17 @@ export class AuthService {
     }
 
     this.configError.set('');
-    return this.auth0.loginWithRedirect({
+    return this.auth0?.loginWithRedirect({
       appState: { target },
       authorizationParams: {
         screen_hint: 'signup',
       },
-    });
+    }) ?? null;
   }
 
   logout(): void {
     this.auth0
-      .logout({
+      ?.logout({
         logoutParams: {
           returnTo: environment.auth0.logoutReturnTo,
         },

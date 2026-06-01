@@ -1,0 +1,16 @@
+<main class="auth-shell">
+  <a class="brand" routerLink="/">
+    <span class="brand-mark">C</span>
+    <span>my-app</span>
+  </a>
+
+  <section class="auth-card" aria-labelledby="callback-title">
+    <p class="eyebrow">Signing in</p>
+    <h1 id="callback-title">Finishing login</h1>
+    <p class="lede">One moment while Auth0 returns you to the dashboard.</p>
+
+    @if (configError()) {
+      <p class="form-error">{{ configError() }}</p>
+    }
+  </section>
+</main>
