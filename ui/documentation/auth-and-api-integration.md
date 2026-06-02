@@ -4,6 +4,7 @@ Authentication is integrated through Auth0 for the Angular app. The backend user
 
 ## Current Flow
 
+- Angular loads `/app-config.json` before app bootstrap and uses those non-secret Auth0 values.
 - Login and signup redirect to Auth0 Universal Login using Authorization Code with PKCE.
 - Auth0 redirects back to `/callback`, then the app opens the dashboard.
 - The Auth0 Angular SDK owns token handling and uses in-memory cache by default.
@@ -18,6 +19,24 @@ API URLs in UI code should stay relative, such as `/api/v1/users`, so the app wo
 Local Angular development proxies `/api` to `http://localhost:8080` through `proxy.conf.json`. The local proxy is used only by `ng serve`; it is not bundled into production builds.
 
 In remote environments, path-based infrastructure routing should send `/api/**` traffic to the backend and other paths to the UI.
+
+## Auth0 Runtime Config
+
+The UI reads Auth0 values from `/app-config.json`:
+
+```json
+{
+  "auth0": {
+    "domain": "<tenant-domain>",
+    "clientId": "<spa-client-id>",
+    "audience": "https://webdevisfun.com/api",
+    "redirectUri": "https://<domain>/callback",
+    "logoutReturnTo": "https://<domain>"
+  }
+}
+```
+
+The file is public and must contain only non-secret SPA values. Auth0 client secrets, management API tokens, and private keys do not belong in the UI.
 
 ## Current Backend Limitation
 

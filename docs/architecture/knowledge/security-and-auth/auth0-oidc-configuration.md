@@ -97,15 +97,23 @@ The Spring Boot resource server should validate:
 
 ## Environment Variables
 
-Suggested Angular variables:
+Angular runtime config:
 
-```text
-AUTH0_DOMAIN=<tenant-domain>
-AUTH0_CLIENT_ID=<spa-client-id>
-AUTH0_AUDIENCE=https://webdevisfun.com/api
-AUTH0_REDIRECT_URI=<full-login-callback-url>
-AUTH0_LOGOUT_RETURN_TO=<full-logout-return-url>
+The Angular app reads non-secret Auth0 values from `/app-config.json` before bootstrapping.
+
+```json
+{
+  "auth0": {
+    "domain": "<tenant-domain>",
+    "clientId": "<spa-client-id>",
+    "audience": "https://webdevisfun.com/api",
+    "redirectUri": "<full-login-callback-url>",
+    "logoutReturnTo": "<full-logout-return-url>"
+  }
+}
 ```
+
+The committed `ui/public/app-config.json` is a safe placeholder. Each deployed environment should upload or replace that file with its own values. Do not put Auth0 client secrets in it.
 
 Suggested Spring Boot variables:
 
@@ -115,6 +123,14 @@ AUTH0_AUDIENCE=https://webdevisfun.com/api
 ```
 
 Each environment should provide its own full redirect and logout URLs.
+
+## CloudFront / CORS Notes
+
+- `/app-config.json` should be served from the UI origin and cached with `no-cache`.
+- `/api/*` should route to the backend origin and must forward the `Authorization` header.
+- Authenticated API responses should use disabled caching or a low/private cache policy.
+- Auth0 Allowed Callback URLs should include each environment's `<application-base-url>/callback`.
+- Auth0 Allowed Logout URLs, Allowed Web Origins, and Allowed Origins (CORS) should include each environment's `<application-base-url>`.
 
 ## Local Verification
 

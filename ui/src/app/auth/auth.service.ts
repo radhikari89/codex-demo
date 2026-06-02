@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { AuthService as Auth0Service, User } from '@auth0/auth0-angular';
 import { Observable, of } from 'rxjs';
 
-import { environment } from '../../environments/environment';
+import { getAppRuntimeConfig } from '../app-runtime-config';
 
 export interface AuthUser {
   id: string;
@@ -13,9 +13,10 @@ export interface AuthUser {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private readonly auth0Config = getAppRuntimeConfig().auth0;
   private readonly injector = inject(Injector);
 
-  readonly isConfigured = Boolean(environment.auth0.domain && environment.auth0.clientId);
+  readonly isConfigured = Boolean(this.auth0Config.domain && this.auth0Config.clientId);
 
   private readonly auth0 = this.isConfigured ? this.injector.get(Auth0Service) : null;
   private readonly auth0User: Signal<User | null | undefined> = this.auth0
@@ -62,7 +63,7 @@ export class AuthService {
     this.auth0
       ?.logout({
         logoutParams: {
-          returnTo: environment.auth0.logoutReturnTo,
+          returnTo: this.auth0Config.logoutReturnTo,
         },
       })
       .subscribe();

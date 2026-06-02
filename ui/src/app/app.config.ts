@@ -4,7 +4,11 @@ import { provideRouter } from '@angular/router';
 import { authHttpInterceptorFn, provideAuth0 } from '@auth0/auth0-angular';
 
 import { routes } from './app.routes';
-import { environment } from '../environments/environment';
+import { getAppRuntimeConfig } from './app-runtime-config';
+
+const runtimeConfig = getAppRuntimeConfig();
+const auth0Config = runtimeConfig.auth0;
+const isAuth0Configured = Boolean(auth0Config.domain && auth0Config.clientId);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,15 +17,15 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([authHttpInterceptorFn])),
     provideRouter(routes),
     provideAuth0({
-      domain: environment.auth0.domain,
-      clientId: environment.auth0.clientId,
+      domain: auth0Config.domain,
+      clientId: auth0Config.clientId,
       cacheLocation: 'memory',
       authorizationParams: {
-        audience: environment.auth0.audience,
-        redirect_uri: environment.auth0.redirectUri,
+        audience: auth0Config.audience,
+        redirect_uri: auth0Config.redirectUri,
       },
       httpInterceptor: {
-        allowedList: ['/api/*'],
+        allowedList: isAuth0Configured ? ['/api/*'] : [],
       },
     }),
   ],

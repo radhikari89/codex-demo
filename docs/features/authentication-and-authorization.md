@@ -32,6 +32,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Auth0 is the accepted provider for the main hub login path.
 - Angular Auth0 SDK dependency has been added.
 - UI login and signup now redirect through Auth0.
+- Angular Auth0 values are loaded from `/app-config.json` at runtime.
 - Backend JWT validation is still pending.
 
 ## Desired State
@@ -59,6 +60,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Auth0/OIDC implementation stories have been created under #44.
 - Auth0 tenant/application configuration notes have been merged.
 - Angular login, signup, logout, and route guard work has started under #62.
+- Auth0 runtime config setup has started under #65.
 
 ## Remaining Work
 
