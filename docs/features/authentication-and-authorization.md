@@ -30,10 +30,9 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 ## Current State
 
 - Auth0 is the accepted provider for the main hub login path.
-- UI has a temporary local auth bridge.
-- Login looks up a user by email.
-- Signup sends a password-like value as `passwordHash`.
-- User session state is stored client-side.
+- Angular Auth0 SDK dependency has been added.
+- UI login and signup now redirect through Auth0.
+- Backend JWT validation is still pending.
 
 ## Desired State
 
@@ -58,10 +57,11 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Auth strategy discovery story has been created.
 - ADR-0002 accepts Auth0 as the main hub login solution.
 - Auth0/OIDC implementation stories have been created under #44.
+- Auth0 tenant/application configuration notes have been merged.
+- Angular login, signup, logout, and route guard work has started under #62.
 
 ## Remaining Work
 
-- Configure Auth0 tenant, SPA application, API audience, URLs, and origins.
 - Integrate Angular Auth0 login/logout and route protection.
 - Configure Spring Boot JWT Resource Server.
 - Implement current-user/profile behavior from Auth0 claims.

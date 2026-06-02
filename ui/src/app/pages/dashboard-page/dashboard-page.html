@@ -47,8 +47,8 @@
         </div>
         <div class="timeline">
           <p><span></span>Account session created for {{ authService.user()?.email }}</p>
-          <p><span></span>Dashboard route guard confirmed active access</p>
-          <p><span></span>Mock authentication state persisted locally</p>
+          <p><span></span>Dashboard route guard confirmed authenticated access</p>
+          <p><span></span>Auth0 session is the login authority</p>
         </div>
       </article>
 
@@ -58,7 +58,7 @@
           <span>Starter flow</span>
         </div>
         <ul>
-          <li>Connect login and signup to the backend auth service.</li>
+          <li>Connect backend APIs to validated Auth0 access tokens.</li>
           <li>Replace demo metrics with real dashboard data.</li>
           <li>Add role-specific navigation and profile controls.</li>
         </ul>

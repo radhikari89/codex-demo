@@ -1,101 +1,82 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, computed, signal } from '@angular/core';
-import { Observable, map, tap } from 'rxjs';
+import { Injectable, Injector, Signal, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { AuthService as Auth0Service, User } from '@auth0/auth0-angular';
+import { Observable, of } from 'rxjs';
+
+import { environment } from '../../environments/environment';
 
 export interface AuthUser {
-  id: number;
+  id: string;
   name: string;
   email: string;
 }
 
-const STORAGE_KEY = 'codex-demo-user';
-const USERS_API_URL = '/api/v1/users';
-
-interface UserResponse {
-  id: number;
-  username: string;
-  email: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface CreateUserRequest {
-  username: string;
-  email: string;
-  passwordHash: string;
-}
-
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly userState = signal<AuthUser | null>(this.readStoredUser());
+  private readonly injector = inject(Injector);
 
-  constructor(private readonly http: HttpClient) {}
+  readonly isConfigured = Boolean(environment.auth0.domain && environment.auth0.clientId);
 
-  readonly user = this.userState.asReadonly();
-  readonly isLoggedIn = computed(() => this.userState() !== null);
+  private readonly auth0 = this.isConfigured ? this.injector.get(Auth0Service) : null;
+  private readonly auth0User: Signal<User | null | undefined> = this.auth0
+    ? toSignal(this.auth0.user$, { initialValue: null })
+    : signal(null);
 
-  login(email: string): Observable<AuthUser> {
-    return this.http.get<UserResponse[]>(USERS_API_URL, { params: { email } }).pipe(
-      map((users) => {
-        const user = users[0];
+  readonly isLoading$ = this.auth0?.isLoading$ ?? of(false);
+  readonly isAuthenticated$ = this.auth0?.isAuthenticated$ ?? of(false);
+  readonly configError = signal(
+    this.isConfigured ? '' : 'Auth0 is not configured for this environment yet.',
+  );
 
-        if (!user) {
-          throw new Error('No user found for that email address.');
-        }
+  readonly user = computed<AuthUser | null>(() => this.toAuthUser(this.auth0User()));
+  readonly isLoggedIn = computed(() => this.user() !== null);
 
-        return this.toAuthUser(user);
-      }),
-      tap((user) => this.setUser(user)),
-    );
+  login(target = '/dashboard'): Observable<void> | null {
+    if (!this.isConfigured) {
+      this.configError.set('Auth0 domain and client ID must be configured before login can start.');
+      return null;
+    }
+
+    this.configError.set('');
+    return this.auth0?.loginWithRedirect({
+      appState: { target },
+    }) ?? null;
   }
 
-  signup(name: string, email: string, password: string): Observable<AuthUser> {
-    const request: CreateUserRequest = {
-      username: this.usernameFromName(name),
-      email,
-      passwordHash: password,
-    };
+  signup(target = '/dashboard'): Observable<void> | null {
+    if (!this.isConfigured) {
+      this.configError.set('Auth0 domain and client ID must be configured before signup can start.');
+      return null;
+    }
 
-    return this.http.post<UserResponse>(USERS_API_URL, request).pipe(
-      map((user) => this.toAuthUser(user)),
-      tap((user) => this.setUser(user)),
-    );
+    this.configError.set('');
+    return this.auth0?.loginWithRedirect({
+      appState: { target },
+      authorizationParams: {
+        screen_hint: 'signup',
+      },
+    }) ?? null;
   }
 
   logout(): void {
-    localStorage.removeItem(STORAGE_KEY);
-    this.userState.set(null);
+    this.auth0
+      ?.logout({
+        logoutParams: {
+          returnTo: environment.auth0.logoutReturnTo,
+        },
+      })
+      .subscribe();
   }
 
-  private setUser(user: AuthUser): void {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-    this.userState.set(user);
-  }
-
-  private readStoredUser(): AuthUser | null {
-    const stored = localStorage.getItem(STORAGE_KEY);
-
-    if (!stored) {
+  private toAuthUser(user: User | null | undefined): AuthUser | null {
+    if (!user) {
       return null;
     }
 
-    try {
-      return JSON.parse(stored) as AuthUser;
-    } catch {
-      localStorage.removeItem(STORAGE_KEY);
-      return null;
-    }
-  }
-
-  private toAuthUser(user: UserResponse): AuthUser {
     return {
-      id: user.id,
-      name: user.username,
-      email: user.email,
+      id: user.sub ?? user.email ?? '',
+      name: user.name ?? user.nickname ?? user.email ?? 'Signed-in user',
+      email: user.email ?? '',
     };
-  }
-
-  private usernameFromName(name: string): string {
-    return name.trim().toLowerCase().replace(/\s+/g, '.');
   }
 }
