@@ -32,7 +32,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Auth0 is the accepted provider for the main hub login path.
 - Angular Auth0 SDK dependency has been added.
 - UI login and signup now redirect through Auth0.
-- Backend JWT validation is still pending.
+- Backend JWT Resource Server configuration is in progress under #61.
 
 ## Desired State
 
@@ -59,11 +59,11 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Auth0/OIDC implementation stories have been created under #44.
 - Auth0 tenant/application configuration notes have been merged.
 - Angular login, signup, logout, and route guard work has started under #62.
+- Backend Auth0 issuer/audience validation and protected-route tests have started under #61.
 
 ## Remaining Work
 
 - Integrate Angular Auth0 login/logout and route protection.
-- Configure Spring Boot JWT Resource Server.
 - Implement current-user/profile behavior from Auth0 claims.
 - Remove temporary passwordHash auth bridge.
 - Add deployment/CORS docs and auth smoke tests.
@@ -90,7 +90,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 ## Verification
 
 - Local run: Pending
-- Automated tests: Pending
+- Automated tests: `mvn "-Djavax.net.ssl.trustStoreType=Windows-ROOT" test` from `services/userservice`
 - Local smoke test: Pending
 - Deployed smoke test: Pending
 - Required env vars: Auth0 domain, SPA client ID, API audience, issuer URI, redirect URI, logout return URL
@@ -100,3 +100,4 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Created initial feature tracking doc from staged vision.
 - Accepted Auth0 implementation path and created concrete implementation stories.
 - Added initial Auth0 OIDC configuration guide.
+- Started Spring Boot JWT Resource Server implementation for #61.

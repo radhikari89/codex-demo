@@ -25,6 +25,17 @@ Flyway now owns application schema changes. Docker starts only PostgreSQL; table
 
 The local setup also seeds a few dummy users through Flyway for quick API testing.
 
+### Auth0 Resource Server configuration
+
+The backend validates Auth0 JWT access tokens for protected APIs. Provide these non-secret values before running the service:
+
+```powershell
+$env:AUTH0_ISSUER_URI="https://<your-auth0-domain>/"
+$env:AUTH0_AUDIENCE="https://webdevisfun.com/api"
+```
+
+`AUTH0_ISSUER_URI` must match the token issuer. `AUTH0_AUDIENCE` must match the Auth0 API identifier requested by the Angular app.
+
 ## Run locally
 
 ```powershell
