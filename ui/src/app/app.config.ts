@@ -9,6 +9,10 @@ import { getAppRuntimeConfig } from './app-runtime-config';
 const runtimeConfig = getAppRuntimeConfig();
 const auth0Config = runtimeConfig.auth0;
 const isAuth0Configured = Boolean(auth0Config.domain && auth0Config.clientId);
+const auth0AuthorizationParams = {
+  ...(auth0Config.audience ? { audience: auth0Config.audience } : {}),
+  redirect_uri: auth0Config.redirectUri,
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,10 +24,7 @@ export const appConfig: ApplicationConfig = {
       domain: auth0Config.domain,
       clientId: auth0Config.clientId,
       cacheLocation: 'memory',
-      authorizationParams: {
-        audience: auth0Config.audience,
-        redirect_uri: auth0Config.redirectUri,
-      },
+      authorizationParams: auth0AuthorizationParams,
       httpInterceptor: {
         allowedList: isAuth0Configured ? ['/api/*'] : [],
       },

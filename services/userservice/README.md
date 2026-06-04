@@ -31,7 +31,7 @@ The backend validates Auth0 JWT access tokens for protected APIs. Provide these 
 
 ```powershell
 $env:AUTH0_ISSUER_URI="https://<your-auth0-domain>/"
-$env:AUTH0_AUDIENCE="https://webdevisfun.com/api"
+$env:AUTH0_AUDIENCE="urn:webdevisfun:api"
 ```
 
 `AUTH0_ISSUER_URI` must match the token issuer. `AUTH0_AUDIENCE` must match the Auth0 API identifier requested by the Angular app.

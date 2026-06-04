@@ -149,7 +149,7 @@ The UI build includes `app-config.json` at the site root. It is intentionally no
   "auth0": {
     "domain": "<tenant-domain>",
     "clientId": "<spa-client-id>",
-    "audience": "https://webdevisfun.com/api",
+    "audience": "urn:webdevisfun:api",
     "redirectUri": "https://<domain>/callback",
     "logoutReturnTo": "https://<domain>"
   }
@@ -163,7 +163,7 @@ Local example:
   "auth0": {
     "domain": "<local-auth0-domain>",
     "clientId": "<local-spa-client-id>",
-    "audience": "https://webdevisfun.com/api",
+    "audience": "urn:webdevisfun:api",
     "redirectUri": "http://localhost:4200/callback",
     "logoutReturnTo": "http://localhost:4200"
   }
@@ -177,7 +177,7 @@ Production example:
   "auth0": {
     "domain": "<prod-auth0-domain>",
     "clientId": "<prod-spa-client-id>",
-    "audience": "https://webdevisfun.com/api",
+    "audience": "urn:webdevisfun:api",
     "redirectUri": "https://webdevisfun.com/callback",
     "logoutReturnTo": "https://webdevisfun.com"
   }

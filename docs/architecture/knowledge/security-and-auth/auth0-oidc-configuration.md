@@ -27,14 +27,12 @@ Create or use one Auth0 tenant for the prototype hub.
 
 Record these non-secret values in local environment files or deployment configuration.
 
-Use environment-specific Auth0 values. Local, dev, test, and prod may share a tenant at first, but they should still have distinct application configuration values where needed. Production should be easy to separate later if stronger isolation is required.
+Use environment-specific Auth0 values. This project currently tracks only local and prod app configuration. They may share a tenant at first, but they should still have distinct application configuration values where needed. Production should be easy to separate later if stronger isolation is required.
 
 | Environment | Auth0 Domain | Issuer URI | SPA Client ID | API Audience |
 | --- | --- | --- | --- | --- |
-| Local | `<local-auth0-domain>` | `https://<local-auth0-domain>/` | `<local-spa-client-id>` | `<local-api-audience>` |
-| Dev | `<dev-auth0-domain>` | `https://<dev-auth0-domain>/` | `<dev-spa-client-id>` | `<dev-api-audience>` |
-| Test | `<test-auth0-domain>` | `https://<test-auth0-domain>/` | `<test-spa-client-id>` | `<test-api-audience>` |
-| Prod | `<prod-auth0-domain>` | `https://<prod-auth0-domain>/` | `<prod-spa-client-id>` | `https://webdevisfun.com/api` |
+| Local | `<local-auth0-domain>` | `https://<local-auth0-domain>/` | `<local-spa-client-id>` | `urn:webdevisfun:api` |
+| Prod | `<prod-auth0-domain>` | `https://<prod-auth0-domain>/` | `<prod-spa-client-id>` | `urn:webdevisfun:api` |
 
 Used by:
 
@@ -89,7 +87,7 @@ In the `webdevisfun-spa` application Settings tab, set these values.
 | Allowed Web Origins | `http://localhost:4200` | `https://webdevisfun.com` |
 | Allowed Origins (CORS) | `http://localhost:4200` | `https://webdevisfun.com` |
 
-If dev or test deployments exist, add their real UI origins to the same fields. Example: a dev UI origin would produce a callback URL like `<dev-ui-origin>/callback`.
+If another deployed environment is added later, add its real UI origin to the same fields. Example: an environment origin would produce a callback URL like `<environment-ui-origin>/callback`.
 
 Save changes before leaving the page.
 
@@ -98,18 +96,18 @@ Save changes before leaving the page.
 1. Go to Applications > APIs.
 2. Select Create API.
 3. Name it `webdevisfun-api`.
-4. Set Identifier to `https://webdevisfun.com/api`.
+4. Set Identifier to `urn:webdevisfun:api`.
 5. Set Signing Algorithm to RS256.
 6. Create the API.
 
 Keep:
 
-- API audience: `https://webdevisfun.com/api`
+- API audience: `urn:webdevisfun:api`
 
 ### 5. Confirm API Token Settings
 
 1. Open Applications > APIs > `webdevisfun-api`.
-2. Confirm the identifier is exactly `https://webdevisfun.com/api`.
+2. Confirm the identifier is exactly `urn:webdevisfun:api`.
 3. Confirm the signing algorithm is RS256.
 4. Leave token signing keys managed by Auth0.
 
@@ -122,7 +120,7 @@ For local Angular testing, update the local runtime config with non-secret value
   "auth0": {
     "domain": "<tenant-region>.auth0.com",
     "clientId": "<spa-client-id>",
-    "audience": "https://webdevisfun.com/api",
+    "audience": "urn:webdevisfun:api",
     "redirectUri": "http://localhost:4200/callback",
     "logoutReturnTo": "http://localhost:4200"
   }
@@ -133,7 +131,7 @@ For local Spring Boot testing, provide:
 
 ```text
 AUTH0_ISSUER_URI=https://<tenant-region>.auth0.com/
-AUTH0_AUDIENCE=https://webdevisfun.com/api
+AUTH0_AUDIENCE=urn:webdevisfun:api
 ```
 
 ### 7. Owner Checklist
@@ -142,7 +140,7 @@ AUTH0_AUDIENCE=https://webdevisfun.com/api
 - `webdevisfun-spa` SPA application exists.
 - SPA callback, logout, web origin, and CORS URLs include local and production values.
 - `webdevisfun-api` API exists.
-- API identifier is `https://webdevisfun.com/api`.
+- API identifier is `urn:webdevisfun:api`.
 - API signing algorithm is RS256.
 - Auth0 domain, issuer URI, SPA client ID, and API audience are captured.
 - No client secret, management token, private key, or admin credential is committed.
@@ -172,14 +170,11 @@ Environment origins:
 | Environment | Application Base URL |
 | --- | --- |
 | Local | `<local-ui-origin>` |
-| Dev | `<dev-ui-origin>` |
-| Test | `<test-ui-origin>` |
 | Prod | `https://webdevisfun.com` |
 
 Examples:
 
 - Local application base URL might be `http://localhost:4200`.
-- Dev and test origins should use the actual deployed environment domains when they exist.
 - Prod application base URL is `https://webdevisfun.com`.
 - If `<application-base-url>` is `http://localhost:4200` and `<login-callback-route>` is `/callback`, the full callback URL is `http://localhost:4200/callback`.
 
@@ -192,7 +187,7 @@ Create an Auth0 API for the Spring Boot backend.
 | Setting | Value |
 | --- | --- |
 | Name | `webdevisfun-api` |
-| Identifier / Audience | `https://webdevisfun.com/api` |
+| Identifier / Audience | `urn:webdevisfun:api` |
 | Signing algorithm | `RS256` |
 
 The Spring Boot resource server should validate:
@@ -213,14 +208,19 @@ The Angular app reads non-secret Auth0 values from `/app-config.json` before boo
   "auth0": {
     "domain": "<tenant-domain>",
     "clientId": "<spa-client-id>",
-    "audience": "https://webdevisfun.com/api",
+    "audience": "urn:webdevisfun:api",
     "redirectUri": "<full-login-callback-url>",
     "logoutReturnTo": "<full-logout-return-url>"
   }
 }
 ```
 
-The committed `ui/public/app-config.json` is a safe placeholder. Each deployed environment should upload or replace that file with its own values. Do not put Auth0 client secrets in it.
+The active runtime file is `ui/public/app-config.json`. Keep the local and prod source configs in the same public folder:
+
+- `ui/public/app-config.local.json`
+- `ui/public/app-config.prod.json`
+
+For local development, `ui/public/app-config.json` should match `ui/public/app-config.local.json`. Production deployment should upload or replace `/app-config.json` with the production values from `ui/public/app-config.prod.json`. Do not put Auth0 client secrets in any of these files.
 
 Angular should keep the Auth0 SDK token cache in memory:
 
@@ -234,7 +234,7 @@ Suggested Spring Boot variables:
 
 ```text
 AUTH0_ISSUER_URI=https://<tenant-domain>/
-AUTH0_AUDIENCE=https://webdevisfun.com/api
+AUTH0_AUDIENCE=urn:webdevisfun:api
 ```
 
 Each environment should provide its own full redirect and logout URLs.
