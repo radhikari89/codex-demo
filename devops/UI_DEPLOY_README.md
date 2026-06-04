@@ -8,6 +8,7 @@ Use this runbook to build and deploy the Angular UI as a static site in AWS.
 - [Build The UI](#build-the-ui)
 - [Upload The UI Build To S3](#upload-the-ui-build-to-s3)
 - [CloudFront Setup](#cloudfront-setup)
+- [Auth0 Runtime Config](#auth0-runtime-config)
 - [SPA Route Fallback](#spa-route-fallback)
 - [Verify Deployment](#verify-deployment)
 
@@ -20,6 +21,7 @@ Open this document when you need to:
 - configure CloudFront to serve the UI
 - keep UI routes like `/login`, `/signup`, and `/dashboard` working on refresh
 - support same-domain API calls like `/api/v1/users`
+- deploy Auth0 runtime config for the Angular app
 
 ## Target Architecture
 
@@ -31,6 +33,8 @@ Recommended request flow:
 - `https://<domain>/api/v1/users` -> CloudFront -> backend origin
 
 The Angular app should use relative API URLs such as `/api/v1/users`. Do not hardcode `localhost`, EC2 DNS names, or AWS domains in UI source code.
+
+The Angular app reads Auth0 settings from `/app-config.json` at startup. This file contains non-secret runtime values and can differ by environment without rebuilding the Angular bundle.
 
 ## Prerequisites
 
@@ -113,6 +117,8 @@ aws s3 sync ui/dist/my-app/browser s3://<ui-bucket-name> --delete
 
 This uploads new files and removes deleted files from the bucket.
 
+After upload, replace `app-config.json` with the environment-specific Auth0 values for that environment.
+
 ## Recommended Cache Headers
 
 Angular production builds generate hashed JavaScript and CSS bundle names. These can be cached longer than `index.html`.
@@ -129,10 +135,75 @@ These are intentionally split into two commands because `index.html` and hashed 
 
 ```powershell
 aws s3 cp ui/dist/my-app/browser/index.html s3://<ui-bucket-name>/index.html --cache-control "no-cache"
-aws s3 sync ui/dist/my-app/browser s3://<ui-bucket-name> --exclude "index.html" --delete --cache-control "public,max-age=31536000,immutable"
+aws s3 sync ui/dist/my-app/browser s3://<ui-bucket-name> --exclude "index.html" --exclude "app-config.json" --delete --cache-control "public,max-age=31536000,immutable"
 ```
 
 Use the simple command first unless browser caching becomes a deployment problem.
+
+## Auth0 Runtime Config
+
+The UI build includes `app-config.json` at the site root. It is intentionally non-secret and should contain environment-specific Auth0 values:
+
+```json
+{
+  "auth0": {
+    "domain": "<tenant-domain>",
+    "clientId": "<spa-client-id>",
+    "audience": "https://webdevisfun.com/api",
+    "redirectUri": "https://<domain>/callback",
+    "logoutReturnTo": "https://<domain>"
+  }
+}
+```
+
+Local example:
+
+```json
+{
+  "auth0": {
+    "domain": "<local-auth0-domain>",
+    "clientId": "<local-spa-client-id>",
+    "audience": "https://webdevisfun.com/api",
+    "redirectUri": "http://localhost:4200/callback",
+    "logoutReturnTo": "http://localhost:4200"
+  }
+}
+```
+
+Production example:
+
+```json
+{
+  "auth0": {
+    "domain": "<prod-auth0-domain>",
+    "clientId": "<prod-spa-client-id>",
+    "audience": "https://webdevisfun.com/api",
+    "redirectUri": "https://webdevisfun.com/callback",
+    "logoutReturnTo": "https://webdevisfun.com"
+  }
+}
+```
+
+For S3/CloudFront deploys, upload `app-config.json` with `no-cache` so config changes do not require waiting on browser cache:
+
+```powershell
+aws s3 cp ui/dist/my-app/browser/app-config.json s3://<ui-bucket-name>/app-config.json --cache-control "no-cache"
+```
+
+If you prepare an environment-specific config outside the build folder, upload that file instead:
+
+```powershell
+aws s3 cp .\app-config.prod.json s3://<ui-bucket-name>/app-config.json --cache-control "no-cache"
+```
+
+Auth0 dashboard settings for the deployed domain:
+
+```text
+Allowed Callback URLs: https://<domain>/callback
+Allowed Logout URLs: https://<domain>
+Allowed Web Origins: https://<domain>
+Allowed Origins (CORS): https://<domain>
+```
 
 ## CloudFront Setup
 
@@ -155,7 +226,9 @@ Backend API behavior:
 - viewer protocol policy -> `Redirect HTTP to HTTPS`
 - allowed methods -> `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE`
 - cache policy -> disabled or low TTL
-- origin request policy -> forward query strings and required headers
+- origin request policy -> forward query strings and required headers, including `Authorization`
+
+Authenticated API responses should not be cached by CloudFront. Keep `/api/*` on disabled caching or a low/private cache policy before enabling authenticated endpoints.
 
 For backend documentation and health endpoints, optionally route these paths to the backend origin too:
 
@@ -203,6 +276,8 @@ https://<domain>/
 https://<domain>/login
 https://<domain>/signup
 https://<domain>/dashboard
+https://<domain>/callback
+https://<domain>/app-config.json
 https://<domain>/api/v1/users
 ```
 
@@ -211,6 +286,8 @@ Expected behavior:
 - `/` loads the Angular home page.
 - `/login` and `/signup` load directly after refresh.
 - `/dashboard` loads the Angular app and redirects according to auth state.
+- `/callback` loads the Angular app so Auth0 can finish redirect handling.
+- `/app-config.json` returns the environment-specific Auth0 config with no secrets.
 - `/api/v1/users` reaches the Spring Boot backend, not the Angular app.
 
 ## Local Development Note
@@ -279,7 +356,8 @@ These two commands are split on purpose. `index.html` uses `no-cache` so the app
 
 ```powershell
 aws s3 cp ui/dist/my-app/browser/index.html s3://codex-demo-ui/index.html --cache-control "no-cache"
-aws s3 sync ui/dist/my-app/browser s3://codex-demo-ui --exclude "index.html" --delete --cache-control "public,max-age=31536000,immutable"
+aws s3 cp ui/dist/my-app/browser/app-config.json s3://codex-demo-ui/app-config.json --cache-control "no-cache"
+aws s3 sync ui/dist/my-app/browser s3://codex-demo-ui --exclude "index.html" --exclude "app-config.json" --delete --cache-control "public,max-age=31536000,immutable"
 ```
 
 Find the CloudFront distribution ID from the distribution domain:

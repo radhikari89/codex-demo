@@ -1,6 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { App } from './app/app';
+import { loadAppRuntimeConfig } from './app/app-runtime-config';
 
-bootstrapApplication(App, appConfig)
+loadAppRuntimeConfig()
+  .then(async () => {
+    const [{ App }, { appConfig }] = await Promise.all([
+      import('./app/app'),
+      import('./app/app.config'),
+    ]);
+
+    return bootstrapApplication(App, appConfig);
+  })
   .catch((err) => console.error(err));

@@ -1,0 +1,9 @@
+{
+  "auth0": {
+    "domain": "",
+    "clientId": "",
+    "audience": "https://webdevisfun.com/api",
+    "redirectUri": "",
+    "logoutReturnTo": ""
+  }
+}
