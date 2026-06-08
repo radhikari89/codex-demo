@@ -27,7 +27,11 @@ The local setup also seeds a few dummy users through Flyway for quick API testin
 
 ### Auth0 Resource Server configuration
 
-The backend validates Auth0 JWT access tokens for protected APIs. Provide these non-secret values before running the service:
+The backend validates Auth0 JWT access tokens for protected APIs.
+
+The `local` profile has non-secret Auth0 defaults in [`src/main/resources/application-local.properties`](src/main/resources/application-local.properties), so local startup does not require Auth0 environment variables if you are using the shared local Auth0 setup.
+
+Override these values when needed:
 
 ```powershell
 $env:AUTH0_ISSUER_URI="https://<your-auth0-domain>/"

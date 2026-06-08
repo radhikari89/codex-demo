@@ -70,6 +70,35 @@ Audience notes:
 - A URL-shaped audience such as `https://webdevisfun.com/api` is common, but it can be mistaken for a real backend URL.
 - This repo uses `urn:webdevisfun:api` so the audience reads as a stable API identity instead of a network address.
 
+## Public SPA Config Security Model
+
+The Auth0 values in `ui/public/app-config.json` are public by design because browser apps cannot hide runtime configuration from users.
+
+Public values:
+
+- Auth0 domain
+- SPA client ID
+- API audience
+- Redirect URI
+- Logout return URL
+
+These values do not authorize access by themselves. The security model depends on:
+
+- Auth0 Allowed Callback URLs accepting only trusted app callback URLs.
+- Auth0 Allowed Web Origins accepting only trusted browser origins.
+- Auth0 Allowed Logout URLs accepting only trusted logout return URLs.
+- Auth0 CORS origins accepting only trusted browser origins.
+- No SPA client secret in browser config or source code.
+- Spring Boot validating token issuer, audience, signature, and expiration.
+- Spring Boot enforcing protected API authorization, because UI route guards are not the security boundary.
+
+Never expose:
+
+- Auth0 client secrets
+- Management API tokens
+- Private keys
+- Tenant admin credentials
+
 ## Current Provider Cost Notes
 
 Pricing changes, so verify official provider pricing before making a production decision.
