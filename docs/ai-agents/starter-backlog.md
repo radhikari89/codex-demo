@@ -2,53 +2,52 @@
 
 These are starter tasks for AI-assisted delivery. They are written to be assignable in small batches.
 
-## TASK-001: Define Auth API Contract
+## TASK-001: Define Auth0 API Contract
 
 Suggested agent: Product Analyst Agent or Backend Agent
 
 Outcome:
 
-- Document request and response shapes for signup and login.
-- Decide whether authentication returns only a local session user or a token.
-- Define failure responses for invalid credentials and duplicate users.
+- Document current-user/profile response shapes for Auth0-backed login.
+- Define how Angular obtains tokens and how Spring Boot validates them.
+- Define failure responses for missing, invalid, or unauthorized tokens.
 
 Acceptance criteria:
 
 - Contract names exact endpoints, fields, and status codes.
 - UI and backend agents can implement from the document without guessing.
 
-## TASK-002: Implement Backend Password Hashing And Login
+## TASK-002: Implement Backend JWT Validation And Current User
 
 Suggested agent: Backend Agent
 
 Outcome:
 
-- Add password hashing.
-- Add credential verification.
-- Add login endpoint.
-- Update create-user behavior so the UI no longer sends `passwordHash`.
+- Configure Spring Security Resource Server JWT validation.
+- Add current-user/profile endpoint from trusted Auth0 claims.
+- Remove any backend behavior that accepts client-provided `passwordHash`.
 
 Acceptance criteria:
 
-- Backend tests cover valid login, unknown email, wrong password, duplicate email, and user creation.
+- Backend tests cover valid token claims, missing token, invalid audience, and profile sync.
 - Existing user endpoints still behave intentionally.
-- OpenAPI docs show the new auth endpoint.
+- OpenAPI docs show the current-user auth endpoint.
 
-## TASK-003: Update Angular Auth Flow
+## TASK-003: Update Angular Auth0 Flow
 
 Suggested agent: UI Agent
 
 Outcome:
 
-- Update signup to send plain password to the agreed backend contract.
-- Update login to submit email and password.
-- Map backend errors to clear page-level messages.
-- Keep local session storage behavior until token/session requirements are introduced.
+- Update signup and login pages to start Auth0 Universal Login.
+- Attach access tokens to secured backend API calls.
+- Map Auth0/config/backend errors to clear page-level messages.
+- Keep token cache in memory unless the security tradeoff is explicitly accepted.
 
 Acceptance criteria:
 
-- Login fails for wrong credentials.
-- Signup followed by login works locally.
+- Auth0 login redirects back to the app locally.
+- Signup followed by `/api/v1/auth/me` works locally.
 - No UI interface or request type includes `passwordHash`.
 
 ## TASK-004: Add Auth Flow Verification

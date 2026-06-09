@@ -12,7 +12,7 @@ Knowledge notes: [Auth Provider Notes](../knowledge/security-and-auth/auth-provi
 
 Choose the first industry-standard authentication and authorization path for `webdevisfun.com` before replacing the temporary UI-to-userservice auth bridge.
 
-The current application is an Angular UI hosted through CloudFront/S3, a Spring Boot `userservice`, PostgreSQL, and path-based `/api/*` routing. The UI currently stores mock auth state in `localStorage`, looks up users by email, and sends a password value through the `passwordHash` field during signup. That is useful as a starter bridge, but should not become the real auth model.
+The current application is an Angular UI hosted through CloudFront/S3, a Spring Boot `userservice`, PostgreSQL, and path-based `/api/*` routing. The accepted target is Auth0-hosted login with the backend validating trusted JWTs and storing app-owned profile metadata separately from provider identity.
 
 ## Recommendation
 
@@ -131,7 +131,7 @@ HTTP-only cookie sessions may still be worth evaluating later, especially for ba
 - Review CORS, token handling, CloudFront forwarding, and API cache behavior together.
 - Keep secrets out of repo docs and shell history; provider client secrets belong in environment/config management.
 - Remove or protect public user list/read endpoints before real auth is used.
-- Seeded demo users and dummy password hashes must remain local/dev-only.
+- Demo users must remain profile/demo data only; the main app must not seed or rely on password-like credential data.
 
 ## Follow-Up Story Candidates
 

@@ -36,7 +36,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Angular Auth0 values are loaded from `/app-config.json` at runtime.
 - Backend JWT Resource Server configuration has been completed under #61.
 - Auth0 dashboard tenant, SPA application, and API setup has been completed under #71.
-- Current-user/profile implementation is in progress under #60.
+- Current-user/profile implementation has been completed under #60.
 
 ## Desired State
 
@@ -79,7 +79,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Auth0 is the accepted login provider for the main hub.
 - Spring Boot will act as a JWT Resource Server for secured REST APIs.
 - Current-user lookup uses `/api/v1/auth/me`, not the CRUD `/api/v1/users` collection.
-- Auth0 provider identity metadata is stored separately from the temporary demo `users` table.
+- Auth0 provider identity metadata is stored in `user_profiles`; the legacy `users` CRUD table is not an authentication or credential store.
 - First-party password handling is deferred; do not build local password auth for the main hub now.
 
 ## Open Questions
@@ -111,3 +111,4 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Completed Spring Boot JWT Resource Server implementation for #61.
 - Added owner-facing Auth0 dashboard setup steps for #71.
 - Selected `/api/v1/auth/me` and started current-user/profile implementation for #60.
+- Completed current-user/profile implementation for #60.
