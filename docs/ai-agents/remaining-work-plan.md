@@ -4,33 +4,29 @@ This plan is organized for AI-assisted delivery. Each phase should produce a wor
 
 ## Phase 1: Stabilize Authentication
 
-Goal: replace the temporary email-only login bridge with real credential-based authentication.
+Goal: replace the temporary email-only login bridge with Auth0-hosted OIDC login and backend JWT validation.
 
 Current state:
 
-- Signup creates a user through `POST /api/v1/users`.
-- Login finds a user by email through `GET /api/v1/users?email=...`.
-- The UI stores a minimal local user object in `localStorage`.
-- The backend stores a `passwordHash` value but does not hash or verify passwords yet.
+- Auth0 is the accepted main hub login provider.
+- The UI starts login/signup through Auth0.
+- The backend validates JWT access tokens and syncs current-user profile data from trusted Auth0 claims.
+- The legacy `users` CRUD table is demo/profile data only, not an authentication or credential store.
 
 Work:
 
-- Add backend password hashing.
-- Stop accepting raw `passwordHash` from the UI for user creation.
-- Add a dedicated backend login endpoint.
-- Return a minimal authenticated user response from login.
-- Update Angular login to submit email and password.
-- Keep API URLs relative, such as `/api/v1/auth/login`.
-- Add backend tests for login success, invalid email, and invalid password.
-- Add UI tests or focused service tests around auth behavior.
+- Remove remaining password-hash bridge behavior.
+- Keep API URLs relative, such as `/api/v1/auth/me`.
+- Add Auth0 local/deployed smoke tests.
+- Add UI tests or focused service tests around Auth0 route and service behavior.
 - Update `ui/documentation/auth-and-api-integration.md`.
 
 Exit criteria:
 
-- A new user can sign up with a password.
-- That user can log in with the same password.
-- Wrong credentials produce a clear UI error.
-- No UI code sends or stores a raw `passwordHash`.
+- A new user can sign up through Auth0.
+- That user can return to the app and call `/api/v1/auth/me`.
+- Token/config failures produce clear UI or runbook guidance.
+- No UI or backend production auth path sends, stores, or relies on `passwordHash`.
 
 ## Phase 2: Build The First Useful Dashboard Slice
 

@@ -50,7 +50,6 @@ public class UserService {
         User user = new User();
         user.setUsername(request.username());
         user.setEmail(request.email());
-        user.setPasswordHash(request.passwordHash());
         return userRepository.save(user);
     }
 
@@ -63,7 +62,6 @@ public class UserService {
 
         user.setUsername(request.username());
         user.setEmail(request.email());
-        user.setPasswordHash(request.passwordHash());
         return userRepository.save(user);
     }
 
