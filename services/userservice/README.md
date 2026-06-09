@@ -47,14 +47,18 @@ cd database/postgres
 docker compose up -d
 
 cd services/userservice
+$env:JAVA_TOOL_OPTIONS="-Djavax.net.ssl.trustStoreType=Windows-ROOT"
 mvn spring-boot:run
 ```
 
 If you are already at the repository root, you can also run the service with a single Maven command:
 
 ```powershell
+$env:JAVA_TOOL_OPTIONS="-Djavax.net.ssl.trustStoreType=Windows-ROOT"
 mvn -f services/userservice/pom.xml spring-boot:run
 ```
+
+The Windows trust-store option lets Java trust the same certificate authorities as Windows when Spring Boot downloads Auth0 OIDC metadata.
 
 ## Build and test
 
