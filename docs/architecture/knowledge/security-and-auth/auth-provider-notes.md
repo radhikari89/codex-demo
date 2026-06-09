@@ -47,6 +47,9 @@ These terms appear in the Auth0 configuration guide.
 | Web origin | The base origin of the browser app, such as scheme plus host plus optional port. |
 | Allowed Origins (CORS) | Browser origins allowed to make cross-origin requests to Auth0 endpoints. |
 | Authorization Code with PKCE | The recommended OIDC login flow for browser apps; it avoids putting a client secret in the SPA. |
+| RFC 9068 JWT profile | Standards-based JWT access token format for OAuth2 access tokens. Use this for the Auth0 API access-token profile. |
+| User-delegated access | Access where a real user signs in and the app receives an access token to call the API on that user's behalf. This is the current Angular SPA flow. |
+| Client access | Machine-to-machine access where an app or service receives an access token using its own client credentials, with no user login. Not needed for the current browser login flow. |
 | JWKS | The provider's public signing keys used by the backend to verify JWT signatures. |
 | Claim | A trusted field inside a token, such as subject, issuer, audience, email, or roles. |
 | URN | Uniform Resource Name. A stable identifier string, such as `urn:webdevisfun:api`, that names something without implying it is a reachable web URL. |
@@ -98,6 +101,19 @@ Never expose:
 - Management API tokens
 - Private keys
 - Tenant admin credentials
+
+## Auth0 API Access Policy
+
+For the current app, API access should be limited to signed-in users coming through the Angular SPA.
+
+Recommended Auth0 API access policy:
+
+| Setting | Recommendation | Why |
+| --- | --- | --- |
+| User-delegated access | Per-app authorization for `webdevisfun-spa` | Allows the browser app to request API tokens after a user signs in. |
+| Client access | No apps allowed | Blocks machine-to-machine tokens until there is a real service-to-service use case. |
+
+Enable client access later only for a specific machine-to-machine application, with narrow permissions and protected client secrets.
 
 ## Current Provider Cost Notes
 

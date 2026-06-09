@@ -97,8 +97,11 @@ Save changes before leaving the page.
 2. Select Create API.
 3. Name it `webdevisfun-api`.
 4. Set Identifier to `urn:webdevisfun:api`.
-5. Set Signing Algorithm to RS256.
-6. Create the API.
+5. Set JSON Web Token Profile to RFC 9068.
+6. Set Signing Algorithm to RS256.
+7. Set user-delegated access to Per-app authorization for `webdevisfun-spa`.
+8. Set client access to No apps allowed.
+9. Create the API.
 
 Keep:
 
@@ -108,8 +111,11 @@ Keep:
 
 1. Open Applications > APIs > `webdevisfun-api`.
 2. Confirm the identifier is exactly `urn:webdevisfun:api`.
-3. Confirm the signing algorithm is RS256.
-4. Leave token signing keys managed by Auth0.
+3. Confirm the JSON Web Token Profile is RFC 9068.
+4. Confirm the signing algorithm is RS256.
+5. Confirm user-delegated access allows `webdevisfun-spa`.
+6. Confirm client access is No apps allowed.
+7. Leave token signing keys managed by Auth0.
 
 ### 6. Configure Local Runtime Values
 
@@ -141,7 +147,10 @@ AUTH0_AUDIENCE=urn:webdevisfun:api
 - SPA callback, logout, web origin, and CORS URLs include local and production values.
 - `webdevisfun-api` API exists.
 - API identifier is `urn:webdevisfun:api`.
+- API JWT profile is RFC 9068.
 - API signing algorithm is RS256.
+- API user-delegated access allows `webdevisfun-spa`.
+- API client access is No apps allowed.
 - Auth0 domain, issuer URI, SPA client ID, and API audience are captured.
 - No client secret, management token, private key, or admin credential is committed.
 
@@ -188,7 +197,10 @@ Create an Auth0 API for the Spring Boot backend.
 | --- | --- |
 | Name | `webdevisfun-api` |
 | Identifier / Audience | `urn:webdevisfun:api` |
+| JSON Web Token Profile | `RFC 9068` |
 | Signing algorithm | `RS256` |
+| User-delegated access | Per-app authorization for `webdevisfun-spa` |
+| Client access | No apps allowed |
 
 The Spring Boot resource server should validate:
 
