@@ -1,8 +1,12 @@
 # App Boundary Model Draft
 
-Status: Draft
+Status: Promoted
 
-Related story: [#29](https://github.com/radhikari89/codex-demo/issues/29)
+Related story: [#39](https://github.com/radhikari89/codex-demo/issues/39)
+
+Stable model: [App Boundary Model](../../architecture/app-boundary-model.md)
+
+This draft has been promoted. Keep it for traceability; use the stable model for future story creation.
 
 ## Purpose
 
