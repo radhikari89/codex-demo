@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @ActiveProfiles("test")
 class SecurityConfigTest {
 
-    private static final String REQUIRED_AUDIENCE = "https://webdevisfun.com/api";
+    private static final String REQUIRED_AUDIENCE = "urn:webdevisfun:api";
 
     @Autowired
     private MockMvc mockMvc;

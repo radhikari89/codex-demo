@@ -44,7 +44,7 @@ class Auth0JwtAuthenticationConverterTest {
                 .header("alg", "RS256")
                 .issuer("https://auth.example.com/")
                 .subject("auth0|test-user")
-                .audience(List.of("https://webdevisfun.com/api"))
+                .audience(List.of("urn:webdevisfun:api"))
                 .issuedAt(now)
                 .expiresAt(now.plusSeconds(300))
                 .claim("email", "test@example.com")

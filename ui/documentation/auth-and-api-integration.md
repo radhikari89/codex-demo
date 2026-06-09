@@ -29,17 +29,25 @@ The UI reads Auth0 values from `/app-config.json`:
   "auth0": {
     "domain": "<tenant-domain>",
     "clientId": "<spa-client-id>",
-    "audience": "https://webdevisfun.com/api",
+    "audience": "urn:webdevisfun:api",
     "redirectUri": "https://<domain>/callback",
     "logoutReturnTo": "https://<domain>"
   }
 }
 ```
 
+The API audience is environment runtime configuration. UI source code should not hardcode it, because local and prod may point at different Auth0 API identifiers over time.
+
+Runtime config files:
+
+- `ui/public/app-config.json` is the active file fetched by the running app.
+- `ui/public/app-config.local.json` stores the local values.
+- `ui/public/app-config.prod.json` stores the production values.
+
+For local development, keep `app-config.json` aligned with `app-config.local.json`. For production deployment, publish the production values as `/app-config.json`.
+
 The file is public and must contain only non-secret SPA values. Auth0 client secrets, management API tokens, and private keys do not belong in the UI.
 
-## Current Backend Limitation
+## Backend Enforcement
 
-The backend does not yet validate Auth0 JWT access tokens. Until the Spring Boot Resource Server story is complete, UI route protection is only a browser-side convenience.
-
-Protected backend APIs should require valid Auth0 access tokens before auth is considered end-to-end secure.
+The Spring Boot Resource Server validates Auth0 JWT access tokens for protected APIs. UI route protection is still only a browser-side convenience; backend APIs remain the real security boundary.
