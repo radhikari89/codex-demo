@@ -209,6 +209,8 @@ The Spring Boot resource server should validate:
 - token expiration
 - JWT signature through Auth0 JWKS
 
+With the RFC 9068 JWT profile, Auth0 access tokens use JOSE header type `at+jwt`. Spring Boot must allow this access-token type while still validating issuer, audience, expiration, and signature.
+
 ## Environment Variables
 
 Angular runtime config:
