@@ -37,6 +37,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Backend JWT Resource Server configuration has been completed under #61.
 - Auth0 dashboard tenant, SPA application, and API setup has been completed under #71.
 - Current-user/profile implementation has been completed under #60.
+- Temporary passwordHash auth bridge removal has been completed under #63.
 
 ## Desired State
 
@@ -57,7 +58,6 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 
 ## Completed Work
 
-- Temporary auth bridge exists for first app navigation.
 - Auth strategy discovery story has been created.
 - ADR-0002 accepts Auth0 as the main hub login solution.
 - Auth0/OIDC implementation stories have been created under #44.
@@ -67,11 +67,10 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Backend Auth0 issuer/audience validation and protected-route tests have been completed under #61.
 - Auth0 dashboard owner setup steps have been completed under #71.
 - `/api/v1/auth/me` has been selected as the current-user endpoint for #60.
+- Temporary passwordHash auth bridge removal has been completed under #63.
 
 ## Remaining Work
 
-- Implement current-user/profile behavior from Auth0 claims.
-- Remove temporary passwordHash auth bridge.
 - Add auth smoke tests against the configured Auth0 tenant.
 
 ## Decisions
@@ -94,13 +93,14 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - [Deployment View](../architecture/c4/deployment-view.md)
 - [ADR-0002 Authentication Strategy](../architecture/decisions/ADR-0002-authentication-strategy.md)
 - [Auth0 OIDC Configuration](../architecture/knowledge/security-and-auth/auth0-oidc-configuration.md)
+- [Auth0 Smoke Test Runbook](../architecture/knowledge/security-and-auth/auth0-smoke-test-runbook.md)
 
 ## Verification
 
 - Local run: Pending
 - Automated tests: `mvn "-Djavax.net.ssl.trustStoreType=Windows-ROOT" test` from `services/userservice`
-- Local smoke test: Pending
-- Deployed smoke test: Pending
+- Local smoke test: Documented; execution pending
+- Deployed smoke test: Documented; execution pending
 - Required env vars: Auth0 domain, SPA client ID, API audience, issuer URI, redirect URI, logout return URL
 
 ## Change Log
@@ -112,3 +112,4 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Added owner-facing Auth0 dashboard setup steps for #71.
 - Selected `/api/v1/auth/me` and started current-user/profile implementation for #60.
 - Completed current-user/profile implementation for #60.
+- Removed the temporary passwordHash auth bridge under #63.

@@ -51,3 +51,7 @@ The file is public and must contain only non-secret SPA values. Auth0 client sec
 ## Backend Enforcement
 
 The Spring Boot Resource Server validates Auth0 JWT access tokens for protected APIs. UI route protection is still only a browser-side convenience; backend APIs remain the real security boundary.
+
+## Smoke Testing
+
+Use [Auth0 Smoke Test Runbook](../../docs/architecture/knowledge/security-and-auth/auth0-smoke-test-runbook.md) for repeatable local and deployed checks.
