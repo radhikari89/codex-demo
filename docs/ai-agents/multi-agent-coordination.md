@@ -12,12 +12,13 @@ Before any agent edits files, the agent must complete the project and branch sta
 
 1. Identify the GitHub story that owns the work.
 2. Confirm the story has a `Parent Epic` section unless the issue itself is an epic.
-3. Confirm the story is in GitHub Project 1: `https://github.com/users/radhikari89/projects/1`.
-4. Set the Project Status to `In Progress`.
-5. Create or switch to a branch that follows [Branch Naming](branch-naming.md).
-6. Add an issue comment naming the active agent, Project Status, branch, and scope.
+3. Confirm the parent epic lists the story in its `Child Issues` checklist.
+4. Confirm the story is in GitHub Project 1: `https://github.com/users/radhikari89/projects/1`.
+5. Set the Project Status to `In Progress`.
+6. Create or switch to a branch that follows [Branch Naming](branch-naming.md).
+7. Add an issue comment naming the active agent, Project Status, branch, and scope.
 
-If a story is missing a parent epic, add the parent epic before starting work. If a story is missing from Project 1, add it before starting work. If a branch already exists but does not follow the naming convention, either rename it before pushing or document why it is being kept, such as an existing open PR with reviewer context.
+If a story is missing a parent epic, add the parent epic before starting work. If the parent epic is missing the child story, update the epic before starting work. If a story is missing from Project 1, add it before starting work. If a branch already exists but does not follow the naming convention, either rename it before pushing or document why it is being kept, such as an existing open PR with reviewer context.
 
 Each task must define:
 

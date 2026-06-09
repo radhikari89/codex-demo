@@ -162,6 +162,8 @@ Each issue should represent a clear unit of work. Implementation should not star
 
 Every non-epic issue must name a parent epic in the `Parent Epic` section. If no suitable epic exists, create or identify the epic first instead of creating an orphan story.
 
+The parent epic must also list the story in its `Child Issues` checklist so the relationship is visible from both directions.
+
 ## Output Format
 
 Recommended output files:
@@ -178,6 +180,7 @@ Stories are ready when:
 
 - each story can be assigned to one agent
 - each story has a parent epic
+- the parent epic lists the story in its child issue checklist
 - acceptance criteria are testable
 - dependencies are explicit
 - implementation notes point to the right repo areas
