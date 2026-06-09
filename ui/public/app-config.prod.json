@@ -1,0 +1,9 @@
+{
+  "auth0": {
+    "domain": "<prod-auth0-domain>",
+    "clientId": "<prod-spa-client-id>",
+    "audience": "urn:webdevisfun:api",
+    "redirectUri": "https://webdevisfun.com/callback",
+    "logoutReturnTo": "https://webdevisfun.com"
+  }
+}

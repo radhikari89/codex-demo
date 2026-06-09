@@ -41,14 +41,79 @@ These terms appear in the Auth0 configuration guide.
 | Auth0 domain | The tenant domain where Auth0 hosts login and publishes OIDC metadata, for example `<prod-auth0-domain>`. |
 | Issuer URI | The trusted identity-provider URL that appears in token `iss` claims and is used by Spring Boot to validate tokens. |
 | SPA client ID | The public identifier for the Angular single-page application registered in Auth0. This is not a secret. |
-| API audience | The identifier for the backend API that the access token is meant for; Spring Boot should validate this. |
+| API audience | The logical identifier for the backend API that the access token is meant for; Spring Boot should validate this against the token `aud` claim. It does not need to be the backend's network URL. |
 | Callback URL | The Angular route Auth0 redirects back to after login, for example `<app-origin>/callback`. |
 | Logout URL | The URL Auth0 is allowed to redirect to after logout. |
 | Web origin | The base origin of the browser app, such as scheme plus host plus optional port. |
 | Allowed Origins (CORS) | Browser origins allowed to make cross-origin requests to Auth0 endpoints. |
 | Authorization Code with PKCE | The recommended OIDC login flow for browser apps; it avoids putting a client secret in the SPA. |
+| RFC 9068 JWT profile | Standards-based JWT access token format for OAuth2 access tokens. Use this for the Auth0 API access-token profile. |
+| User-delegated access | Access where a real user signs in and the app receives an access token to call the API on that user's behalf. This is the current Angular SPA flow. |
+| Client access | Machine-to-machine access where an app or service receives an access token using its own client credentials, with no user login. Not needed for the current browser login flow. |
 | JWKS | The provider's public signing keys used by the backend to verify JWT signatures. |
 | Claim | A trusted field inside a token, such as subject, issuer, audience, email, or roles. |
+| URN | Uniform Resource Name. A stable identifier string, such as `urn:webdevisfun:api`, that names something without implying it is a reachable web URL. |
+
+## Auth0 Runtime Parameters
+
+These values appear in `ui/public/app-config.json`.
+
+| Parameter | Example | Meaning |
+| --- | --- | --- |
+| `domain` | `webdevisfun-dev.us.auth0.com` | Auth0 tenant domain used by the Angular app to start login and discover Auth0 metadata. |
+| `clientId` | Auth0-generated SPA client ID | Public identifier for the Angular SPA application in Auth0. This is safe to expose in browser config. |
+| `audience` | `urn:webdevisfun:api` | Logical API identifier requested by Angular and validated by Spring Boot. This must match the Auth0 API Identifier and backend `AUTH0_AUDIENCE`. |
+| `redirectUri` | `http://localhost:4200/callback` | Full URL Auth0 sends the browser back to after login. Must be listed in Auth0 Allowed Callback URLs. |
+| `logoutReturnTo` | `http://localhost:4200` | Full URL Auth0 may send the browser back to after logout. Must be listed in Auth0 Allowed Logout URLs. |
+
+Audience notes:
+
+- Audience identifies the API a token is for; it is not the same thing as the URL Angular calls.
+- For local development, Angular may call `/api/*` and the proxy may forward to `http://localhost:8080`, but the token audience can still be `urn:webdevisfun:api`.
+- A URL-shaped audience such as `https://webdevisfun.com/api` is common, but it can be mistaken for a real backend URL.
+- This repo uses `urn:webdevisfun:api` so the audience reads as a stable API identity instead of a network address.
+
+## Public SPA Config Security Model
+
+The Auth0 values in `ui/public/app-config.json` are public by design because browser apps cannot hide runtime configuration from users.
+
+Public values:
+
+- Auth0 domain
+- SPA client ID
+- API audience
+- Redirect URI
+- Logout return URL
+
+These values do not authorize access by themselves. The security model depends on:
+
+- Auth0 Allowed Callback URLs accepting only trusted app callback URLs.
+- Auth0 Allowed Web Origins accepting only trusted browser origins.
+- Auth0 Allowed Logout URLs accepting only trusted logout return URLs.
+- Auth0 CORS origins accepting only trusted browser origins.
+- No SPA client secret in browser config or source code.
+- Spring Boot validating token issuer, audience, signature, and expiration.
+- Spring Boot enforcing protected API authorization, because UI route guards are not the security boundary.
+
+Never expose:
+
+- Auth0 client secrets
+- Management API tokens
+- Private keys
+- Tenant admin credentials
+
+## Auth0 API Access Policy
+
+For the current app, API access should be limited to signed-in users coming through the Angular SPA.
+
+Recommended Auth0 API access policy:
+
+| Setting | Recommendation | Why |
+| --- | --- | --- |
+| User-delegated access | Per-app authorization for `webdevisfun-spa` | Allows the browser app to request API tokens after a user signs in. |
+| Client access | No apps allowed | Blocks machine-to-machine tokens until there is a real service-to-service use case. |
+
+Enable client access later only for a specific machine-to-machine application, with narrow permissions and protected client secrets.
 
 ## Current Provider Cost Notes
 

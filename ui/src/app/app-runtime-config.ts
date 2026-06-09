@@ -14,7 +14,7 @@ const defaultRuntimeConfig: AppRuntimeConfig = {
   auth0: {
     domain: '',
     clientId: '',
-    audience: 'https://webdevisfun.com/api',
+    audience: '',
     redirectUri: `${window.location.origin}/callback`,
     logoutReturnTo: window.location.origin,
   },

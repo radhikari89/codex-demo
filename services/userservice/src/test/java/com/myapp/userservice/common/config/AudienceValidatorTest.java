@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 
 class AudienceValidatorTest {
 
-    private static final String REQUIRED_AUDIENCE = "https://webdevisfun.com/api";
+    private static final String REQUIRED_AUDIENCE = "urn:webdevisfun:api";
 
     private final AudienceValidator validator = new AudienceValidator(REQUIRED_AUDIENCE);
 
