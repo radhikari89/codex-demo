@@ -88,6 +88,7 @@ so that <outcome>.
 Each story should include:
 
 - summary
+- parent epic
 - user value
 - acceptance criteria
 - dependencies
@@ -140,6 +141,8 @@ For each story, create a GitHub-ready issue draft:
 ```markdown
 ## Summary
 
+## Parent Epic
+
 ## User Story
 
 ## Acceptance Criteria
@@ -157,6 +160,8 @@ Do not create GitHub issues automatically unless the user explicitly asks for th
 
 Each issue should represent a clear unit of work. Implementation should not start until the issue exists, except for tiny documentation corrections made while preparing the issue itself.
 
+Every non-epic issue must name a parent epic in the `Parent Epic` section. If no suitable epic exists, create or identify the epic first instead of creating an orphan story.
+
 ## Output Format
 
 Recommended output files:
@@ -172,6 +177,7 @@ Recommended output files:
 Stories are ready when:
 
 - each story can be assigned to one agent
+- each story has a parent epic
 - acceptance criteria are testable
 - dependencies are explicit
 - implementation notes point to the right repo areas

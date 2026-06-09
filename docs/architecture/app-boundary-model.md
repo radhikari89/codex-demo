@@ -82,6 +82,7 @@ Avoid creating a dedicated service only because the app is new.
 
 ## Story Creation Rules
 
+- New non-epic app stories must name their parent epic in a `Parent Epic` section.
 - New app stories should reference the owning feature doc and this boundary model.
 - If the boundary type is undecided, create a discovery or architecture story before implementation.
 - If a story introduces a dedicated service, it should explain which microservice criteria are met.
