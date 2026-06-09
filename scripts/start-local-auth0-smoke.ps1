@@ -71,7 +71,7 @@ Wait-For -Name "PostgreSQL container" -TimeoutSeconds 60 -Condition {
 }
 
 Write-Host "Starting Spring Boot userservice in a new PowerShell window..."
-$backendCommand = "cd `"$backendDir`"; mvn spring-boot:run"
+$backendCommand = "cd `"$backendDir`"; `$env:JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStoreType=Windows-ROOT'; mvn spring-boot:run"
 Start-Process powershell.exe -ArgumentList "-NoExit", "-Command", $backendCommand -WorkingDirectory $backendDir
 
 Wait-For -Name "Backend health endpoint" -TimeoutSeconds $BackendWaitSeconds -Condition {

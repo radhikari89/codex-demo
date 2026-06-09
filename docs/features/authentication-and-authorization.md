@@ -35,7 +35,8 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - UI login and signup now redirect through Auth0.
 - Angular Auth0 values are loaded from `/app-config.json` at runtime.
 - Backend JWT Resource Server configuration has been completed under #61.
-- Auth0 dashboard tenant, SPA application, and API setup is in progress under #71.
+- Auth0 dashboard tenant, SPA application, and API setup has been completed under #71.
+- Current-user/profile implementation is in progress under #60.
 
 ## Desired State
 
@@ -49,7 +50,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 ## App Boundary
 
 - Type: UI plus shared backend
-- Route/access point: `/login`, `/signup`, `/callback`, `/dashboard`, future `/api/v1/auth/me` or `/api/v1/users/me`
+- Route/access point: `/login`, `/signup`, `/callback`, `/dashboard`, `/api/v1/auth/me`
 - Data boundary: Auth0 identity claims, local user profile metadata, future roles/permissions
 - Backend/service dependency: `services/userservice`
 - Independent verification path: backend auth tests, UI auth flow tests, local and deployed smoke tests
@@ -64,11 +65,11 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Angular login, signup, logout, and route guard work has been completed under #62.
 - Auth0 runtime config setup has been completed under #65.
 - Backend Auth0 issuer/audience validation and protected-route tests have been completed under #61.
-- Auth0 dashboard owner setup steps have started under #71.
+- Auth0 dashboard owner setup steps have been completed under #71.
+- `/api/v1/auth/me` has been selected as the current-user endpoint for #60.
 
 ## Remaining Work
 
-- Configure the actual Auth0 tenant, SPA application, and API audience in the Auth0 dashboard.
 - Implement current-user/profile behavior from Auth0 claims.
 - Remove temporary passwordHash auth bridge.
 - Add auth smoke tests against the configured Auth0 tenant.
@@ -77,13 +78,15 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 
 - Auth0 is the accepted login provider for the main hub.
 - Spring Boot will act as a JWT Resource Server for secured REST APIs.
+- Current-user lookup uses `/api/v1/auth/me`, not the CRUD `/api/v1/users` collection.
+- Auth0 provider identity metadata is stored separately from the temporary demo `users` table.
 - First-party password handling is deferred; do not build local password auth for the main hub now.
 
 ## Open Questions
 
 - Which Auth0 claims should map into application roles/permissions first?
 - Should Auth0 social connections be enabled immediately or after the base OIDC flow works?
-- What local profile fields should be stored outside Auth0?
+- Which Auth0 roles/claims should become first-class application permissions?
 
 ## Architecture / Diagrams
 
@@ -107,3 +110,4 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Added initial Auth0 OIDC configuration guide.
 - Completed Spring Boot JWT Resource Server implementation for #61.
 - Added owner-facing Auth0 dashboard setup steps for #71.
+- Selected `/api/v1/auth/me` and started current-user/profile implementation for #60.
