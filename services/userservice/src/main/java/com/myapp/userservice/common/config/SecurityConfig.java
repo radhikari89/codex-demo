@@ -1,6 +1,8 @@
 package com.myapp.userservice.common.config;
 
 import com.myapp.userservice.common.security.Auth0JwtAuthenticationConverter;
+import com.nimbusds.jose.JOSEObjectType;
+import com.nimbusds.jose.proc.DefaultJOSEObjectTypeVerifier;
 
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -13,7 +15,6 @@ import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -56,7 +57,14 @@ public class SecurityConfig {
             Auth0Properties auth0Properties
     ) {
         String issuerUri = resourceServerProperties.getJwt().getIssuerUri();
-        NimbusJwtDecoder jwtDecoder = JwtDecoders.fromIssuerLocation(issuerUri);
+        NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withIssuerLocation(issuerUri)
+                .jwtProcessorCustomizer(processor -> processor.setJWSTypeVerifier(
+                        new DefaultJOSEObjectTypeVerifier<>(
+                                JOSEObjectType.JWT,
+                                new JOSEObjectType("at+jwt")
+                        )
+                ))
+                .build();
         OAuth2TokenValidator<Jwt> issuerValidator = JwtValidators.createDefaultWithIssuer(issuerUri);
         OAuth2TokenValidator<Jwt> audienceValidator = new AudienceValidator(auth0Properties.getAudience());
 
