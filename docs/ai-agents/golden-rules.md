@@ -22,6 +22,8 @@ Small local drafting is allowed before a story exists when the goal is to clarif
 Before editing files for a non-trivial story, agents must make the work visible and traceable:
 
 - Confirm the GitHub story exists.
+- Confirm the story has a `Parent Epic` section unless the issue itself is an epic.
+- Confirm the parent epic lists the story in its `Child Issues` checklist.
 - Confirm the story is in GitHub Project 1.
 - Set the Project Status to `In Progress`.
 - Create or switch to a branch that follows [Branch Naming](branch-naming.md).

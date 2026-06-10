@@ -65,13 +65,14 @@ Write the first version to `docs/ai-agents/staging/feature-map-draft.md`.
 
 For each app or major feature area, classify its boundary:
 
-- UI-only
-- UI plus shared backend
-- UI plus dedicated service
+- independent UI-only app
+- independent UI plus dedicated backend
 - external linked app
 - undecided
 
 Also capture how that app can be run, tested, and smoke-tested independently.
+
+For real app work, assume the app starts with its own repository and its own GitHub Project. Shared infrastructure may still include the Auth0/OIDC tenant or security profile, root domain, and deployment/orchestration conventions, but app code, app database, and app backlog should be owned separately unless the owner explicitly approves a hub-owned exception.
 
 Write the first version to `docs/ai-agents/staging/app-boundary-model-draft.md`.
 
@@ -88,6 +89,7 @@ so that <outcome>.
 Each story should include:
 
 - summary
+- parent epic
 - user value
 - acceptance criteria
 - dependencies
@@ -140,6 +142,8 @@ For each story, create a GitHub-ready issue draft:
 ```markdown
 ## Summary
 
+## Parent Epic
+
 ## User Story
 
 ## Acceptance Criteria
@@ -157,6 +161,12 @@ Do not create GitHub issues automatically unless the user explicitly asks for th
 
 Each issue should represent a clear unit of work. Implementation should not start until the issue exists, except for tiny documentation corrections made while preparing the issue itself.
 
+Every non-epic issue must name a parent epic in the `Parent Epic` section. If no suitable epic exists, create or identify the epic first instead of creating an orphan story.
+
+The parent epic must also list the story in its `Child Issues` checklist so the relationship is visible from both directions.
+
+For stories that belong to an independent app, create and track the story in that app's repository and GitHub Project. Use this hub repository only for hub-owned work, shared identity/auth foundation work, platform coordination, or approved cross-app documentation.
+
 ## Output Format
 
 Recommended output files:
@@ -172,7 +182,9 @@ Recommended output files:
 Stories are ready when:
 
 - each story can be assigned to one agent
+- each story has a parent epic
+- the parent epic lists the story in its child issue checklist
 - acceptance criteria are testable
 - dependencies are explicit
-- implementation notes point to the right repo areas
+- implementation notes point to the right repository, GitHub Project, and repo areas
 - no major feature is invented without marking it as an assumption
