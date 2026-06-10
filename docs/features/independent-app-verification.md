@@ -18,17 +18,20 @@ Related PRs:
 
 ## Purpose
 
-Define how each app area can be tested and verified independently as the hub grows.
+Define how each app area can be owned, tracked, tested, deployed, and verified independently as the hub grows.
 
 ## Current State
 
 - App boundary model is approved in [App Boundary Model](../architecture/app-boundary-model.md).
 - Per-app verification fields are required in feature docs.
+- Real apps are expected to start with separate repositories, separate GitHub Projects, and separate databases when persistence is needed.
 
 ## Desired State
 
 - Each app documents local run, automated tests, local smoke test, deployed smoke test, env vars, and dependencies.
-- Microservices are introduced only when boundaries justify them.
+- Each app can be tested independently across UI and backend.
+- Each app can be deployed independently through the shared deployment/orchestration approach.
+- Shared pieces are limited to identity/security profile, domain/platform conventions, and explicit integration contracts.
 
 ## App Boundary
 
@@ -54,13 +57,15 @@ Define how each app area can be tested and verified independently as the hub gro
 
 - An app is a self-contained product or experiment area launched from the main hub.
 - A page or feature is not automatically an app unless it has its own purpose, data boundary, verification path, or operational lifecycle.
-- Approved boundary types are UI-only app, UI plus shared backend, UI plus dedicated service, external linked app, and undecided.
-- Dedicated services should be introduced only when a real domain, data, release, scale, security, verification, or operational boundary exists.
+- Approved boundary types are independent UI-only app, independent UI plus dedicated backend, external linked app, and undecided.
+- New real apps should start in separate repositories with separate GitHub Projects.
+- Apps that persist data should own separate databases.
+- Apps may share the same Auth0/OIDC tenant or security profile, root domain, and Kubernetes-like deployment orchestrator.
+- Apps should remain portable enough to move under a different domain, brand, or umbrella later.
 
 ## Open Questions
 
-- Which app should be the first proof of independent verification?
-- Should Work Orders be embedded, linked, or migrated into this repo?
+- Which app should be the first proof of the full independent verification model?
 
 ## Architecture / Diagrams
 
