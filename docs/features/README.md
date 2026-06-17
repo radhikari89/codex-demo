@@ -36,3 +36,7 @@ Use it after raw vision has been staged and accepted. Staging docs preserve draf
 ## Related Story
 
 - [#36 Create feature tracking docs and templates](https://github.com/radhikari89/codex-demo/issues/36)
+
+## Related Architecture
+
+- [App Boundary Model](../architecture/app-boundary-model.md)
