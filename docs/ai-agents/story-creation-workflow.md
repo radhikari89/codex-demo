@@ -74,6 +74,8 @@ Also capture how that app can be run, tested, and smoke-tested independently.
 
 For real app work, assume the app starts with its own repository and its own GitHub Project. Shared infrastructure may still include the Auth0/OIDC tenant or security profile, root domain, and deployment/orchestration conventions, but app code, app database, and app backlog should be owned separately unless the owner explicitly approves a hub-owned exception.
 
+Use the hub repo and Project 1 as the initiator board for new apps. New app idea intake, boundary discovery, approval, and repo/project bootstrap stories may live here. Once the app repo and app GitHub Project exist, implementation and delivery stories should move to that app's own repo and project board.
+
 Write the first version to `docs/ai-agents/staging/app-boundary-model-draft.md`.
 
 ## Step 4: Create Story Candidates
@@ -165,7 +167,9 @@ Every non-epic issue must name a parent epic in the `Parent Epic` section. If no
 
 The parent epic must also list the story in its `Child Issues` checklist so the relationship is visible from both directions.
 
-For stories that belong to an independent app, create and track the story in that app's repository and GitHub Project. Use this hub repository only for hub-owned work, shared identity/auth foundation work, platform coordination, or approved cross-app documentation.
+For stories that belong to an independent app, create and track the story in that app's repository and GitHub Project after that repo/project exists. Use this hub repository and Project 1 only for app incubation, repo/project bootstrap, hub-owned work, shared identity/auth foundation work, platform coordination, or approved cross-app documentation.
+
+When an app graduates out of Project 1, update the hub epic with links to the new app repo and project. Keep a small coordination issue in Project 1 only if ongoing hub visibility is useful.
 
 ## Output Format
 

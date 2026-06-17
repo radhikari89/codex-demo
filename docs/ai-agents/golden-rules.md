@@ -24,7 +24,7 @@ Before editing files for a non-trivial story, agents must make the work visible 
 - Confirm the GitHub story exists.
 - Confirm the story has a `Parent Epic` section unless the issue itself is an epic.
 - Confirm the parent epic lists the story in its `Child Issues` checklist.
-- Confirm the story is in GitHub Project 1.
+- Confirm the story is in the correct GitHub Project. Use Project 1 for hub work, shared auth/platform work, new app incubation, and app repo/project bootstrap stories. Use the app-owned project after an independent app has its own repo and project board.
 - Set the Project Status to `In Progress`.
 - Create or switch to a branch that follows [Branch Naming](branch-naming.md).
 - Add an issue comment naming the active agent, Project Status, branch, and scope.

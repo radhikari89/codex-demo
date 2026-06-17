@@ -67,6 +67,29 @@ For documentation-first or discovery-only apps, it is acceptable to mark runtime
 - Apps may share a common Kubernetes-like deployment orchestrator or platform conventions, but not a shared release lifecycle by default.
 - The hub should act as a launcher/catalog and shared entry point, not as the permanent home for every app's code, database, and backlog.
 
+## New App Incubation And Handoff
+
+Project 1 for this hub is the initiator board for new apps. It is the right place to capture an app idea, approve the boundary decision, and track the bootstrap work needed before the app has its own repo and project.
+
+Use the hub repo and Project 1 for:
+
+- new app idea intake
+- app boundary discovery
+- approval to create a new independent app
+- setup stories for creating the app repo and app GitHub Project
+- cross-app coordination, shared auth/platform decisions, and hub navigation/catalog changes
+
+After the app repo and GitHub Project exist, create delivery epics and implementation stories in the app's own repo and project board. Project 1 should keep only a coordination/linking issue for visibility unless the work changes the hub, shared identity, shared platform, or cross-app contracts.
+
+The handoff is complete when:
+
+- the app repo exists
+- the app GitHub Project exists
+- the app has an initial README or feature brief
+- the app boundary fields are recorded
+- the hub epic links to the app repo and project
+- at least one app-owned story exists in the app project, if implementation is ready to start
+
 ## Dedicated Backend Guidance
 
 Introduce a dedicated backend when there is a real boundary:
@@ -99,8 +122,9 @@ Avoid sharing the hub backend for a real app unless the work is clearly hub-owne
 - New non-epic app stories must name their parent epic in a `Parent Epic` section.
 - The parent epic must list each child story in a `Child Issues` checklist.
 - New app stories should reference the owning feature doc and this boundary model.
-- New app stories should be created in that app's own repository and GitHub Project unless the story is explicitly about the hub, shared auth, or platform coordination.
-- If a new app repository or project board does not exist yet, create a setup/discovery story before implementation.
+- New app incubation and bootstrap stories may live in this hub repo and Project 1 until the app repo and app GitHub Project exist.
+- New app delivery stories should be created in that app's own repository and GitHub Project unless the story is explicitly about the hub, shared auth, shared platform, or cross-app coordination.
+- If a new app repository or project board does not exist yet, create a setup/discovery story in this hub repo before implementation.
 - If the boundary type is undecided, create a discovery or architecture story before implementation.
 - If a story introduces or changes a backend service, database, deployment path, or repo/project ownership, it should explain the app boundary impact.
 - If a story changes routes, data ownership, service dependencies, or verification expectations, update the feature doc in the same PR.
