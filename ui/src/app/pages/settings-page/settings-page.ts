@@ -2,17 +2,16 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { AuthService } from '../../auth/auth.service';
-import { hubCategories, hubNavItems } from '../../hub-navigation';
+import { hubNavItems } from '../../hub-navigation';
 
 @Component({
-  selector: 'app-dashboard-page',
+  selector: 'app-settings-page',
   imports: [RouterLink],
-  templateUrl: './dashboard-page.html',
-  styleUrl: './dashboard-page.css',
+  templateUrl: './settings-page.html',
+  styleUrl: './settings-page.css',
 })
-export class DashboardPage {
+export class SettingsPage {
   protected readonly authService = inject(AuthService);
-  protected readonly categories = hubCategories;
   protected readonly navItems = hubNavItems;
 
   protected logout(): void {

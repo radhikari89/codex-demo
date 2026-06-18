@@ -1,10 +1,11 @@
 <main class="home-shell">
   <nav class="topbar" aria-label="Primary navigation">
     <a class="brand" routerLink="/">
-      <span class="brand-mark">C</span>
-      <span>my-app</span>
+      <span class="brand-mark">W</span>
+      <span>webdevisfun</span>
     </a>
     <div class="nav-actions">
+      <a class="ghost-link" routerLink="/dashboard">Dashboard</a>
       <a class="ghost-link" routerLink="/signup">Sign up</a>
       <a class="primary-link" routerLink="/login">Log in</a>
     </div>
@@ -12,54 +13,54 @@
 
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">Workspace dashboard</p>
-      <h1>Bring your project signals into one calm operating view.</h1>
+      <p class="eyebrow">Prototype hub</p>
+      <h1>Build, compare, and learn from focused web app prototypes.</h1>
       <p class="lede">
-        Track activity, surface priorities, and give every user a direct path from login to the
-        dashboard they need.
+        Web Dev Is Fun is the operating hub for AI, blockchain, security, and small application
+        experiments. Sign in once, then move through each prototype area without losing the bigger
+        product thread.
       </p>
       <div class="hero-actions">
-        <a class="cta" routerLink="/login">Log in</a>
+        <a class="cta" routerLink="/login">Open hub</a>
         <a class="secondary-cta" routerLink="/signup">Create account</a>
       </div>
     </div>
 
-    <aside class="dashboard-preview" aria-label="Dashboard preview">
+    <aside class="dashboard-preview" aria-label="Prototype hub preview">
       <div class="preview-header">
         <div>
-          <span class="tiny-label">Today</span>
-          <strong>Team Overview</strong>
+          <span class="tiny-label">Hub areas</span>
+          <strong>Prototype Map</strong>
         </div>
-        <span class="status-pill">Live</span>
+        <span class="status-pill">Auth0 ready</span>
       </div>
 
-      <div class="metric-grid">
-        <div class="metric-card">
-          <span>Active users</span>
-          <strong>128</strong>
-        </div>
-        <div class="metric-card amber">
-          <span>Open tasks</span>
-          <strong>34</strong>
-        </div>
-        <div class="metric-card blue">
-          <span>Health</span>
-          <strong>96%</strong>
-        </div>
+      <div class="category-preview-grid">
+        @for (category of categories; track category.id) {
+          <article
+            class="category-preview-card"
+            [class.blue]="category.tone === 'blue'"
+            [class.violet]="category.tone === 'violet'"
+            [class.amber]="category.tone === 'amber'"
+          >
+            <span>{{ category.eyebrow }}</span>
+            <strong>{{ category.title }}</strong>
+          </article>
+        }
       </div>
 
       <div class="activity-list">
         <div class="activity-item">
           <span class="dot"></span>
-          <p>New account approved for dashboard access</p>
+          <p>Auth0 login protects the dashboard and app categories.</p>
         </div>
         <div class="activity-item">
           <span class="dot teal"></span>
-          <p>Weekly operations summary generated</p>
+          <p>Each prototype area can grow independently from the hub shell.</p>
         </div>
         <div class="activity-item">
           <span class="dot navy"></span>
-          <p>Three projects moved into review</p>
+          <p>Security is a first-class learning area, not hidden setup work.</p>
         </div>
       </div>
     </aside>

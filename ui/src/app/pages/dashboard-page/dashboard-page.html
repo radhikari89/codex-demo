@@ -1,66 +1,64 @@
 <main class="dashboard-shell">
   <aside class="sidebar">
     <a class="brand" routerLink="/">
-      <span class="brand-mark">C</span>
-      <span>my-app</span>
+      <span class="brand-mark">W</span>
+      <span>webdevisfun</span>
     </a>
-    <nav aria-label="Dashboard navigation">
-      <a class="active" href="#">Overview</a>
-      <a href="#">Projects</a>
-      <a href="#">Activity</a>
-      <a href="#">Settings</a>
+    <nav aria-label="App navigation">
+      @for (item of navItems; track item.route) {
+        <a [class.active]="item.route === '/dashboard'" [routerLink]="item.route">{{ item.label }}</a>
+      }
     </nav>
   </aside>
 
   <section class="dashboard-main">
     <header class="dashboard-header">
       <div>
-        <p class="eyebrow">User dashboard</p>
-        <h1>Welcome, {{ authService.user()?.name }}</h1>
+        <p class="eyebrow">App hub</p>
+        <h1>Welcome, {{ authService.user()?.name || 'builder' }}</h1>
       </div>
       <button type="button" (click)="logout()">Log out</button>
     </header>
 
-    <section class="summary-grid" aria-label="Dashboard summary">
-      <article class="summary-card">
-        <span>Workspace score</span>
-        <strong>96%</strong>
-        <p>Core systems are steady and ready for review.</p>
-      </article>
-      <article class="summary-card amber">
-        <span>Open reviews</span>
-        <strong>12</strong>
-        <p>Four items moved forward since the last check-in.</p>
-      </article>
-      <article class="summary-card blue">
-        <span>Active sessions</span>
-        <strong>28</strong>
-        <p>Users are currently working across five project areas.</p>
-      </article>
+    <section class="category-grid" aria-label="Prototype categories">
+      @for (category of categories; track category.id) {
+        <a
+          class="category-card"
+          [class.green]="category.tone === 'green'"
+          [class.blue]="category.tone === 'blue'"
+          [class.violet]="category.tone === 'violet'"
+          [class.amber]="category.tone === 'amber'"
+          [routerLink]="category.route"
+        >
+          <span>{{ category.eyebrow }}</span>
+          <strong>{{ category.title }}</strong>
+          <p>{{ category.summary }}</p>
+        </a>
+      }
     </section>
 
     <section class="content-grid">
       <article class="panel">
         <div class="panel-header">
-          <h2>Recent activity</h2>
-          <span>Updated now</span>
+          <h2>Current session</h2>
+          <span>Auth0-backed</span>
         </div>
         <div class="timeline">
           <p><span></span>Account session created for {{ authService.user()?.email }}</p>
           <p><span></span>Dashboard route guard confirmed authenticated access</p>
-          <p><span></span>Auth0 session is the login authority</p>
+          <p><span></span>Category pages are ready for prototype-specific stories</p>
         </div>
       </article>
 
       <article class="panel">
         <div class="panel-header">
-          <h2>Next steps</h2>
-          <span>Starter flow</span>
+          <h2>Hub rules</h2>
+          <span>Boundary model</span>
         </div>
         <ul>
-          <li>Connect backend APIs to validated Auth0 access tokens.</li>
-          <li>Replace demo metrics with real dashboard data.</li>
-          <li>Add role-specific navigation and profile controls.</li>
+          <li>Use the hub for navigation, learning areas, and prototype discovery.</li>
+          <li>Move mature applications into their own boundary when the story requires it.</li>
+          <li>Keep authentication shared through the accepted Auth0/OIDC foundation.</li>
         </ul>
       </article>
     </section>
