@@ -25,12 +25,14 @@ Define how each app area can be owned, tracked, tested, deployed, and verified i
 - App boundary model is approved in [App Boundary Model](../architecture/app-boundary-model.md).
 - Per-app verification fields are required in feature docs.
 - Real apps are expected to start with separate repositories, separate GitHub Projects, and separate databases when persistence is needed.
+- The hub project board is the initiator board for app ideas, boundary approval, and repo/project bootstrap work.
 
 ## Desired State
 
 - Each app documents local run, automated tests, local smoke test, deployed smoke test, env vars, and dependencies.
 - Each app can be tested independently across UI and backend.
 - Each app can be deployed independently through the shared deployment/orchestration approach.
+- Each app's delivery work is tracked in its own GitHub Project after bootstrap.
 - Shared pieces are limited to identity/security profile, domain/platform conventions, and explicit integration contracts.
 
 ## App Boundary
@@ -59,6 +61,7 @@ Define how each app area can be owned, tracked, tested, deployed, and verified i
 - A page or feature is not automatically an app unless it has its own purpose, data boundary, verification path, or operational lifecycle.
 - Approved boundary types are independent UI-only app, independent UI plus dedicated backend, external linked app, and undecided.
 - New real apps should start in separate repositories with separate GitHub Projects.
+- Project 1 can track app incubation and handoff, but app delivery stories move to the app-owned project after the repo/project exists.
 - Apps that persist data should own separate databases.
 - Apps may share the same Auth0/OIDC tenant or security profile, root domain, and Kubernetes-like deployment orchestrator.
 - Apps should remain portable enough to move under a different domain, brand, or umbrella later.

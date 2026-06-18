@@ -13,12 +13,14 @@ Before any agent edits files, the agent must complete the project and branch sta
 1. Identify the GitHub story that owns the work.
 2. Confirm the story has a `Parent Epic` section unless the issue itself is an epic.
 3. Confirm the parent epic lists the story in its `Child Issues` checklist.
-4. Confirm the story is in GitHub Project 1: `https://github.com/users/radhikari89/projects/1`.
+4. Confirm the story is in the correct GitHub Project.
 5. Set the Project Status to `In Progress`.
 6. Create or switch to a branch that follows [Branch Naming](branch-naming.md).
 7. Add an issue comment naming the active agent, Project Status, branch, and scope.
 
-If a story is missing a parent epic, add the parent epic before starting work. If the parent epic is missing the child story, update the epic before starting work. If a story is missing from Project 1, add it before starting work. If a branch already exists but does not follow the naming convention, either rename it before pushing or document why it is being kept, such as an existing open PR with reviewer context.
+Use Project 1, `https://github.com/users/radhikari89/projects/1`, for hub work, shared auth/platform work, new app incubation, and app repo/project bootstrap stories. After an independent app has its own repo and GitHub Project, use that app's project board for delivery stories. Keep Project 1 only for coordination issues that link to the app-owned work.
+
+If a story is missing a parent epic, add the parent epic before starting work. If the parent epic is missing the child story, update the epic before starting work. If a story is missing from the correct project board, add it before starting work. If a branch already exists but does not follow the naming convention, either rename it before pushing or document why it is being kept, such as an existing open PR with reviewer context.
 
 Each task must define:
 
@@ -59,7 +61,7 @@ Use this Project Status mapping:
 
 Minimum sync points:
 
-- Start work: add to Project 1 and set `In Progress`.
+- Start work: add to the correct project board and set `In Progress`.
 - Open PR or request review: set `Review`.
 - Start QA-only validation: set `Testing`.
 - Complete merged work: set `Done`.
