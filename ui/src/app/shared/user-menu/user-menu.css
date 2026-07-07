@@ -3,7 +3,7 @@
   justify-self: end;
 }
 
-summary {
+.menu-trigger {
   display: inline-flex;
   min-height: 42px;
   max-width: min(300px, 48vw);
@@ -16,11 +16,6 @@ summary {
   background: rgba(255, 255, 255, 0.72);
   cursor: pointer;
   font-weight: 800;
-  list-style: none;
-}
-
-summary::-webkit-details-marker {
-  display: none;
 }
 
 .avatar {
@@ -70,8 +65,8 @@ summary::-webkit-details-marker {
   white-space: nowrap;
 }
 
-a,
-button {
+.menu-panel a,
+.menu-panel button {
   min-height: 42px;
   border: 0;
   padding: 0 14px;
@@ -84,12 +79,12 @@ button {
   text-decoration: none;
 }
 
-a {
+.menu-panel a {
   display: flex;
   align-items: center;
 }
 
-a:hover,
-button:hover {
+.menu-panel a:hover,
+.menu-panel button:hover {
   background: var(--accent-soft);
 }

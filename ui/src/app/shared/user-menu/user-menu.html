@@ -1,17 +1,26 @@
-<details class="user-menu">
-  <summary aria-label="Open user menu">
+<div class="user-menu">
+  <button
+    class="menu-trigger"
+    type="button"
+    aria-label="Open user menu"
+    aria-haspopup="menu"
+    [attr.aria-expanded]="isOpen"
+    (click)="toggleMenu()"
+  >
     <span class="avatar" aria-hidden="true">{{ initial }}</span>
     <span class="user-name">{{ authService.user()?.name || 'Profile' }}</span>
-  </summary>
+  </button>
 
-  <div class="menu-panel" role="menu">
-    <div class="menu-identity">
-      <strong>{{ authService.user()?.name || 'Profile' }}</strong>
-      <span>{{ authService.user()?.email || 'Email not provided' }}</span>
+  @if (isOpen) {
+    <div class="menu-panel" role="menu">
+      <div class="menu-identity">
+        <strong>{{ authService.user()?.name || 'Profile' }}</strong>
+        <span>{{ authService.user()?.email || 'Email not provided' }}</span>
+      </div>
+
+      <a routerLink="/dashboard" role="menuitem" (click)="closeMenu()">Dashboard</a>
+      <a routerLink="/settings" role="menuitem" (click)="closeMenu()">Profile settings</a>
+      <button type="button" role="menuitem" (click)="logout()">Log out</button>
     </div>
-
-    <a routerLink="/dashboard" role="menuitem">Dashboard</a>
-    <a routerLink="/settings" role="menuitem">Profile settings</a>
-    <button type="button" role="menuitem" (click)="logout()">Log out</button>
-  </div>
-</details>
+  }
+</div>
