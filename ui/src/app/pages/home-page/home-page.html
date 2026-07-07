@@ -7,12 +7,7 @@
     <div class="nav-actions">
       <a class="ghost-link" routerLink="/dashboard">Dashboard</a>
       @if (authService.isLoggedIn()) {
-        <a class="profile-link" routerLink="/settings" aria-label="Open signed-in profile">
-          <span class="profile-avatar" aria-hidden="true">
-            {{ (authService.user()?.name || 'U').charAt(0).toUpperCase() }}
-          </span>
-          <span class="profile-name">{{ authService.user()?.name || 'Signed-in user' }}</span>
-        </a>
+        <app-user-menu />
       } @else {
         <a class="ghost-link" routerLink="/signup">Sign up</a>
         <a class="primary-link" routerLink="/login">Log in</a>

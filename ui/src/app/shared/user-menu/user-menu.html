@@ -1,0 +1,17 @@
+<details class="user-menu">
+  <summary aria-label="Open user menu">
+    <span class="avatar" aria-hidden="true">{{ initial }}</span>
+    <span class="user-name">{{ authService.user()?.name || 'Signed-in user' }}</span>
+  </summary>
+
+  <div class="menu-panel" role="menu">
+    <div class="menu-identity">
+      <strong>{{ authService.user()?.name || 'Signed-in user' }}</strong>
+      <span>{{ authService.user()?.email || 'Email not provided' }}</span>
+    </div>
+
+    <a routerLink="/dashboard" role="menuitem">Dashboard</a>
+    <a routerLink="/settings" role="menuitem">Profile settings</a>
+    <button type="button" role="menuitem" (click)="logout()">Log out</button>
+  </div>
+</details>

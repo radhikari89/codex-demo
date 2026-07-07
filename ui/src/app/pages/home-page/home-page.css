@@ -47,7 +47,6 @@
 
 .ghost-link,
 .primary-link,
-.profile-link,
 .cta,
 .secondary-cta {
   min-height: 42px;
@@ -57,8 +56,7 @@
 }
 
 .ghost-link,
-.primary-link,
-.profile-link {
+.primary-link {
   display: inline-flex;
   align-items: center;
   padding: 0 16px;
@@ -72,33 +70,6 @@
 .cta {
   color: white;
   background: var(--accent);
-}
-
-.profile-link {
-  gap: 10px;
-  max-width: min(280px, 46vw);
-  border: 1px solid rgba(31, 122, 92, 0.22);
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.profile-avatar {
-  display: grid;
-  width: 28px;
-  height: 28px;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 999px;
-  color: white;
-  background: var(--accent);
-  font-size: 0.82rem;
-  font-weight: 800;
-}
-
-.profile-name {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .hero {
@@ -289,8 +260,7 @@ h1 {
   }
 
   .ghost-link,
-  .primary-link,
-  .profile-link {
+  .primary-link {
     padding: 0 12px;
   }
 }

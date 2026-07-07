@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 
 import { AuthService } from '../../auth/auth.service';
 import { hubCategories } from '../../hub-navigation';
+import { UserMenuComponent } from '../../shared/user-menu/user-menu';
 
 @Component({
   selector: 'app-home-page',
-  imports: [RouterLink],
+  imports: [RouterLink, UserMenuComponent],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
