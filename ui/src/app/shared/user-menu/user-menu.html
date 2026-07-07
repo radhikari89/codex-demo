@@ -1,12 +1,12 @@
 <details class="user-menu">
   <summary aria-label="Open user menu">
     <span class="avatar" aria-hidden="true">{{ initial }}</span>
-    <span class="user-name">{{ authService.user()?.name || 'Signed-in user' }}</span>
+    <span class="user-name">{{ authService.user()?.name || 'Profile' }}</span>
   </summary>
 
   <div class="menu-panel" role="menu">
     <div class="menu-identity">
-      <strong>{{ authService.user()?.name || 'Signed-in user' }}</strong>
+      <strong>{{ authService.user()?.name || 'Profile' }}</strong>
       <span>{{ authService.user()?.email || 'Email not provided' }}</span>
     </div>
 

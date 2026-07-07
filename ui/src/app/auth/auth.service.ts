@@ -98,11 +98,14 @@ export class AuthService {
     backendUser: CurrentUserProfile | null,
     auth0User: User | null | undefined,
   ): AuthUser | null {
+    const auth0Name = auth0User?.name ?? auth0User?.nickname ?? auth0User?.email ?? '';
+    const auth0Email = auth0User?.email ?? '';
+
     if (backendUser) {
       return {
         id: backendUser.providerSubject,
-        name: backendUser.name || backendUser.email || 'Signed-in user',
-        email: backendUser.email ?? '',
+        name: backendUser.name || auth0Name || backendUser.email || 'Profile',
+        email: backendUser.email || auth0Email,
         roles: backendUser.roles,
       };
     }
@@ -113,7 +116,7 @@ export class AuthService {
 
     return {
       id: auth0User.sub ?? auth0User.email ?? '',
-      name: auth0User.name ?? auth0User.nickname ?? auth0User.email ?? 'Signed-in user',
+      name: auth0Name || 'Profile',
       email: auth0User.email ?? '',
       roles: [],
     };
