@@ -63,7 +63,7 @@ Rendered image:
 | `/apps/blockchain` | Signed-in | Blockchain app category landing page. |
 | `/apps/security` | Signed-in | Security prototype category landing page for auth provider labs and security experiments. |
 | `/apps/misc` | Signed-in | Misc app category landing page, including Work Orders entry when ready. |
-| `/settings` | Signed-in | Profile, account, preferences, and future security settings. |
+| Identity/account app | Signed-in | Profile, account, preferences, and future security settings belong in `webdevisfun-identity`, not the hub route map. |
 
 ## Public Home Page Draft
 

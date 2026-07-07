@@ -59,5 +59,4 @@ export const hubCategories: readonly HubCategory[] = [
 export const hubNavItems = [
   { label: 'Dashboard', route: '/dashboard' },
   ...hubCategories.map((category) => ({ label: category.title.replace(' Prototypes', ''), route: category.route })),
-  { label: 'Settings', route: '/settings' },
 ] as const;
