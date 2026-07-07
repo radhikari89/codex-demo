@@ -1,6 +1,6 @@
 # Feature: Application Shell And Navigation
 
-Status: Draft
+Status: In Progress
 
 Priority: 2
 
@@ -12,6 +12,7 @@ Related GitHub Issues:
 
 - [#40 Wireframe home, dashboard, and app navigation workflow](https://github.com/radhikari89/codex-demo/issues/40)
 - [#55 Add Security category to app navigation model](https://github.com/radhikari89/codex-demo/issues/55)
+- [#80 Build application shell and category pages MVP](https://github.com/radhikari89/codex-demo/issues/80)
 
 Related PRs:
 
@@ -23,8 +24,9 @@ Create the public home page, authenticated dashboard, and navigation structure f
 
 ## Current State
 
-- Basic pages exist for home, login, signup, and dashboard.
-- Dashboard is not yet the app hub described in the product vision.
+- Public home, login, signup, callback, dashboard, app category, and settings routes exist.
+- Authenticated routes are protected by the current Auth0-backed route guard.
+- Dashboard is being converted into the app hub described in the product vision.
 
 ## Desired State
 
@@ -45,13 +47,18 @@ Create the public home page, authenticated dashboard, and navigation structure f
 
 - Workflow wireframe story exists.
 - Security category is accepted as a first-class prototype area in planning docs.
+- Issue #80 created as the build story for the first app shell and category pages MVP.
+- Public home page now frames the product as the Web Dev Is Fun prototype hub.
+- Dashboard now exposes AI, Blockchain, Security, and Misc prototype categories.
+- Category landing pages now exist under `/apps/ai`, `/apps/blockchain`, `/apps/security`, and `/apps/misc`.
+- Settings page now exposes the signed-in profile and Auth0 ownership note.
 
 ## Remaining Work
 
-- Review Security navigation update.
-- Implement app shell navigation.
-- Add app category landing pages.
-- Replace dashboard demo content with app-hub content.
+- Review the implemented shell in browser across desktop and mobile.
+- Add deeper prototype cards as category-specific stories are approved.
+- Decide whether dashboard should show real recent activity, recommendations, or only app entry points.
+- Add automated route/navigation tests if the UI test harness is expanded.
 
 ## Decisions
 
@@ -60,9 +67,9 @@ Create the public home page, authenticated dashboard, and navigation structure f
 
 ## Open Questions
 
-- Should first dashboard include recent activity, recommendations, or only app entry points?
+- Should first dashboard include real recent activity, recommendations, or only app entry points?
 - When should Figma be introduced?
-- Should Security be visible immediately with an empty/coming-soon state, or only after the first lab content exists?
+- Which category should get the first real prototype card after the MVP shell is accepted?
 
 ## Architecture / Diagrams
 
@@ -72,10 +79,11 @@ Create the public home page, authenticated dashboard, and navigation structure f
 
 - Local run: Pending
 - Automated tests: Pending
-- Local smoke test: Pending
+- Local smoke test: Pending route checks for `/`, `/login`, `/signup`, `/dashboard`, `/apps/ai`, `/apps/blockchain`, `/apps/security`, `/apps/misc`, and `/settings`
 - Deployed smoke test: Pending
 - Required env vars: None expected for UI-only shell work
 
 ## Change Log
 
+- 2026-06-18: Added issue #80 tracking and first app shell/category page MVP updates.
 - Created initial feature tracking doc from staged vision.

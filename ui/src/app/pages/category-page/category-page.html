@@ -1,0 +1,58 @@
+<main class="hub-shell">
+  <aside class="sidebar">
+    <a class="brand" routerLink="/">
+      <span class="brand-mark">W</span>
+      <span>webdevisfun</span>
+    </a>
+    <nav aria-label="App navigation">
+      @for (item of navItems; track item.route) {
+        <a [class.active]="item.route === category().route" [routerLink]="item.route">{{ item.label }}</a>
+      }
+    </nav>
+  </aside>
+
+  <section class="hub-main">
+    <header class="hub-header">
+      <div>
+        <p class="eyebrow">{{ category().eyebrow }}</p>
+        <h1>{{ category().title }}</h1>
+        <p class="lede">{{ category().summary }}</p>
+      </div>
+      <app-user-menu />
+    </header>
+
+    <section
+      class="category-grid"
+      [class.blue]="category().tone === 'blue'"
+      [class.violet]="category().tone === 'violet'"
+      [class.amber]="category().tone === 'amber'"
+    >
+      <article class="panel intro-panel">
+        <p class="section-label">What belongs here</p>
+        <h2>Prototype work stays visible without becoming the whole app.</h2>
+        <p>
+          This page is the landing area for the category. Individual prototypes can be added here
+          as focused cards when their stories are approved.
+        </p>
+      </article>
+
+      <article class="panel">
+        <p class="section-label">Current signals</p>
+        <ul class="signal-list">
+          @for (highlight of category().highlights; track highlight) {
+            <li>{{ highlight }}</li>
+          }
+        </ul>
+      </article>
+
+      <article class="panel">
+        <p class="section-label">Next useful moves</p>
+        <ul class="signal-list">
+          @for (step of category().nextSteps; track step) {
+            <li>{{ step }}</li>
+          }
+        </ul>
+      </article>
+    </section>
+  </section>
+</main>

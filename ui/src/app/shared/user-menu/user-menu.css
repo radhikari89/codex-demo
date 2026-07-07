@@ -1,0 +1,90 @@
+.user-menu {
+  position: relative;
+  justify-self: end;
+}
+
+.menu-trigger {
+  display: inline-flex;
+  min-height: 42px;
+  max-width: min(300px, 48vw);
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(31, 122, 92, 0.22);
+  border-radius: 8px;
+  padding: 0 14px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.avatar {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 999px;
+  color: white;
+  background: var(--accent);
+  font-size: 0.82rem;
+}
+
+.user-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 10;
+  display: grid;
+  width: min(280px, 84vw);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.menu-identity {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.menu-identity span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.86rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-panel a,
+.menu-panel button {
+  min-height: 42px;
+  border: 0;
+  padding: 0 14px;
+  color: var(--ink);
+  background: white;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 750;
+  text-align: left;
+  text-decoration: none;
+}
+
+.menu-panel a {
+  display: flex;
+  align-items: center;
+}
+
+.menu-panel a:hover,
+.menu-panel button:hover {
+  background: var(--accent-soft);
+}
