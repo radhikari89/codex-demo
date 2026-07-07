@@ -6,8 +6,17 @@
     </a>
     <div class="nav-actions">
       <a class="ghost-link" routerLink="/dashboard">Dashboard</a>
-      <a class="ghost-link" routerLink="/signup">Sign up</a>
-      <a class="primary-link" routerLink="/login">Log in</a>
+      @if (authService.isLoggedIn()) {
+        <a class="profile-link" routerLink="/settings" aria-label="Open signed-in profile">
+          <span class="profile-avatar" aria-hidden="true">
+            {{ (authService.user()?.name || 'U').charAt(0).toUpperCase() }}
+          </span>
+          <span class="profile-name">{{ authService.user()?.name || 'Signed-in user' }}</span>
+        </a>
+      } @else {
+        <a class="ghost-link" routerLink="/signup">Sign up</a>
+        <a class="primary-link" routerLink="/login">Log in</a>
+      }
     </div>
   </nav>
 
@@ -21,8 +30,12 @@
         product thread.
       </p>
       <div class="hero-actions">
-        <a class="cta" routerLink="/login">Open hub</a>
-        <a class="secondary-cta" routerLink="/signup">Create account</a>
+        @if (authService.isLoggedIn()) {
+          <a class="cta" routerLink="/dashboard">Open dashboard</a>
+        } @else {
+          <a class="cta" routerLink="/login">Open hub</a>
+          <a class="secondary-cta" routerLink="/signup">Create account</a>
+        }
       </div>
     </div>
 
