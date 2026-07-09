@@ -16,6 +16,22 @@ Use one shared Auth0 tenant or security profile for the Web Dev Is Fun app famil
 
 This keeps identity consistent while preserving each app's ability to deploy, test, audit, revoke, rotate, and later move under a different domain or umbrella.
 
+## Single Sign-On Across Apps
+
+Using the same Auth0 tenant allows single sign-on across apps without forcing every app to share one Auth0 client ID.
+
+Expected user experience:
+
+1. The user signs in to one app, such as the hub.
+2. The user opens another app, such as the Shared Identity app.
+3. The second app starts its own OIDC login flow with its own Auth0 SPA client.
+4. Auth0 sees the existing tenant session.
+5. Auth0 redirects the user back to the second app without asking for credentials again, unless policy, session expiration, MFA, or consent requires it.
+
+From the user's point of view, they are already signed in. From the architecture point of view, each app still has its own client ID, callback URL, origins, and token request configuration.
+
+This is the preferred model: shared tenant session for SSO, app-specific client configuration for isolation.
+
 ## Common Across Apps
 
 These can be shared or standardized:
