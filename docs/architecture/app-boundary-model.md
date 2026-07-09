@@ -63,6 +63,7 @@ For documentation-first or discovery-only apps, it is acceptable to mark runtime
 - Each new app should start with its own GitHub Project for epics, stories, status, and review tracking.
 - Each app that persists data should own its own database.
 - Apps may share the same Auth0/OIDC tenant or security profile when that keeps identity consistent.
+- Apps should usually keep separate Auth0 SPA clients, callback/origin settings, and API audiences so each app remains independently deployable, auditable, and portable. See [Multi-App Auth0 Boundary](knowledge/security-and-auth/multi-app-auth0-boundary.md).
 - Apps may share the same root domain while launched from `webdevisfun.com`, but they must remain portable enough to move under a different domain or umbrella later.
 - Apps may share a common Kubernetes-like deployment orchestrator or platform conventions, but not a shared release lifecycle by default.
 - The hub should act as a launcher/catalog and shared entry point, not as the permanent home for every app's code, database, and backlog.

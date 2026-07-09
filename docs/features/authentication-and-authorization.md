@@ -80,6 +80,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Current-user lookup uses `/api/v1/auth/me`, not the CRUD `/api/v1/users` collection.
 - Auth0 provider identity metadata is stored in `user_profiles`; the legacy `users` CRUD table is not an authentication or credential store.
 - First-party password handling is deferred; do not build local password auth for the main hub now.
+- Multi-app Auth0 configuration should follow [Multi-App Auth0 Boundary](../architecture/knowledge/security-and-auth/multi-app-auth0-boundary.md): shared tenant/conventions, app-specific clients, callback/origin settings, and API audiences by default.
 
 ## Open Questions
 
@@ -93,6 +94,7 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - [Deployment View](../architecture/c4/deployment-view.md)
 - [ADR-0002 Authentication Strategy](../architecture/decisions/ADR-0002-authentication-strategy.md)
 - [Auth0 OIDC Configuration](../architecture/knowledge/security-and-auth/auth0-oidc-configuration.md)
+- [Multi-App Auth0 Boundary](../architecture/knowledge/security-and-auth/multi-app-auth0-boundary.md)
 - [Auth0 Smoke Test Runbook](../architecture/knowledge/security-and-auth/auth0-smoke-test-runbook.md)
 
 ## Verification
