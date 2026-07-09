@@ -45,15 +45,14 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Auth0 owns hosted login.
 - Angular uses Auth0 OIDC login.
 - Spring Boot validates JWT access tokens as a Resource Server.
-- Hub current-user behavior is derived from trusted Auth0 claims for session display and API authorization.
-- Account/profile management UX is owned by the separate Shared Identity app, not this hub.
+- Current-user/profile behavior is derived from trusted Auth0 claims.
 - Public, signed-in, and future admin access rules are documented.
 
 ## App Boundary
 
 - Type: UI plus shared backend
 - Route/access point: `/login`, `/signup`, `/callback`, `/dashboard`, `/api/v1/auth/me`
-- Data boundary: Auth0 identity claims, minimal local hub user metadata, future roles/permissions
+- Data boundary: Auth0 identity claims, local user profile metadata, future roles/permissions
 - Backend/service dependency: `services/userservice`
 - Independent verification path: backend auth tests, UI auth flow tests, local and deployed smoke tests
 
@@ -80,7 +79,6 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Spring Boot will act as a JWT Resource Server for secured REST APIs.
 - Current-user lookup uses `/api/v1/auth/me`, not the CRUD `/api/v1/users` collection.
 - Auth0 provider identity metadata is stored in `user_profiles`; the legacy `users` CRUD table is not an authentication or credential store.
-- `user_profiles` currently supports hub session/current-user display; user-facing account management belongs in `radhikari89/webdevisfun-identity`.
 - First-party password handling is deferred; do not build local password auth for the main hub now.
 
 ## Open Questions
@@ -88,7 +86,6 @@ Provide industry-standard sign up, sign in, authorization, route protection, and
 - Which Auth0 claims should map into application roles/permissions first?
 - Should Auth0 social connections be enabled immediately or after the base OIDC flow works?
 - Which Auth0 roles/claims should become first-class application permissions?
-- When the Shared Identity app is deployed, should this hub link to it from the user menu?
 
 ## Architecture / Diagrams
 
