@@ -57,6 +57,8 @@ Each app should eventually document:
 
 For documentation-first or discovery-only apps, it is acceptable to mark runtime checks as not applicable, but the reason should be explicit.
 
+Use [Independent App Verification](../features/independent-app-verification.md) for the reusable checklist and handoff template before moving delivery work from Project 1 into an app-owned repository and project.
+
 ## Default App Ownership
 
 - Each new app should start in its own repository.
