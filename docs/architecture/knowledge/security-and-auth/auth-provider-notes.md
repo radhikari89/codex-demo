@@ -32,6 +32,14 @@ Token format notes:
 - If the access token is a JWT, the backend can usually validate it directly.
 - If the access token is opaque, the backend usually asks the provider to introspect it.
 
+## Multi-App SSO Quick Note
+
+If two apps use the same Auth0 tenant, a user who signs in to one app can usually open another app without entering credentials again. The second app still runs its own OIDC flow, but Auth0 reuses the existing tenant session and redirects back with tokens for that second app.
+
+This is single sign-on, not shared tokens. Keep separate Auth0 SPA clients, callback/logout URLs, origins, and API audiences per app unless a specific architecture decision says otherwise.
+
+See [Multi-App Auth0 Boundary](multi-app-auth0-boundary.md) for the full model.
+
 ## Auth0 / OIDC Terminology
 
 These terms appear in the Auth0 configuration guide.

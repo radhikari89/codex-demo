@@ -9,6 +9,8 @@ Related stories:
 - [#59 Configure Auth0 tenant and OIDC application](https://github.com/radhikari89/codex-demo/issues/59)
 - [#71 Configure Auth0 tenant, SPA app, and API in Auth0 dashboard](https://github.com/radhikari89/codex-demo/issues/71)
 
+Related guidance: [Multi-App Auth0 Boundary](multi-app-auth0-boundary.md)
+
 ## Purpose
 
 Document the Auth0 tenant, Angular SPA application, API audience, callback/logout URLs, allowed origins, and environment variables needed for the main `webdevisfun.com` Auth0/OIDC login path.
