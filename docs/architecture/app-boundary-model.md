@@ -114,7 +114,7 @@ Avoid sharing the hub backend for a real app unless the work is clearly hub-owne
 | Main site shell | Hub-owned UI plus shared auth/profile backend | Owns public pages, auth entry points, dashboard shell, navigation, and app catalog. |
 | Authentication foundation | Shared identity foundation | Cross-cutting login/profile capability backed by Auth0 and `services/userservice`. |
 | Shared Identity App | Independent app | Repo: `radhikari89/webdevisfun-identity`; Project: `https://github.com/users/radhikari89/projects/3`. Provides identity/account-facing UX around Auth0 identity while Auth0 remains the login authority. |
-| Security/Auth Provider Lab | Independent app or lab repo when runnable | Auth experiments must remain isolated from the main app login path. |
+| Security/Auth Provider Lab | Hub-owned category/discovery until runnable; independent lab repo when executable | Auth experiments must remain isolated from the main app login path. Provider comparison and evaluation docs stay in Project 1; runnable provider labs should get a repo/project boundary before implementation. |
 | AI | Undecided independent app | Needs first app concept and AI provider/cost/security discovery before repo/project creation. |
 | Blockchain | Undecided independent app | Needs first safe testnet/tooling concept and security review before repo/project creation. |
 | Misc | Undecided independent app category | Smaller apps should get separate repos/projects when they become real apps. |
