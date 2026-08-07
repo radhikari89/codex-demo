@@ -59,6 +59,8 @@ For documentation-first or discovery-only apps, it is acceptable to mark runtime
 
 Use [Independent App Verification](../features/independent-app-verification.md) for the reusable checklist and handoff template before moving delivery work from Project 1 into an app-owned repository and project.
 
+Plain version: do not start coding a real app until we know where it lives, how to run it, how to test it, and which project board owns it.
+
 ## Default App Ownership
 
 - Each new app should start in its own repository.
@@ -83,6 +85,8 @@ Use the hub repo and Project 1 for:
 - cross-app coordination, shared auth/platform decisions, and hub navigation/catalog changes
 
 After the app repo and GitHub Project exist, create delivery epics and implementation stories in the app's own repo and project board. Project 1 should keep only a coordination/linking issue for visibility unless the work changes the hub, shared identity, shared platform, or cross-app contracts.
+
+Plain version: Project 1 starts the idea and hands it off. The app's own project board owns the real build work.
 
 The handoff is complete when:
 
@@ -114,11 +118,13 @@ Avoid sharing the hub backend for a real app unless the work is clearly hub-owne
 | Main site shell | Hub-owned UI plus shared auth/profile backend | Owns public pages, auth entry points, dashboard shell, navigation, and app catalog. |
 | Authentication foundation | Shared identity foundation | Cross-cutting login/profile capability backed by Auth0 and `services/userservice`. |
 | Shared Identity App | Independent app | Repo: `radhikari89/webdevisfun-identity`; Project: `https://github.com/users/radhikari89/projects/3`. Provides identity/account-facing UX around Auth0 identity while Auth0 remains the login authority. |
-| Security/Auth Provider Lab | Independent app or lab repo when runnable | Auth experiments must remain isolated from the main app login path. |
+| Security/Auth Provider Lab | Hub-owned category/discovery until runnable; independent lab repo when executable | Auth experiments must remain isolated from the main app login path. Provider comparison and evaluation docs stay in Project 1; runnable provider labs should get a repo/project boundary before implementation. |
 | AI | Undecided independent app | Needs first app concept and AI provider/cost/security discovery before repo/project creation. |
 | Blockchain | Undecided independent app | Needs first safe testnet/tooling concept and security review before repo/project creation. |
 | Misc | Undecided independent app category | Smaller apps should get separate repos/projects when they become real apps. |
 | Work Orders | Independent app | Should use a separate repo, separate project board, and separate database. The hub may link to it or integrate through explicit contracts. |
+
+Plain version for Security/Auth Provider Lab: comparison docs stay here; runnable login-provider demo apps should usually get their own repo before coding starts.
 
 ## Story Creation Rules
 

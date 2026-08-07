@@ -40,6 +40,8 @@ Define how each app area can be owned, tracked, tested, deployed, and verified i
 
 Use this checklist when approving a new app boundary, bootstrapping a new app repo, or preparing an app for handoff from Project 1 to its app-owned project.
 
+Plain version: before a prototype becomes a real app, write down who owns it, where the code lives, how to run it, how to test it, and what still belongs in the hub.
+
 ### Ownership And Tracking
 
 - Repository exists or the story explicitly explains why it does not yet exist.
@@ -109,6 +111,8 @@ Use this checklist when approving a new app boundary, bootstrapping a new app re
 ## Handoff Template
 
 Copy this section into a new app bootstrap or release handoff story and fill it in before moving implementation work out of Project 1.
+
+Plain version: this is the checklist for moving from "idea in the hub" to "real app with its own repo and project."
 
 ```markdown
 ## Independent App Handoff
