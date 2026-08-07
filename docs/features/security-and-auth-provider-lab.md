@@ -137,13 +137,14 @@ Plain version: the hub can teach, compare, and link. A real auth lab app should 
 ## Architecture / Diagrams
 
 - [Authentication Strategy Discovery](../architecture/drafts/auth-strategy-discovery.md)
+- [Auth Lab Evaluation Matrix](../architecture/knowledge/security-and-auth/auth-lab-evaluation-matrix.md)
 - [Container View](../architecture/c4/container-view.md)
 - [Deployment View](../architecture/c4/deployment-view.md)
 
 ## Verification
 
 - Local run: Not applicable for documentation-only evaluation; hub UI run applies when `/apps/security` changes.
-- Automated tests: Markdown review for this boundary update; hub UI build/test applies when category UI changes.
+- Automated tests: Markdown review for this boundary update and [Auth Lab Evaluation Matrix](../architecture/knowledge/security-and-auth/auth-lab-evaluation-matrix.md); hub UI build/test applies when category UI changes.
 - Local smoke test: Verify docs links and issue references; runnable labs must define provider-specific local smoke tests before implementation.
 - Deployed smoke test: Not applicable for documentation-only evaluation; deployed route/provider checks apply when UI or runnable lab code exists.
 - Required env vars: None for documentation-only evaluation; runnable labs must document provider-specific non-secret config and secret handling before implementation.
