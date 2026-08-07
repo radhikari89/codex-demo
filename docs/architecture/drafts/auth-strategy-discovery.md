@@ -8,6 +8,8 @@ Decision record: [ADR-0002 Authentication Strategy](../decisions/ADR-0002-authen
 
 Knowledge notes: [Auth Provider Notes](../knowledge/security-and-auth/auth-provider-notes.md)
 
+Auth lab checklist: [Auth Lab Evaluation Matrix](../knowledge/security-and-auth/auth-lab-evaluation-matrix.md)
+
 ## Purpose
 
 Choose the first industry-standard authentication and authorization path for `webdevisfun.com` before replacing the temporary UI-to-userservice auth bridge.
@@ -67,7 +69,7 @@ Recommended approach:
 
 - Keep the real app on one approved production path.
 - Create isolated auth-lab prototypes for Spring Security-owned auth, Google OIDC, Keycloak, Cognito, Auth0, Okta, and Firebase/Supabase.
-- Use the same evaluation checklist for each prototype: signup, signin, current-user lookup, logout, backend identity verification, roles/claims, local development, deployment impact, secret handling, and operational ownership.
+- Use the same [Auth Lab Evaluation Matrix](../knowledge/security-and-auth/auth-lab-evaluation-matrix.md) for each prototype: signup, signin, current-user lookup, logout, backend identity verification, roles/claims, local development, deployment impact, secret handling, and operational ownership.
 - Treat Keycloak as the first external IdP prototype because it can run locally and exposes the core OIDC concepts that also apply to managed providers.
 - Promote only one provider path into the main app after the prototype results are reviewed.
 

@@ -9,6 +9,7 @@ Key cross-app rule: use the same Auth0 tenant for single sign-on across apps, bu
 ## Notes
 
 - [Auth Provider Notes](auth-provider-notes.md)
+- [Auth Lab Evaluation Matrix](auth-lab-evaluation-matrix.md)
 - [Auth0 OIDC Configuration](auth0-oidc-configuration.md)
 - [Multi-App Auth0 Boundary](multi-app-auth0-boundary.md)
 - [Authentication and Authorization Flow](authentication-authorization-flow.md)
