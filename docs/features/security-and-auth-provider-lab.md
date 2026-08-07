@@ -51,6 +51,8 @@ Provide a dedicated prototype category for security-focused applications and aut
 - Independent verification path: auth-lab evaluation checklist, provider-specific setup notes, local smoke test, deployed smoke test if hosted, and security review notes.
 - Portability notes: Provider labs must remain portable away from `webdevisfun.com` and must not become dependencies of the main hub login path unless promoted by an explicit decision.
 
+Plain version: docs, comparisons, and decisions stay in this hub repo. If we start building a real runnable auth lab, such as a Keycloak demo app or Okta prototype, we should usually create a separate repo and project before coding it.
+
 ## Independent Verification Applied
 
 ### Ownership And Tracking
@@ -62,11 +64,15 @@ Provide a dedicated prototype category for security-focused applications and aut
   - #54 remains hub-owned because it compares managed providers against the matrix.
   - #53 should be reviewed before implementation; if Keycloak becomes a runnable lab, create a repo/project bootstrap story before writing code.
 
+Plain version: Project 1 can decide what to build and prepare the handoff. The actual runnable lab should move to its own project board once it becomes a real app.
+
 ### Local Development
 
 - Documentation-only work has no local runtime.
 - Hub category UI verification uses the hub UI local run path.
 - Runnable labs must document install, start, build, test, required local services, provider sandbox, and missing-config behavior in the owning repo.
+
+Plain version: if it is only a doc, there is nothing to run. If it is an app, it needs normal app commands and smoke tests.
 
 ### Automated Checks
 
@@ -120,6 +126,8 @@ Provide a dedicated prototype category for security-focused applications and aut
 - Empty Security category state is acceptable before the first runnable lab exists.
 - Security/Auth Provider Lab remains hub-owned for discovery, comparison, and category navigation.
 - Runnable provider labs should become independent app/repo/project work unless an explicit architecture decision keeps a specific lab in the hub.
+
+Plain version: the hub can teach, compare, and link. A real auth lab app should not quietly grow inside the hub.
 
 ## Open Questions
 
